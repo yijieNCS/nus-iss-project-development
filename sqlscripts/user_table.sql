@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS learn_share_db;
-USE learn_share_db;
+CREATE DATABASE IF NOT EXISTS sg_learner_db;
+USE sg_learner_db;
 
 CREATE TABLE `tbl_User` (
 	`userID` INT NOT NULL AUTO_INCREMENT,
@@ -19,8 +19,6 @@ INSERT INTO tbl_User VALUES (NULL,28,NULL,'Tom','Tan','TomTan@gmail.com','Bachel
 INSERT INTO tbl_User VALUES (NULL,25,NULL,'Jimmy','Neutron','JimmyNeutron@gmail.com','Bachelor degree of Chemical Engineering','JimmyNeutron','passJN');
 INSERT INTO tbl_User VALUES (NULL,26,NULL,'Dipper','Pines','DipperPines@gmail.com','Bachelor degree of Business Management','DipperPines','passDP');
 INSERT INTO tbl_User VALUES (NULL,30,NULL,'Candace','Flynn','CandaceFlynn@gmail.com','Bachelor degree of Pyschology','CandaceFlynn','passCF');
-
-SELECT * FROM tbl_user;
 
 
 
