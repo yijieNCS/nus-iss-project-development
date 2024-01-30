@@ -1,24 +1,55 @@
 import {pool} from "../config/database.js";
 
 export async function getSessions() {
-    const [rows] = await pool.query(
-        `SELECT * FROM sessions`
-    );
-    return rows;
+    const sql = `SELECT * FROM sessions`
+    try {
+        const [rows] = await pool.query(sql)
+        return rows
+    } catch (error) {
+        throw new Error("Failed to fetch sessions from the database")
+    }
 }
 
-export async function getSession(id) {
-    const [rows] = await pool.query(
-        `SELECT * 
-        FROM sessions
-        WHERE sessionId = ?`, [3]
-    );
-    return rows[0];
+export async function getSessionBySessionId(sessionId) {
+    const sql = `SELECT * FROM sessions WHERE sessionId=?`
+    try {
+        const [rows] = await pool.query(sql, [sessionId])
+        return rows[0];
+    } catch (error) {
+        throw new Error("Failed to fetch particular session from the database")
+    }
+
 }
 
-export async function createFunction(sessionId, tutorId, studentId, timing, status, location) {
-    await pool.query(
-        `INSERT INTO sessions (sessionId, tutorId, studentId, timing, status, location)
-        VALUES(?, ?, ?, ?, ?, ?)`, [sessionId, tutorId, studentId, timing, status, location]
-    )
+export async function createSession(tutorId, studentId, timing, status, location) {
+    const sql = `INSERT INTO sessions (tutorId, studentId, timing, status, location)
+                        VALUES(?, ?, ?, ?, ?)`
+    try {
+        const [result] = await pool.query(sql, [tutorId, studentId, timing, status, location])
+        return result.insertId
+    } catch (error) {
+        throw new Error("Failed to create the session")
+    }
+}
+
+export async function deleteSessionBySessionId(sessionId) {
+    const sql = `DELETE FROM sessions WHERE sessionId=?`
+    try {
+        await pool.query(sql, [sessionId])
+        return sessionId
+    } catch (error) {
+        throw new Error("Failed to delete the session")
+    }
+}
+
+export async function updateSessionBySessionId(sessionId, tutorId, studentId, timing, status, location){
+    const sql = `UPDATE sessions
+                        SET tutorId=?, studentId=?, timing=?, status=?, location=?
+                        WHERE sessionId=?`
+    try {
+        const [result] = await pool.query(sql, [tutorId, studentId, timing, status, location, sessionId])
+        return result.insertId
+    } catch(error) {
+        throw new Error("Failed to update the session")
+    }
 }
