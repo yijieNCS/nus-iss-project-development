@@ -1,4 +1,4 @@
-import {pool} from "../config/database.js";
+import { pool } from "../app.js";
 
 export async function getSessions() {
     const sql = `SELECT * FROM sessions`
@@ -6,6 +6,7 @@ export async function getSessions() {
         const [rows] = await pool.query(sql)
         return rows
     } catch (error) {
+        console.error(pool.user)
         throw new Error("Failed to fetch sessions from the database")
     }
 }

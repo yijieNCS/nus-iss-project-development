@@ -1,7 +1,22 @@
 import express from 'express'
+import dotenv from 'dotenv';
 import router from './sessions/session-routes.js'
+import path from 'path'
+import { fileURLToPath } from 'url';
+import {connectDatabase} from "./config/database.js";
 
 const app = express()
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const envFilePath = path.resolve(__dirname, '../../backend/.env');
+const result = dotenv.config({path: envFilePath});
+
+if (result.error) {
+    console.error('Error loading .env file:', result.error);
+} else {
+    console.log('Environment variables loaded successfully');
+}
+
+export const pool = connectDatabase()
 
 const middleware = (err, req, res, next) => {
     console.error(err.stack)
@@ -15,3 +30,5 @@ app.use(router)
 app.listen(8080, () => {
     console.log('Server is running on port 8080...')
 })
+
+export default app
