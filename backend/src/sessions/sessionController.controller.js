@@ -1,38 +1,36 @@
-import express from "express"
-import { getSessionBySessionId,
-        getSessions,
-        createSession,
-        deleteSessionBySessionId,
-        updateSessionBySessionId
-} from "./session-model.js";
+import {
+    getSessionsModel,
+    getSessionModel,
+    createSessionModel,
+    deleteSessionModel,
+    updateSessionModel
+} from "./sessionModel.model.js";
 
-const sessionRouter = express.Router()
-
-sessionRouter.get('/api/sessions', async (req, res) => {
+export async function getAllSessions(req, res) {
     try {
-        const sessions = await getSessions()
+        const sessions = await getSessionsModel()
         res.send(sessions)
     } catch (error) {
         console.error(error)
         res.status(500).json({error: error.message})
     }
-})
+}
 
-sessionRouter.get('/api/session/:id', async (req, res) => {
+export async function getAllSessionById(req, res) {
     try {
         const id = req.params.id
-        const session = await getSessionBySessionId(id)
+        const session = await getSessionModel(id)
         res.send(session)
     } catch (error) {
         console.error(error)
         res.status(500).json({error: error.message})
     }
-})
+}
 
-sessionRouter.post('/api/session', async (req, res ) => {
+export async function createSession(req, res) {
     try {
         const { tutorId, studentId, timing, status, location } = req.body
-        const sessionId = await createSession(
+        const sessionId = await createSessionModel(
             tutorId,
             studentId,
             timing,
@@ -44,23 +42,23 @@ sessionRouter.post('/api/session', async (req, res ) => {
         console.error(error)
         res.status(500).json({error: error.message})
     }
-})
+}
 
-sessionRouter.delete('/api/session/:id', async (req, res) => {
+export async function deleteSessionById(req, res) {
     try {
         const id = req.params.id
-        const sessionId = await deleteSessionBySessionId(id)
+        const sessionId = await deleteSessionModel(id)
         res.status(200).send(`Session Id: ${sessionId} is deleted Successfully`)
     } catch (error) {
         console.error(error)
         res.status(500).json({error: error.message})
     }
-})
+}
 
-sessionRouter.put('/api/session', async(req, res) => {
+export async function updateSessionById(req, res) {
     try {
         const { sessionId, tutorId, studentId, timing, status, location } = req.body
-        const sessionIdRes = await updateSessionBySessionId(
+        const sessionIdRes = await updateSessionModel(
             sessionId,
             tutorId,
             studentId,
@@ -73,6 +71,4 @@ sessionRouter.put('/api/session', async(req, res) => {
         console.error(error)
         res.status(500).json({error: error.message})
     }
-})
-
-export default sessionRouter
+}

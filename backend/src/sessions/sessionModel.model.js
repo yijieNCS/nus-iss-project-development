@@ -1,6 +1,6 @@
 import { pool } from "../app.js";
 
-export async function getSessions() {
+export async function getSessionsModel() {
     const sql = `SELECT * FROM sessions`
     try {
         const [rows] = await pool.query(sql)
@@ -11,7 +11,7 @@ export async function getSessions() {
     }
 }
 
-export async function getSessionBySessionId(sessionId) {
+export async function getSessionModel(sessionId) {
     const sql = `SELECT * FROM sessions WHERE sessionId=?`
     try {
         const [rows] = await pool.query(sql, [sessionId])
@@ -22,7 +22,7 @@ export async function getSessionBySessionId(sessionId) {
 
 }
 
-export async function createSession(tutorId, studentId, timing, status, location) {
+export async function createSessionModel(tutorId, studentId, timing, status, location) {
     const sql = `INSERT INTO sessions (tutorId, studentId, timing, status, location)
                         VALUES(?, ?, ?, ?, ?)`
     try {
@@ -33,7 +33,7 @@ export async function createSession(tutorId, studentId, timing, status, location
     }
 }
 
-export async function deleteSessionBySessionId(sessionId) {
+export async function deleteSessionModel(sessionId) {
     const sql = `DELETE FROM sessions WHERE sessionId=?`
     try {
         await pool.query(sql, [sessionId])
@@ -43,7 +43,7 @@ export async function deleteSessionBySessionId(sessionId) {
     }
 }
 
-export async function updateSessionBySessionId(sessionId, tutorId, studentId, timing, status, location){
+export async function updateSessionModel(sessionId, tutorId, studentId, timing, status, location){
     const sql = `UPDATE sessions
                         SET tutorId=?, studentId=?, timing=?, status=?, location=?
                         WHERE sessionId=?`

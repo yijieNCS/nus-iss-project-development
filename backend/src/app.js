@@ -1,6 +1,6 @@
 import express from 'express'
 import dotenv from 'dotenv';
-import router from './sessions/session-routes.js'
+import router from './sessions/sessionRoute.route.js'
 import path from 'path'
 import { fileURLToPath } from 'url';
 import {connectDatabase} from "./config/database.js";
