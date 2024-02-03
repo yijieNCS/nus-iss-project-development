@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS learn_share_db;
-USE learn_share_db;
+CREATE DATABASE IF NOT EXISTS sg_learner_db;
+USE sg_learner_db;
 
 CREATE TABLE `tbl_User` (
 	`userID` INT NOT NULL AUTO_INCREMENT,
