@@ -67,7 +67,7 @@ export async function deleteUserById(req, res) {
 export async function updateUserById(req, res) {
     try {
         const { userId, age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender} = req.body
-        const userIdRes = await updateSessionModel(
+        const userIdRes = await updateUserModel(
             userId,
             age,
             dateJoined,
