@@ -17,6 +17,6 @@ userRouter.post('/api/user', createUser)
 
 userRouter.delete('/api/user/:id', deleteUserById)
 
-userRouter.put('/api/user', updateUserById)
+userRouter.put('/api/user/', updateUserById)
 
 export default userRouter
