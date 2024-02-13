@@ -84,13 +84,11 @@ export async function updateUserModel(userId, age, dateJoined, firstName, lastNa
             throw new Error("User not found");
         }
         const [result] = await pool.query(sql, [age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender, userId])
+        if (result.affectedRows === 0) {
+            throw new Error("Failed to update the user");
+        }
         return userId
     } catch(error) {
-        if (error === "User not found"){
-            throw error
-        }else{
-            throw new Error("Failed to update the user")
-        }
-        
+       throw error
     }
 }
