@@ -19,7 +19,6 @@ export async function getSessionModel(sessionId) {
     } catch (error) {
         throw new Error("Failed to fetch particular session from the database")
     }
-
 }
 
 export async function createSessionModel(tutorId, studentId, timing, status, location) {
@@ -49,7 +48,7 @@ export async function updateSessionModel(sessionId, tutorId, studentId, timing, 
                         WHERE sessionId=?`
     try {
         const [result] = await pool.query(sql, [tutorId, studentId, timing, status, location, sessionId])
-        return result.sessionId
+        return result.insertId
     } catch(error) {
         throw new Error("Failed to update the session")
     }

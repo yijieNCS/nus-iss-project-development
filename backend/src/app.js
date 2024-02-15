@@ -8,9 +8,7 @@ import {connectDatabase} from "./config/database.js";
 
 const app = express()
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-console.log(__dirname);
 const envFilePath = path.resolve(__dirname, '../../backend/.env');
-console.log(envFilePath);
 const result = dotenv.config({path: envFilePath});
 
 if (result.error) {
@@ -20,15 +18,6 @@ if (result.error) {
 }
 
 export const pool = connectDatabase()
-
-// Test the database connection pool by executing a sample query
-// pool.query('SELECT 1')
-//     .then((results) => {
-//         console.log('Database query result:', results);
-//     })
-//     .catch((error) => {
-//         console.error('Error executing database query:', error);
-//     });
 
 const middleware = (err, req, res, next) => {
     console.error(err.stack)
