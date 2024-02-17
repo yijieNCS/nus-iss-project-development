@@ -27,7 +27,7 @@ jobs:
     steps:
       # Reference the main branch. For more information visit https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstepsuses
       - name: Checkout under $GITHUB_WORKSPACE
-        uses: actions/checkout@main
+        uses: actions/checkout@v2
         # reference my branch
         with:
           ref: your-branch-name
