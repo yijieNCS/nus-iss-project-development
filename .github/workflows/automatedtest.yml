@@ -40,6 +40,7 @@ jobs:
 
       - name: Install all dependencies
         run: npm install
+        working-directory: backend
 
       - name: Run Jest Tests
         run: npm run test
