@@ -43,3 +43,4 @@ jobs:
 
       - name: Run Jest Tests
         run: npm run test
+        working-directory: nus-iss-project-development\backend
