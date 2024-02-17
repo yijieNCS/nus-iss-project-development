@@ -30,7 +30,7 @@ jobs:
         uses: actions/checkout@v2
         # reference my branch
         with:
-          ref: your-branch-name
+          ref: yzgithubaction
       # Specify which version of Node this project is using. For more information visit.
       # https://docs.github.com/en/actions/guides/building-and-testing-nodejs#specifying-the-nodejs-version
       - name: Set up NodeJS
