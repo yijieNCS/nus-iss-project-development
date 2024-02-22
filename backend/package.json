@@ -5,7 +5,7 @@
   "type": "module",
   "main": "src/config/database.js",
   "scripts": {
-    "test": "mocha --timeout 20000 --exit"
+    "test": "mocha --timeout 20000 --exit ../backend/test/user/userRoute.test.js"
   },
   "keywords": [],
   "author": "",
