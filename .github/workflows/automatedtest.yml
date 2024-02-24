@@ -25,8 +25,8 @@ jobs:
       
     steps: 
       - name: Wait for SQL Database Setup
-          run: echo "Waiting for SQL Database Setup to complete"
-          if: needs.sqlDatabaseSetup.outputs.job_completed == 'true'
+        run: echo "Waiting for SQL Database Setup to complete"
+        if: needs.sqlDatabaseSetup.outputs.job_completed == 'true'
 
       - name: Checkout under $GITHUB_WORKSPACE
         uses: actions/checkout@v2
