@@ -8,8 +8,6 @@ on:
 jobs:
   sqlDatabaseSetup:
     runs-on: ubuntu-latest
-    outputs:
-      job_completed: ${{ steps.checkout_repository.outputs.completed }}
     services:
       mysql:
         image: mysql:latest
