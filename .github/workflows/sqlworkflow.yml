@@ -1,0 +1,123 @@
+name: MySQL Workflow
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    services:
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: test_database
+          MYSQL_USER: test_user
+          MYSQL_PASSWORD: test_password
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install dependencies
+      working-directory: ./backend
+      run: npm install
+
+    - name: Install MySQL client
+      run: sudo apt-get install -y mysql-client
+
+    - name: Create user table
+      run: |
+        mysql -h 127.0.0.1 -P 3306 -u test_user -p'test_password' test_database -e 'CREATE TABLE tbl_User (userID INT NOT NULL AUTO_INCREMENT PRIMARY KEY, age INT NOT NULL, dateJoined DATETIME DEFAULT NULL, firstName VARCHAR(25) NOT NULL, lastName VARCHAR(25) NOT NULL,
+        email VARCHAR(25) NOT NULL, education VARCHAR(100) NOT NULL,username VARCHAR(255) UNIQUE NOT NULL, password VARCHAR(255) NOT NULL, birthDate DATETIME DEFAULT NULL, gender VARCHAR(1) NOT NULL);'
+
+    - name: Create session table
+      run: |
+        mysql -h 127.0.0.1 -P 3306 -u test_user -p'test_password' test_database -e 'CREATE TABLE `sessions` (`sessionId` INT NOT NULL AUTO_INCREMENT, `tutorId` INT NOT NULL, `studentId` INT NOT NULL, `timing` DATETIME NOT NULL, `status` VARCHAR(10) NOT NULL, `location` VARCHAR(25) NOT NULL, PRIMARY KEY (`sessionId`), FOREIGN KEY (`tutorId`) REFERENCES tbl_User(`userID`), FOREIGN KEY (`studentId`) REFERENCES tbl_User(`userID`));'
+
+
+# name: CI
+
+# on: [push]
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+
+#     container:
+#       image: node:20-alpine
+    
+#     services: 
+#       mysql-master:
+#         image: mysql:5.7
+#         ports:
+#           - 3306:3306
+#         env:
+#           MYSQL_DATABASE: ${{ secrets.DATABASE }}
+#           MYSQL_USER: ${{ secrets.USER }}
+#           MYSQL_PASSWORD: ${{ secrets.PASSWORD }}
+#           MYSQL_ROOT_PASSWORD: ${{ secrets.PASSWORD }}
+
+#     steps:
+#     - uses: actions/checkout@v2
+
+#     - name: Set up Node.js
+#       uses: actions/setup-node@v2
+#       with: 
+#         node-version: '20.11.0'
+    
+#     - name: Install dependencies
+#       working-directory: ./backend
+#       run: npm install
+
+#     - name: Create .env file
+#       run: |
+#         echo "MYSQL_HOST=${{ secrets.MYSQL_HOST }}" > backend/.env
+#         echo "MYSQL_USER=${{ secrets.USER }}" >> backend/.env
+#         echo "MYSQL_PASSWORD=${{ secrets.PASSWORD }}" >> backend/.env
+#         echo "MYSQL_PORT=${{ secrets.PORT }}" >> backend/.env
+#         echo "MYSQL_DATABASE=${{ secrets.DATABASE }}" >> backend/.env
+
+#     - name: Wait for MySQL service to be ready
+#       run: |
+#           while ! nc -z 127.0.0.1 3306; do
+#             echo "Waiting for MySQL service to be ready..."
+#             sleep 5
+#           done
+    
+#     - name: Enter MYSQL service container
+#       run: docker exec -it mysql-master bash 
+    
+#     - name: Create MySQL database and table
+#       run: |
+#         mysql -h ${{ secrets.MYSQL_HOST }} -P${{ secrets.PORT }} -u ${{ secrets.USER }} -p"${{ secrets.PASSWORD }}" -e "CREATE DATABASE IF NOT EXISTS ${{ secrets.DATABASE }}"
+
+#         mysql -h ${{ secrets.MYSQL_HOST }} -u ${{ secrets.USER }} -p"${{ secrets.PASSWORD }}" ${{ secrets.DATABASE }} <<EOF
+#         CREATE TABLE `tbl_User` (
+#         `userID` INT NOT NULL AUTO_INCREMENT,
+#         `age` INT NOT NULL,
+#         `dateJoined` DATETIME DEFAULT NULL,
+#         `firstName` VARCHAR(25) NOT NULL,
+#         `lastName` VARCHAR(25) NOT NULL,
+#         `email` VARCHAR(25) NOT NULL,
+#         `education` VARCHAR(100) NOT NULL,
+#         `username` VARCHAR(255) UNIQUE NOT NULL,
+#         `password` VARCHAR(255) NOT NULL,
+#         `birthDate` DATETIME DEFAULT NULL,
+#         `gender` VARCHAR(1) NOT NULL,
+        
+#         PRIMARY KEY (`userID`)
+#         );
+#         EOF
+    
+#     - name: Run Mocha tests
+#       run: npm test
+        
