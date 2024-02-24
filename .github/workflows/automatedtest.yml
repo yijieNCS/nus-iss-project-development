@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [sqlDatabaseSetup]
     steps:
-     - name: Wait for SQL Database Setup
+      - name: Wait for SQL Database Setup
         run: echo "Waiting for SQL Database Setup to complete"
         # Wait for the completion of sqlDatabaseSetup job from sqlworkflow.yml
         # Access the output from sqlDatabaseSetup job using jobs.sqlDatabaseSetup.outputs.<output_name>
@@ -52,4 +52,3 @@ jobs:
       # Include your reference to the external workflow file here
       - name: Run SQL Workflow
         uses: ./.github/workflows/sqlworkflow.yml
-
