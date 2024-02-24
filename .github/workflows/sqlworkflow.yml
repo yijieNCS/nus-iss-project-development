@@ -46,10 +46,20 @@ jobs:
         mysql -h 127.0.0.1 -P 3306 -u test_user -p'test_password' test_database -e 'CREATE TABLE `sessions` (`sessionId` INT NOT NULL AUTO_INCREMENT, `tutorId` INT NOT NULL, `studentId` INT NOT NULL, `timing` DATETIME NOT NULL, `status` VARCHAR(10) NOT NULL, `location` VARCHAR(25) NOT NULL, PRIMARY KEY (`sessionId`), FOREIGN KEY (`tutorId`) REFERENCES tbl_User(`userID`), FOREIGN KEY (`studentId`) REFERENCES tbl_User(`userID`));'
 
     - name: Run User Tests
+      env:
+          DB_HOST: localhost
+          DB_USER: test_user
+          DB_PASSWORD: test_password
+          DB_DATABASE: test_database
       run: npm run test:user
       working-directory: backend
 
     - name: Run Session Tests
+      env:
+        DB_HOST: localhost
+        DB_USER: test_user
+        DB_PASSWORD: test_password
+        DB_DATABASE: test_database
       run: npm run test:session
       working-directory: backend
     
