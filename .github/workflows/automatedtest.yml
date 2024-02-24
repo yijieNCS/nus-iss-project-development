@@ -14,6 +14,14 @@ on:
 
 # The jobs this action will run.
 jobs:
+ # A placeholder job with no dependencies
+  placeholder:
+    name: Placeholder Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Placeholder Step
+        run: echo "This is a placeholder job with no dependencies"
+
   # ID of the job
   run-jest-tests:
     # Name of the job as it will be displayed in GitHub
