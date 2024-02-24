@@ -15,6 +15,12 @@ on:
 
 # The jobs this action will run.
 jobs:
+  # This job has no dependencies
+  check-dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Dependencies
+        run: echo "Checking dependencies"
   # ID of the job
   run-jest-tests:
     # Name of the job as it will be displayed in GitHub
