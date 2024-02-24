@@ -1,5 +1,5 @@
 # Name of this action
-name: Jest Automatic Testing
+name: API Automatic Testing
 
 # Event triggers on pull request event
 on:
@@ -16,19 +16,12 @@ on:
 # The jobs this action will run.
 jobs:
   # ID of the job
-  run-jest-tests:
+  run-api-tests:
     # Name of the job as it will be displayed in GitHub
-    name: Jest Tests
+    name: Api Tests
     # Machine which this action will be run on.
     runs-on: ubuntu-latest
     steps:
-      - name: Wait for SQL Database Setup
-        run: echo "Waiting for SQL Database Setup to complete"
-        # Wait for the completion of sqlDatabaseSetup job from sqlworkflow.yml
-        # Access the output from sqlDatabaseSetup job using jobs.sqlDatabaseSetup.outputs.<output_name>
-        # In this case, the output is the completion of the job itself, so we use jobs.sqlDatabaseSetup.outputs.job_completed
-        if: needs.sqlDatabaseSetup.outputs.job_completed == 'true'
-        
       - name: Checkout under $GITHUB_WORKSPACE
         uses: actions/checkout@v2
         with:
@@ -43,8 +36,14 @@ jobs:
         run: npm install
         working-directory: backend
 
-      - name: Run Jest Tests
-        run: npm run test
+      - name: Run Test User
+        run: npm run test:user
         working-directory: backend
+
+      - name: Run Test Session
+        run: npm run test:session
+        working-directory: backend
+
+
 
     
