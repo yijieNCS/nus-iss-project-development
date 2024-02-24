@@ -3,6 +3,8 @@ name: Jest Automatic Testing
 
 # Event triggers on pull request event
 on:
+  push:
+  pull_request:
   workflow_run:
     workflows: [sqlDatabaseSetup]
     types:
