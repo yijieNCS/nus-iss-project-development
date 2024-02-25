@@ -19,7 +19,6 @@ export async function getSessionModel(sessionId) {
     } catch (error) {
         throw new Error("Failed to fetch particular session from the database")
     }
-
 }
 
 export async function createSessionModel(tutorId, studentId, timing, status, location) {
