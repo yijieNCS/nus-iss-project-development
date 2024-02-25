@@ -23,11 +23,11 @@ jobs:
         
       - name: Create .env file
         run: |
-          echo "MYSQL_HOST=localhost" > nus-iss-project-development\backend
-          echo "MYSQL_USER=root" >> nus-iss-project-development\backend
-          echo "MYSQL_PASSWORD=13119795bM194$!" >> nus-iss-project-development\backend
-          echo "MYSQL_PORT=3306" >> nus-iss-project-development\backend
-          echo "MYSQL_DATABASE=sg_learner_db" >> nus-iss-project-development\backend
+          echo "MYSQL_HOST=localhost" > nus-iss-project-development/backend/.env
+          echo "MYSQL_USER=root" >> nus-iss-project-development/backend/.env
+          echo "MYSQL_PASSWORD=13119795bM194$!" >> nus-iss-project-development/backend/.env
+          echo "MYSQL_PORT=3306" >> nus-iss-project-development/backend/.env
+          echo "MYSQL_DATABASE=sg_learner_db" >> nus-iss-project-development/backend/.env
   sqlDatabaseSetup:
     needs: create_env_file
     runs-on: ubuntu-latest
