@@ -20,7 +20,9 @@ jobs:
       steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-        
+      - name: Debugging
+        run: |
+          ls -l nus-iss-project-development/backend 
       - name: Create .env file
         run: |
           echo "MYSQL_HOST=localhost" > nus-iss-project-development/backend/.env
