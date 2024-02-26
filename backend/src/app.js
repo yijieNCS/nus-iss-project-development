@@ -1,7 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv';
 import router from './sessions/sessionRoute.route.js'
-import userrouter from './user/userRoute.js'
+import serviceRouter from './Service/service-routes.js'
 import path from 'path'
 import { fileURLToPath } from 'url';
 import {connectDatabase} from "./config/database.js";
@@ -19,6 +19,15 @@ if (result.error) {
 
 export const pool = connectDatabase()
 
+// Test the database connection pool by executing a sample query
+// pool.query('SELECT 1')
+//     .then((results) => {
+//         console.log('Database query result:', results);
+//     })
+//     .catch((error) => {
+//         console.error('Error executing database query:', error);
+//     });
+
 const middleware = (err, req, res, next) => {
     console.error(err.stack)
     res.status(500).send("Something broke!")
@@ -27,7 +36,7 @@ const middleware = (err, req, res, next) => {
 app.use(middleware)
 app.use(express.json())
 app.use(router)
-app.use(userrouter)
+app.use(serviceRouter)
 
 app.listen(8080, () => {
     console.log('Server is running on port 8080...')
