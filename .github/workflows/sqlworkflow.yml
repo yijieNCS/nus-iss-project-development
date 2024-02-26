@@ -30,6 +30,7 @@ jobs:
           echo "MYSQL_PASSWORD=13119795bM194$!" >> ./backend/.env
           echo "MYSQL_PORT=3306" >> ./backend/.env
           echo "MYSQL_DATABASE=sg_learner_db" >> ./backend/.env
+          cat .env
   sqlDatabaseSetup:
     needs: create_env_file
     runs-on: ubuntu-latest
