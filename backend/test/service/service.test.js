@@ -7,7 +7,7 @@ const server = use(chaiHttp)
 let requester = undefined
 let testingId = undefined
 
-describe("Testing Session", function() {
+describe("Testing Services", function() {
 
     before(function() {
         requester = server.request(app).keepOpen()

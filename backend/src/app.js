@@ -2,6 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv';
 import router from './sessions/sessionRoute.route.js'
 import serviceRouter from './Service/service-routes.js'
+import userRouter from './user/userRoute.js'
 import path from 'path'
 import { fileURLToPath } from 'url';
 import {connectDatabase} from "./config/database.js";
@@ -35,6 +36,7 @@ const middleware = (err, req, res, next) => {
 
 app.use(middleware)
 app.use(express.json())
+app.use(userRouter)
 app.use(router)
 app.use(serviceRouter)
 

@@ -75,8 +75,9 @@ describe("Testing Session", function() {
         })
     })
 
-    after(function() {
+    after(function(done) {
         server.request(app).close()
+        done()
     })
 
 })

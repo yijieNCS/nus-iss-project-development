@@ -21,7 +21,7 @@ describe("Testing User REST Apis", function(){
                 "lastName": "Testing22",
                 "email": "Test@testmail.com",
                 "education": "Bachelor degree of Computer Science",
-                "username": "testman22",
+                "username": "testman23",
                 "password": "testing123",
                 "birthDate": "2023-04-01 12:00:00",
                 "gender": "M"
@@ -35,4 +35,22 @@ describe("Testing User REST Apis", function(){
             })
         })
     })
+})
+
+describe("Testing REST APIs", function() {
+
+    before(function() {
+        requester = server.request(app).keepOpen()
+    })
+
+    after(function() {
+        requester = server.request(app).close()
+    })
+
+    describe("Testing GET Request", function() {
+        it("Should return 200", function() {
+
+        })
+    })
+
 })
