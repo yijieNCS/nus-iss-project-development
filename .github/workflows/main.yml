@@ -39,7 +39,7 @@ jobs:
         echo "MYSQL_DATABASE=${{ secrets.DATABASE }}" >> backend/.env
     
     - name: Install MySQL client
-      run: sudo apt-get install -y mysql-clientz
+      run: sudo apt-get install -y mysql-client
 
     - name: Create tables
       run : |
