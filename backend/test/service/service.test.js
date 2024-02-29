@@ -7,22 +7,19 @@ const server = use(chaiHttp)
 let requester = undefined
 let testingId = undefined
 
-describe("Testing Session", function() {
+describe("Testing Services", function() {
 
     before(function() {
         requester = server.request(app).keepOpen()
     })
 
-    describe("Testing POST one session API", function() {
+    describe("Testing POST one service API", function() {
         it("Should return status 200", function(done) {
             const testData = {
-                "tutorId": 4,
-                "studentId": 1,
-                "timing": "2024-05-09 15:35:00",
-                "status": "COMPLETED",
-                "location": "Toa Payoh Ave 10"
+                "userId": 1,
+                "rate": 8.50
             }
-            requester.post("/api/session").send(testData).end((err, res) => {
+            requester.post("/api/service").send(testData).end((err, res) => {
                 expect(res).to.have.status(200)
                 testingId = res.text.split(" ")[2]
                 done()
@@ -30,54 +27,51 @@ describe("Testing Session", function() {
         })
     })
 
-    describe("Testing GET sessions API", function() {
+    describe("Testing GET services API", function() {
         it("Should return status 200", function(done) {
-            requester.get("/api/sessions").end((err, res) => {
+            requester.get("/api/services").end((err, res) => {
                 expect(res).to.have.status(200)
                 done()
             })
         })
     })
 
-    describe("Testing GET one session API", function() {
+    describe("Testing GET one service API", function() {
         it("Should return status 200", function(done) {
-            requester.get(`/api/session/${testingId}`).end((err, res) => {
+            requester.get(`/api/service/${testingId}`).end((err, res) => {
                 expect(res).to.have.status(200)
                 done()
             })
         })
     })
 
-    describe("Testing UPDATE one session", function() {
+    describe("Testing UPDATE one service", function() {
         it("Should return status 200", function(done) {
             const testData = {
-                "sessionId": testingId,
-                "tutorId": 4,
-                "studentId": 1,
-                "timing": "2024-05-09 15:35:00",
-                "status": "COMPLETED",
-                "location": "Toa Payoh Ave 10"
+                "serviceId": testingId,
+                "userId": 1,
+                "rate": 8.50
             }
 
-            requester.put("/api/session").send(testData).end((err, res) => {
+            requester.put("/api/service/").send(testData).end((err, res) => {
                 expect(res).to.have.status(200)
                 done()
             })
         })
     })
 
-    describe("Testing DELETE one session API", function() {
+    describe("Testing DELETE one service API", function() {
         it("Should return status 200", function(done) {
-            requester.delete(`/api/session/${testingId}`).end((err, res) => {
+            requester.delete(`/api/service/${testingId}`).end((err, res) => {
                 expect(res).to.have.status(200)
                 done()
             })
         })
     })
+    
 
-    after(function(done) {
+    after(function() {
         server.request(app).close()
-        done()
     })
 
 })

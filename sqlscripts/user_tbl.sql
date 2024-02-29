@@ -25,6 +25,10 @@ INSERT INTO tbl_User VALUES (NULL,30,NULL,'Candace','Flynn','CandaceFlynn@gmail.
 
 SELECT * FROM tbl_user;
 
+ALTER TABLE tbl_User
+ADD `birthDate` DATETIME NULL,
+ADD `gender` VARCHAR(1) NULL;
+
 
 
 
