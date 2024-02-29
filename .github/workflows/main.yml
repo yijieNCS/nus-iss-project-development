@@ -10,7 +10,7 @@ jobs:
       mysql:
         image: mysql:latest
         env: 
-          MYSQL_ROOT_PASSWORD: password
+          MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: ${{ secrets.DATABASE }}
           MYSQL_USER: ${{ secrets.USER }}
           MYSQL_PASSWORD: ${{ secrets.PASSWORD }}
@@ -39,7 +39,11 @@ jobs:
         echo "MYSQL_DATABASE=${{ secrets.DATABASE }}" >> backend/.env
     
     - name: Install MySQL client
-      run: sudo apt-get install -y mysql-client
+      run: sudo apt-get install -y mysql-clientz
+
+    - name: Create tables
+      run : |
+        mysql -h 127.0.0.1 -P 3306 -u root -p'newpassword' sg_learner_db -e 'CREATE TABLE example_table (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255));'
     
     
 
