@@ -11,10 +11,10 @@ jobs:
         image: mysql:latest
         env: 
           MYSQL_ROOT_PASSWORD: rootpassword
-          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
-          MYSQL_USER: ${{ secrets.MYSQL_USER }}
-          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
-          MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
+          MYSQL_DATABASE: 'sg_learner_db'
+          MYSQL_USER: 'yijie'
+          MYSQL_PASSWORD: 'newpassword'
+          MYSQL_HOST: 'localhost'
         ports:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
