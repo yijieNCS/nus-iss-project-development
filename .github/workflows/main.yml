@@ -25,6 +25,16 @@ jobs:
         echo "MYSQL_PASSWORD=${{ secrets.PASSWORD }}" >> backend/.env
         echo "MYSQL_PORT=${{ secrets.PORT }}" >> backend/.env
         echo "MYSQL_DATABASE=${{ secrets.DATABASE }}" >> backend/.env
+    
+    - name: Start Node.js Application
+      working-directory: ./backend/src
+      run: node app.js &
+
+    - name: Wait for 5 seconds
+      run: sleep 5
+    
+    - name: Stop Node.js application
+      run: pkill -f "node app.js"
 
 
 
