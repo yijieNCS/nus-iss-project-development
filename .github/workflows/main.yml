@@ -1,1 +1,31 @@
+name: Continous Integration Pipeline
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with: 
+        node-version: '20.11.0'
+    
+    - name: Install dependencies
+      working-directory: ./backend
+      run: npm install
+
+    - name: Create .env file
+      run: |
+        echo "MYSQL_HOST=${{ secrets.MYSQL_HOST }}" > backend/.env
+        echo "MYSQL_USER=${{ secrets.USER }}" >> backend/.env
+        echo "MYSQL_PASSWORD=${{ secrets.PASSWORD }}" >> backend/.env
+        echo "MYSQL_PORT=${{ secrets.PORT }}" >> backend/.env
+        echo "MYSQL_DATABASE=${{ secrets.DATABASE }}" >> backend/.env
+
+
+
 
