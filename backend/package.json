@@ -5,7 +5,11 @@
   "type": "module",
   "main": "src/config/database.js",
   "scripts": {
-    "test": "mocha --timeout 20000 --exit"
+    "test-users": "mocha --timeout 20000 --exit ./test/user/users.test.js",
+    "test-sessions": "mocha --timeout 20000 --exit ./test/sessions/session.test.js",
+    "test-resumes": "mocha --timeout 20000 --exit ./test/resume/resume.test.js",
+    "test-services": "mocha --timeout 20000 --exit ./test/service/service.test.js",
+    "test-all": "npm run test-users && npm run test-sessions && npm run test-resumes && npm run test-services"
   },
   "keywords": [],
   "author": "",

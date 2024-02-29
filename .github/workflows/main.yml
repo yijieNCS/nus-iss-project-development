@@ -6,6 +6,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    services:
+      mysql:
+        image: mysql:latest
+        env: 
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: test_database
+          MYSQL_USER: test_user
+          MYSQL_PASSWORD: test_password
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
     steps:
     - uses: actions/checkout@v2
 
@@ -26,15 +38,7 @@ jobs:
         echo "MYSQL_PORT=${{ secrets.PORT }}" >> backend/.env
         echo "MYSQL_DATABASE=${{ secrets.DATABASE }}" >> backend/.env
     
-    - name: Start Node.js Application
-      working-directory: ./backend/src
-      run: node app.js &
-
-    - name: Wait for 5 seconds
-      run: sleep 5
     
-    - name: Stop Node.js application
-      run: pkill -f "node app.js"
 
 
 

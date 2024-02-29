@@ -85,8 +85,11 @@ describe("Testing Users", function() {
         })
     })
 
-    after(function() {
+    after(function(done) {
         server.request(app).close()
+        requester = undefined
+        testingId = undefined
+        done()
     })
 
 })
