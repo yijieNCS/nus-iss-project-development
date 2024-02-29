@@ -38,6 +38,9 @@ jobs:
         echo "MYSQL_PORT=${{ secrets.PORT }}" >> backend/.env
         echo "MYSQL_DATABASE=${{ secrets.DATABASE }}" >> backend/.env
     
+    - name: Install MySQL client
+      run: sudo apt-get install -y mysql-client
+    
     
 
 
