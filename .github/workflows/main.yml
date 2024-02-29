@@ -44,8 +44,20 @@ jobs:
 
     - name: Create tables
       run : |
-        mysql -h 127.0.0.1 -P 3306 -u yijie -p'newpassword' sg_learner_db -e 'CREATE TABLE example_table (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255));'
-    
+        mysql -h 127.0.0.1 -P 3306 -u yijie -p'newpassword' sg_learner_db -e 'CREATE TABLE `tbl_User` (
+            `userID` INT NOT NULL AUTO_INCREMENT,
+            `age` INT NOT NULL,
+            `dateJoined` DATETIME DEFAULT NULL,
+            `firstName` VARCHAR(25) NOT NULL,
+            `lastName` VARCHAR(25) NOT NULL,
+            `email` VARCHAR(25) NOT NULL,
+            `education` VARCHAR(100) NOT NULL,
+            `username` VARCHAR(255) UNIQUE NOT NULL,
+            `password` VARCHAR(255) NOT NULL,
+            `birthDate` DATETIME DEFAULT NULL,
+            `gender` VARCHAR(1) NOT NULL,
+            PRIMARY KEY (`userID`)
+        );'    
     
 
 
