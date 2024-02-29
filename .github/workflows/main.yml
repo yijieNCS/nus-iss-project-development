@@ -33,11 +33,11 @@ jobs:
 
     - name: Create .env file
       run: |
-        echo "MYSQL_HOST=${{ secrets.MYSQL_HOST }}" > backend/.env
-        echo "MYSQL_USER=${{ secrets.MYSQL_USER }}" >> backend/.env
-        echo "MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}" >> backend/.env
-        echo "MYSQL_PORT=${{ secrets.MYSQL_PORT }}" >> backend/.env
-        echo "MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}" >> backend/.env
+        echo "MYSQL_HOST=localhost" > backend/.env
+        echo "MYSQL_USER=yijie" >> backend/.env
+        echo "MYSQL_PASSWORD=newpassword" >> backend/.env
+        echo "MYSQL_PORT=3306" >> backend/.env
+        echo "MYSQL_DATABASE=sg_learner_db" >> backend/.env
     
     - name: Install MySQL client
       run: sudo apt-get install -y mysql-client
