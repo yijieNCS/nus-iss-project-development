@@ -57,7 +57,11 @@ jobs:
             `birthDate` DATETIME DEFAULT NULL,
             `gender` VARCHAR(1) NOT NULL,
             PRIMARY KEY (`userID`)
-        );'    
+        );'
+
+    - name: Run tests
+      working-directory: ./backend
+      run: npm run test-all
     
 
 
