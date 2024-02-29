@@ -10,10 +10,11 @@ jobs:
       mysql:
         image: mysql:latest
         env: 
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: ${{ secrets.DATABASE }}
-          MYSQL_USER: ${{ secrets.USER }}
-          MYSQL_PASSWORD: ${{ secrets.PASSWORD }}
+          MYSQL_ROOT_PASSWORD: rootpassword
+          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+          MYSQL_USER: ${{ secrets.MYSQL_USER }}
+          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+          MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
         ports:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
@@ -33,17 +34,17 @@ jobs:
     - name: Create .env file
       run: |
         echo "MYSQL_HOST=${{ secrets.MYSQL_HOST }}" > backend/.env
-        echo "MYSQL_USER=${{ secrets.USER }}" >> backend/.env
-        echo "MYSQL_PASSWORD=${{ secrets.PASSWORD }}" >> backend/.env
-        echo "MYSQL_PORT=${{ secrets.PORT }}" >> backend/.env
-        echo "MYSQL_DATABASE=${{ secrets.DATABASE }}" >> backend/.env
+        echo "MYSQL_USER=${{ secrets.MYSQL_USER }}" >> backend/.env
+        echo "MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}" >> backend/.env
+        echo "MYSQL_PORT=${{ secrets.MYSQL_PORT }}" >> backend/.env
+        echo "MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}" >> backend/.env
     
     - name: Install MySQL client
       run: sudo apt-get install -y mysql-client
 
     - name: Create tables
       run : |
-        mysql -h 127.0.0.1 -P 3306 -u root -p'newpassword' sg_learner_db -e 'CREATE TABLE example_table (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255));'
+        mysql -h 127.0.0.1 -P 3306 -u yijie -p'newpassword' sg_learner_db -e 'CREATE TABLE example_table (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255));'
     
     
 
