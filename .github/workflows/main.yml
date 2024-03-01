@@ -42,7 +42,7 @@ jobs:
     - name: Install MySQL client
       run: sudo apt-get install -y mysql-client
 
-    - name: Create tables
+    - name: Create User Tables
       run : |
         mysql -h 127.0.0.1 -P 3306 -u yijie -p'newpassword' sg_learner_db -e 'CREATE TABLE `tbl_User` (
             `userID` INT NOT NULL AUTO_INCREMENT,
@@ -57,6 +57,20 @@ jobs:
             `birthDate` DATETIME DEFAULT NULL,
             `gender` VARCHAR(1) NOT NULL,
             PRIMARY KEY (`userID`)
+        );'
+    
+    - name: Create Session Table
+      run : |  
+        mysql -h 127.0.0.1 -P 3306 -u yijie -p'newpassword' sg_learner_db -e 'CREATE TABLE `sessions` (
+            `sessionId` INT NOT NULL AUTO_INCREMENT,
+            `tutorId` INT NOT NULL,
+            `studentId` INT NOT NULL,
+            `timing` DATETIME NOT NULL,
+            `status` VARCHAR(10) NOT NULL,
+            `location` VARCHAR(25) NOT NULL,
+            PRIMARY KEY (`sessionId`),
+            FOREIGN KEY (`tutorId`) REFERENCES tbl_User(`userID`),
+            FOREIGN KEY (`studentId`) REFERENCES tbl_User(`userID`)
         );'
 
     - name: Run tests
