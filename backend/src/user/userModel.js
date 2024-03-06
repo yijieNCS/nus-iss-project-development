@@ -52,7 +52,7 @@ export async function createUserModel(age, dateJoined, firstName, lastName, emai
 // }
 export async function deleteUserModel(userId) {
     const checkUserSql = `SELECT * FROM tbl_User WHERE userId=?`;
-    const deleteSql = `DELETE FROM tbl_user WHERE userId=?`;
+    const deleteSql = `DELETE FROM tbl_User WHERE userId=?`;
     try { 
         const [userRows] = await pool.query(checkUserSql, [userId]);
         if (userRows.length === 0) {
@@ -74,8 +74,8 @@ export async function deleteUserModel(userId) {
 
 
 export async function updateUserModel(userId, age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender){
-    const checkUserSql = `SELECT * FROM tbl_user WHERE userId=?`;
-    const sql = `UPDATE tbl_user
+    const checkUserSql = `SELECT * FROM tbl_User WHERE userId=?`;
+    const sql = `UPDATE tbl_User
                         SET age=?, dateJoined=?, firstName=?, lastName=?, email=?, education=?, username=?, password=?, birthDate=?, gender=?
                         WHERE userId=?`
     try {
