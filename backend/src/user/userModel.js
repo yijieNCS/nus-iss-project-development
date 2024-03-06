@@ -12,7 +12,7 @@ export async function getUsersModel() {
 }
 
 export async function getUserModel(userId) {
-    const sql = `SELECT * FROM tbl_user WHERE userId=?`
+    const sql = `SELECT * FROM tbl_User WHERE userId=?`
     try {
         const [rows] = await pool.query(sql, [userId])
         return rows[0];
@@ -23,7 +23,7 @@ export async function getUserModel(userId) {
 }
 
 export async function createUserModel(age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender) {
-    const sql = `INSERT INTO tbl_user (age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender)
+    const sql = `INSERT INTO tbl_User (age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender)
                         VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
     try {
         const [result] = await pool.query(sql, [age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender])
@@ -51,7 +51,7 @@ export async function createUserModel(age, dateJoined, firstName, lastName, emai
 //     }
 // }
 export async function deleteUserModel(userId) {
-    const checkUserSql = `SELECT * FROM tbl_user WHERE userId=?`;
+    const checkUserSql = `SELECT * FROM tbl_User WHERE userId=?`;
     const deleteSql = `DELETE FROM tbl_user WHERE userId=?`;
     try { 
         const [userRows] = await pool.query(checkUserSql, [userId]);
