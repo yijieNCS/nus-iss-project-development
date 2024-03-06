@@ -13,27 +13,27 @@ describe("Testing Users", function() {
         requester = server.request(app).keepOpen()
     })
 
-    // describe("Testing POST one user API", function() {
-    //     it("Should return status 200", function(done) {
-    //         const testData = {
-    //             "age":26,
-    //             "dateJoined":null,
-    //             "firstName":"Queen",
-    //             "lastName":"Rogue",
-    //             "email":"QueenRogue@gmail.com",
-    //             "education":"Bachelor of Computer Science",
-    //             "username":"QueenR",
-    //             "password":"passQR",
-    //             "birthDate":"19900111",
-    //             "gender":"F"
-    //         }
-    //         requester.post("/api/user").send(testData).end((err, res) => {
-    //             expect(res).to.have.status(200)
-    //             testingId = res.text.split(" ")[2]   //res.body:  User Id: 7 is created Successfully , 7 is the testing id for this case
-    //             done()
-    //         })
-    //     })
-    // })
+    describe("Testing POST one user API", function() {
+        it("Should return status 200", function(done) {
+            const testData = {
+                "age":26,
+                "dateJoined":null,
+                "firstName":"Queen",
+                "lastName":"Rogue",
+                "email":"QueenRogue@gmail.com",
+                "education":"Bachelor of Computer Science",
+                "username":"QueenR",
+                "password":"passQR",
+                "birthDate":"19900111",
+                "gender":"F"
+            }
+            requester.post("/api/user").send(testData).end((err, res) => {
+                expect(res).to.have.status(200)
+                testingId = res.text.split(" ")[2]   //res.body:  User Id: 7 is created Successfully , 7 is the testing id for this case
+                done()
+            })
+        })
+    })
 
     describe("Testing GET users API", function() {
         it("Should return status 200", function(done) {
