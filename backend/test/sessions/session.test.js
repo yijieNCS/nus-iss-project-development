@@ -1,4 +1,4 @@
-import app from "../src/app.js"
+import app from "../../src/app.js"
 import { expect, use } from "chai";
 import chaiHttp from "chai-http";
 import sinon from "sinon";
@@ -75,8 +75,11 @@ describe("Testing Session", function() {
         })
     })
 
-    after(function() {
+    after(function(done) {
         server.request(app).close()
+        requester = undefined
+        testingId = undefined
+        done()
     })
 
 })

@@ -9,4 +9,3 @@ export function connectDatabase() {
         database: process.env.MYSQL_DATABASE
     }).promise()
 }
-
