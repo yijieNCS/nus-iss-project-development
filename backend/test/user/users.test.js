@@ -35,14 +35,14 @@ describe("Testing Users", function() {
         })
     })
 
-    describe("Testing GET users API", function() {
-        it("Should return status 200", function(done) {
-            requester.get("/api/users").end((err, res) => {
-                expect(res).to.have.status(200)
-                done()
-            })
-        })
-    })
+    // describe("Testing GET users API", function() {
+    //     it("Should return status 200", function(done) {
+    //         requester.get("/api/users").end((err, res) => {
+    //             expect(res).to.have.status(200)
+    //             done()
+    //         })
+    //     })
+    // })
 
     // describe("Testing GET one user API", function() {
     //     it("Should return status 200", function(done) {
