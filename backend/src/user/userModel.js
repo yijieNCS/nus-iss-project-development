@@ -34,7 +34,7 @@ export async function createUserModel(age, dateJoined, firstName, lastName, emai
 }
 
 // export async function deleteUserModel(userId) {
-//     const sql = `DELETE FROM tbl_user WHERE userId=?`
+//     const sql = `DELETE FROM tbl_User WHERE userId=?`
 //     try { 
 //         result =await pool.query(sql, [userId])
 //         console.log("result"+result)
