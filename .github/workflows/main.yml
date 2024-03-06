@@ -34,8 +34,8 @@ jobs:
     - name: Create .env file
       run: |
         echo "MYSQL_HOST=localhost" > backend/.env
-        echo "MYSQL_USER=yijie" >> backend/.env
-        echo "MYSQL_PASSWORD=newpassword" >> backend/.env
+        echo "MYSQL_USER=root" >> backend/.env
+        echo "MYSQL_PASSWORD=13119795bM194$!" >> backend/.env
         echo "MYSQL_PORT=3306" >> backend/.env
         echo "MYSQL_DATABASE=sg_learner_db" >> backend/.env
     
@@ -44,7 +44,7 @@ jobs:
 
     - name: Create User Tables
       run : |
-        mysql -h 127.0.0.1 -P 3306 -u yijie -p'newpassword' sg_learner_db -e 'CREATE TABLE `tbl_User` (
+        mysql -h 127.0.0.1 -P 3306 -u root -p'13119795bM194$!' sg_learner_db -e 'CREATE TABLE `tbl_User` (
             `userID` INT NOT NULL AUTO_INCREMENT,
             `age` INT NOT NULL,
             `dateJoined` DATETIME DEFAULT NULL,
@@ -61,7 +61,7 @@ jobs:
     
     - name: Create Session Table
       run : |  
-        mysql -h 127.0.0.1 -P 3306 -u yijie -p'newpassword' sg_learner_db -e 'CREATE TABLE `sessions` (
+        mysql -h 127.0.0.1 -P 3306 -u root -p'13119795bM194$!' sg_learner_db -e 'CREATE TABLE `sessions` (
             `sessionId` INT NOT NULL AUTO_INCREMENT,
             `tutorId` INT NOT NULL,
             `studentId` INT NOT NULL,
