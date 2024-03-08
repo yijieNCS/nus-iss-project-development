@@ -52,8 +52,8 @@ describe("Testing Session", function() {
         it("Should return status 200", function(done) {
             const testData = {
                 "sessionId": testingId,
-                "tutorId": 4,
-                "studentId": 1,
+                "tutorId": 1,
+                "studentId": 2,
                 "timing": "2024-05-09 15:35:00",
                 "status": "COMPLETED",
                 "location": "Toa Payoh Ave 10"
