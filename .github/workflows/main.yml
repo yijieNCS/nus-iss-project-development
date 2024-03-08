@@ -72,12 +72,7 @@ jobs:
             FOREIGN KEY (`tutorId`) REFERENCES tbl_User(`userID`),
             FOREIGN KEY (`studentId`) REFERENCES tbl_User(`userID`)
         );'
-
     - name: Run tests
       working-directory: ./backend
       run: npm run test-all
     
-
-
-
-

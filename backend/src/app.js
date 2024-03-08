@@ -21,7 +21,7 @@ if (result.error) {
 
 export const pool = connectDatabase()
 
-// Test the database connection pool by executing a sample query
+// Test the database connection pool by executing a sample query test
 // pool.query('SELECT 1')
 //     .then((results) => {
 //         console.log('Database query result:', results);
