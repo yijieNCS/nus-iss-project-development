@@ -59,31 +59,14 @@ jobs:
             PRIMARY KEY (`userID`)
         );'
 
+    - name: Validate User Table
+      run: |
+        mysql -h 127.0.0.1 -P 3306 -u yijie -p'newpassword' sg_learner_db -e "SHOW TABLES;"
+        mysql -h 127.0.0.1 -P 3306 -u yijie -p'newpassword' sg_learner_db -e "DESCRIBE tbl_User;"
+
     - name: Insert User Records
       run : |
-        mysql -h 127.0.0.1 -P 3306 -u yijie -p'newpassword' sg_learner_db -e 'INSERT INTO `tbl_User` (
-            `age`,
-            `dateJoined`,
-            `firstName`,
-            `lastName`,
-            `email`,
-            `education`,
-            `username`,
-            `password`,
-            `birthdate`,
-            `gender`,
-        ) VALUES (
-            25, 
-            '2024-03-08 12:00:00', 
-            'John', 
-            'Doe', 
-            'john.doe@example.com', 
-            'Bachelor of Science', 
-            'johndoe', 
-            'password123', 
-            '1999-01-01 00:00:00', 
-            'M'
-        );'
+        mysql -h 127.0.0.1 -P 3306 -u yijie -p'newpassword' sg_learner_db -e "INSERT INTO tbl_User (age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender) VALUES (25, '2024-03-08 12:00:00', 'John', 'Doe', 'john.doe@example.com', 'Bachelor of Science', 'johndoe', 'password123', '1999-01-01 00:00:00', 'M');"
     
     - name: Create Session Table
       run : |  
