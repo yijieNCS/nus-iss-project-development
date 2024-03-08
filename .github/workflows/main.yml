@@ -72,6 +72,30 @@ jobs:
             FOREIGN KEY (`tutorId`) REFERENCES tbl_User(`userID`),
             FOREIGN KEY (`studentId`) REFERENCES tbl_User(`userID`)
         );'
+    
+    - name: Create Service Table
+      run : |
+        mysql -h 127.0.0.1 -P 3306 -u yijie -p'newpassword' sg_learner_db -e 'CREATE TABLE `service` (
+            `serviceId` INT NOT NULL AUTO_INCREMENT,
+            `userId` INT NOT NULL,
+            `rate` FLOAT NOT NULL,
+            PRIMARY KEY (`serviceId`),
+            FOREIGN KEY (`userId`) REFERENCES tbl_User(`userID`),
+        );'
+
+    - name: Create Resume Table
+      run : |
+        mysql -h 127.0.0.1 -P 3306 -u yijie -p'newpassword' sg_learner_db -e 'CREATE TABLE `resume` (
+            `resumeId` INT NOT NULL AUTO_INCREMENT,
+            `userId` INT NOT NULL,
+            `years` DATETIME NOT NULL,
+            `name` VARCHAR(15) NOT NULL,
+            `types` VARCHAR(10) NOT NULL,
+            `description` VARCHAR(15) NOT NULL,
+            PRIMARY KEY (`resumeId`),
+            FOREIGN KEY (`userId`) REFERENCES tbl_User(`userID`),
+        );'
+
     - name: Run tests
       working-directory: ./backend
       run: npm run test-all

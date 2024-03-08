@@ -8,7 +8,6 @@ import {
 
 export async function getAllSessions(req, res) {
     try {
-        // Add Random Comment
         const sessions = await getSessionsModel()
         res.send(sessions)
     } catch (error) {
