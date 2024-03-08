@@ -80,7 +80,7 @@ jobs:
             `userId` INT NOT NULL,
             `rate` FLOAT NOT NULL,
             PRIMARY KEY (`serviceId`),
-            FOREIGN KEY (`userId`) REFERENCES tbl_User(`userID`),
+            FOREIGN KEY (`userId`) REFERENCES tbl_User(`userID`)
         );'
 
     - name: Create Resume Table
@@ -93,7 +93,7 @@ jobs:
             `types` VARCHAR(10) NOT NULL,
             `description` VARCHAR(15) NOT NULL,
             PRIMARY KEY (`resumeId`),
-            FOREIGN KEY (`userId`) REFERENCES tbl_User(`userID`),
+            FOREIGN KEY (`userId`) REFERENCES tbl_User(`userID`)
         );'
 
     - name: Run tests
