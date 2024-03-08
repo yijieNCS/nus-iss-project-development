@@ -58,6 +58,14 @@ jobs:
             `gender` VARCHAR(1) NOT NULL,
             PRIMARY KEY (`userID`)
         );'
+
+    - name: Insert User Records
+      run : |
+        mysql -h 127.0.0.1 -P 3306 -u yijie -p'newpassword' sg_learner_db -e 'INSERT INTO tbl_User (age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender) 
+        VALUES 
+        (25, '2024-03-08 12:00:00', 'John', 'Doe', 'john.doe@example.com', 'Bachelor of Science', 'johndoe', 'password123', '1999-01-01 00:00:00', 'M'),
+        (30, '2024-03-08 12:30:00', 'Jane', 'Smith', 'jane.smith@example.com', 'Master of Arts', 'janesmith', 'securepassword', '1994-05-15 00:00:00', 'F');
+        '
     
     - name: Create Session Table
       run : |  
