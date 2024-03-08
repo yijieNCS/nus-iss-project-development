@@ -9,7 +9,7 @@
     "test-sessions": "mocha --timeout 20000 --exit ./test/sessions/session.test.js",
     "test-resumes": "mocha --timeout 20000 --exit ./test/resume/resume.test.js",
     "test-services": "mocha --timeout 20000 --exit ./test/service/service.test.js",
-    "test-all": "npm run test-sessions"
+    "test-all": "npm run test-users && npm run test-sessions"
   },
   "keywords": [],
   "author": "",
