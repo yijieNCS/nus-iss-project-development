@@ -16,8 +16,8 @@ describe("Testing Session", function() {
     describe("Testing POST one session API", function() {
         it("Should return status 200", function(done) {
             const testData = {
-                "tutorId": 4,
-                "studentId": 1,
+                "tutorId": 1,
+                "studentId": 2,
                 "timing": "2024-05-09 15:35:00",
                 "status": "COMPLETED",
                 "location": "Toa Payoh Ave 10"
