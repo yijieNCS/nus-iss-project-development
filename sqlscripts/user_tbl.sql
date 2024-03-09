@@ -28,7 +28,3 @@ SELECT * FROM tbl_user;
 ALTER TABLE tbl_User
 ADD `birthDate` DATETIME NULL,
 ADD `gender` VARCHAR(1) NULL;
-
-
-
-
