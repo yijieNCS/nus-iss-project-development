@@ -1,3 +1,10 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: 200px 1fr; /* Adjust column widths as needed */
+  grid-template-rows: auto 1fr; /* Adjust row heights as needed */
+  height: 100vh;
+ }
+
 .App {
   text-align: center;
 }
@@ -36,3 +43,4 @@
     transform: rotate(360deg);
   }
 }
+

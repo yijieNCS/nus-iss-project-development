@@ -1,0 +1,34 @@
+.topheader {
+    
+    display: grid;
+    grid-template-columns: auto 1fr auto; /* Adjust column widths as needed */
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    
+  }
+  
+  .top-header h1 {
+    margin: 0;
+    grid-column: 2;
+  }
+
+  .top-header {
+    grid-column: 1 / span 2; /* Span across both columns */
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  .sglearner-title {
+
+    grid-column:3 / span 2; /* Span across both columns */
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+
+
+
+  }
