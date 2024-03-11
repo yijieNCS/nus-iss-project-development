@@ -19,7 +19,16 @@ export async function getUserModel(userId) {
     } catch (error) {
         throw new Error("Failed to fetch particular user from the database")
     }
+}
 
+export async function getUserModelByUsername(username) {
+    const sql = `SELECT * FROM tbl_User WHERE username=?`
+    try {
+        const [rows] = await pool.query(sql, [username])
+        return rows[0]
+    } catch (error) {
+        throw new Error("Username does not exist")
+    }
 }
 
 export async function createUserModel(age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender) {
