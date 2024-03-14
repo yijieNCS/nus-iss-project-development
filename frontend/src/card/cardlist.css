@@ -1,0 +1,30 @@
+/* CardList.css */
+
+.card-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the rows horizontally */
+    gap: 20px; /* Gap between rows */
+  }
+  
+  .card-row {
+    display: flex;
+    justify-content: space-between; /* Evenly space the cards within the row */
+    width: 100%; /* Make the row full-width */
+  }
+  
+  .card-item {
+    flex: 0 0 calc(33.33% - 20px); /* Adjust the width of each card item */
+  }
+  
+  @media (max-width: 768px) {
+    .card-item {
+      flex: 0 0 calc(50% - 20px); /* Adjust the width of each card item for smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .card-item {
+      flex: 0 0 calc(100% - 20px); /* Adjust the width of each card item for even smaller screens */
+    }
+  }

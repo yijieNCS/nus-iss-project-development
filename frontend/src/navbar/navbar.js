@@ -8,6 +8,7 @@ class SideNavBar extends React.Component {
     
       <div >
         <ul>
+        <li><a href="#">Home</a></li>
           <li><a href="#">Sessions</a></li>
           <li><a href="#">Resume</a></li>
           <li><a href="#">Services</a></li>

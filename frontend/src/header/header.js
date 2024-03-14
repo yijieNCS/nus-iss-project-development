@@ -5,13 +5,15 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 class TopHeader extends React.Component {
   render() {
     return (
-      <div>
-       <div className ="sglearner-title "> <h1>SGLearner</h1></div>
-       <div><h1>Resume</h1></div>
-       <div><FontAwesomeIcon icon={faUser} /></div>
+      
+       <header className="header">
+        <div className="resume">Resume</div>
+        <div className="sglearner">SGLearner</div>
+        <div className = "profile-icon"><FontAwesomeIcon size ={"1x"} icon={faUser}  /></div>
         
-        {/* Add any other content you want in the header */}
-      </div>
+      </header>
+       
+      
     );
   }
 }

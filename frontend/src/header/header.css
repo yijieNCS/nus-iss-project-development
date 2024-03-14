@@ -14,21 +14,26 @@
     grid-column: 2;
   }
 
-  .top-header {
-    grid-column: 1 / span 2; /* Span across both columns */
+  .header {
+    display: grid;
+    grid-template-columns: repeat(3, auto); /* Three columns */
+    align-items: center; /* Align items vertically */
     background-color: #333;
     color: white;
-    padding: 20px;
-    text-align: center;
+    padding: 15px 20px; /* Adjust padding as needed */
   }
-  .sglearner-title {
+  
+  .resume {
+    font-weight: bold;
+  }
 
-    grid-column:3 / span 2; /* Span across both columns */
-    background-color: #333;
-    color: white;
-    padding: 20px;
-    text-align: center;
+  .sglearner {
+    font-weight: bold;
+    text-align:center
 
 
-
+  }
+  
+  .profile-icon {
+    justify-self: end; /* Align to the end of the grid cell */
   }

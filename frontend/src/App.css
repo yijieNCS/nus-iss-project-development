@@ -3,7 +3,23 @@
   grid-template-columns: 200px 1fr; /* Adjust column widths as needed */
   grid-template-rows: auto 1fr; /* Adjust row heights as needed */
   height: 100vh;
+  background-color: #ddd
  }
+
+
+ .body-container {
+
+  display: grid;
+  grid-template-columns: 100px 1fr; /* Adjust min and max width as needed */
+  height: 100vh;
+ }
+
+.cards{
+
+
+
+  
+}
 
 .App {
   text-align: center;
