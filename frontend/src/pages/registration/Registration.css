@@ -114,8 +114,6 @@
     border: none; /* Remove border */
     outline: none; /* Remove outline */
     background-color: #d9d9d9;
-    border-radius: 5px;
-    width:30%;
     margin-right: 5px; /* Add margin-right for spacing between inputs */
 }
 
@@ -184,3 +182,16 @@
     background-color: #bd2130;
   }
   
+
+  /*error*/
+
+  
+
+
+.error {
+  position: absolute;
+    bottom: -10px; /* Adjust as needed */
+    left: 0;
+    color: red;
+    font-size: 14px;
+}

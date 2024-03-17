@@ -22,10 +22,25 @@ export async function getUserModel(userId) {
 
 }
 
+export async function getUserModelByUsername(username) {
+    const sql = `SELECT * FROM tbl_User WHERE username=?`
+    try {
+        const [rows] = await pool.query(sql, [username])
+        return rows[0]
+    } catch (error) {
+        throw new Error("Username does not exist")
+    }
+}
+
+
+
+
 export async function createUserModel(age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender) {
     const sql = `INSERT INTO tbl_User (age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender)
                         VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
     try {
+        console.log("Age: "+age+",dateJoined: "+dateJoined+", firstName: "+firstName+", lastName: "+lastName+" ,email: "+email+" ,edu: "+education+" ,username: "+username+" ,password: "+password+" ,birthdate: "+birthDate+" ,gender: "+gender)
+
         const [result] = await pool.query(sql, [age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender])
         return result.insertId
     } catch (error) {
