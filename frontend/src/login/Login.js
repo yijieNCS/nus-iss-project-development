@@ -1,6 +1,8 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState, useEffect, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
+import UserContext from "../context/UserContext";
 import axios from "axios";
-import './login.css'
+import './Login.css'
 
 const Login = () => {
 
@@ -9,15 +11,18 @@ const Login = () => {
         password: ''
     })
     const [LoggedIn, setLoggedIn] = useState(false)
+    const navigate = useNavigate()
 
     const usernameRef = useRef()
     const passwordRef = useRef()
 
+    const userContext = useContext(UserContext)
+
     useEffect(() => {
          if (LoggedIn) {
-             console.log("To Home Page")
+             navigate("/sessions")
          }
-    }, [LoggedIn])
+    }, [LoggedIn, navigate])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -26,6 +31,10 @@ const Login = () => {
 
         const response = await axios.post('http://localhost:8080/api/login', formData)
         if (response.status === 200) {
+            console.log(response)
+            userContext.userId = response.data.userId
+            userContext.firstName = response.data.firstName
+            userContext.lastName = response.data.lastName
             setLoggedIn(true)
         }
     }
@@ -37,6 +46,7 @@ const Login = () => {
                 <h1>SGLearner</h1>
             </div>
             <form className="grid-form" onSubmit={handleSubmit}>
+                <img className="grid-username-icon" src="/UsernameIcon.png" alt="Username Icon"/>
                 <input
                     className="grid-username"
                     type="text"
@@ -45,9 +55,10 @@ const Login = () => {
                     placeholder="Username"
                     ref={usernameRef}
                 />
+                <img className="grid-password-icon" src="/PasswordIcon.png" alt="Password Icon"/>
                 <input
                     className="grid-password"
-                    type="text"
+                    type="password"
                     id="password"
                     name="password"
                     placeholder="Password"
