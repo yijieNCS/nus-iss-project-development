@@ -1,0 +1,113 @@
+name: Continous Integration Pipeline
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:latest
+        env: 
+          MYSQL_ROOT_PASSWORD: rootpassword
+          MYSQL_DATABASE: 'sg_learner_db'
+          MYSQL_USER: 'yijie'
+          MYSQL_PASSWORD: 'newpassword'
+          MYSQL_HOST: 'localhost'
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with: 
+        node-version: '20.11.0'
+    
+    - name: Install dependencies
+      working-directory: ./backend
+      run: npm install
+
+    - name: Create .env file
+      run: |
+        echo "MYSQL_HOST=localhost" > backend/.env
+        echo "MYSQL_USER=yijie" >> backend/.env
+        echo "MYSQL_PASSWORD=newpassword" >> backend/.env
+        echo "MYSQL_PORT=3306" >> backend/.env
+        echo "MYSQL_DATABASE=sg_learner_db" >> backend/.env
+    
+    - name: Install MySQL client
+      run: sudo apt-get install -y mysql-client
+
+    - name: Create User Tables
+      run : |
+        mysql -h 127.0.0.1 -P 3306 -u yijie -p'newpassword' sg_learner_db -e 'CREATE TABLE `tbl_User` (
+            `userID` INT NOT NULL AUTO_INCREMENT,
+            `age` INT NOT NULL,
+            `dateJoined` DATETIME DEFAULT NULL,
+            `firstName` VARCHAR(25) NOT NULL,
+            `lastName` VARCHAR(25) NOT NULL,
+            `email` VARCHAR(25) NOT NULL,
+            `education` VARCHAR(100) NOT NULL,
+            `username` VARCHAR(255) UNIQUE NOT NULL,
+            `password` VARCHAR(255) NOT NULL,
+            `birthDate` DATETIME DEFAULT NULL,
+            `gender` VARCHAR(1) NOT NULL,
+            PRIMARY KEY (`userID`)
+        );'
+
+    - name: Validate User Table
+      run: |
+        mysql -h 127.0.0.1 -P 3306 -u yijie -p'newpassword' sg_learner_db -e "SHOW TABLES;"
+        mysql -h 127.0.0.1 -P 3306 -u yijie -p'newpassword' sg_learner_db -e "DESCRIBE tbl_User;"
+
+    - name: Insert User Records
+      run : |
+        mysql -h 127.0.0.1 -P 3306 -u yijie -p'newpassword' sg_learner_db -e "INSERT INTO tbl_User (age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender) VALUES 
+          (25, '2024-03-08 12:00:00', 'John', 'Doe', 'john.doe@example.com', 'Bachelor of Science', 'johndoe', 'password123', '1999-01-01 00:00:00', 'M'),
+          (30, '2024-03-08 12:30:00', 'Jane', 'Smith', 'jane.smith@example.com', 'Master of Arts', 'janesmith', 'securepassword', '1994-05-15 00:00:00', 'F');"
+    
+    - name: Create Session Table
+      run : |  
+        mysql -h 127.0.0.1 -P 3306 -u yijie -p'newpassword' sg_learner_db -e 'CREATE TABLE `sessions` (
+            `sessionId` INT NOT NULL AUTO_INCREMENT,
+            `tutorId` INT NOT NULL,
+            `studentId` INT NOT NULL,
+            `timing` DATETIME NOT NULL,
+            `status` VARCHAR(10) NOT NULL,
+            `location` VARCHAR(25) NOT NULL,
+            PRIMARY KEY (`sessionId`),
+            FOREIGN KEY (`tutorId`) REFERENCES tbl_User(`userID`),
+            FOREIGN KEY (`studentId`) REFERENCES tbl_User(`userID`)
+        );'
+    
+    - name: Create service Table
+      run : |
+        mysql -h 127.0.0.1 -P 3306 -u yijie -p'newpassword' sg_learner_db -e 'CREATE TABLE `service` (
+            `serviceId` INT NOT NULL AUTO_INCREMENT,
+            `userId` INT NOT NULL,
+            `rate` FLOAT NOT NULL,
+            PRIMARY KEY (`serviceId`),
+            FOREIGN KEY (`userId`) REFERENCES tbl_User(`userID`)
+        );'
+
+    - name: Create Resume Table
+      run : |
+        mysql -h 127.0.0.1 -P 3306 -u yijie -p'newpassword' sg_learner_db -e 'CREATE TABLE `resume` (
+            `resumeId` INT NOT NULL AUTO_INCREMENT,
+            `userId` INT NOT NULL,
+            `years` DATETIME NOT NULL,
+            `name` VARCHAR(15) NOT NULL,
+            `types` VARCHAR(10) NOT NULL,
+            `description` VARCHAR(15) NOT NULL,
+            PRIMARY KEY (`resumeId`),
+            FOREIGN KEY (`userId`) REFERENCES tbl_User(`userID`)
+        );'
+
+    - name: Run tests
+      working-directory: ./backend
+      run: npm run test-all
+    

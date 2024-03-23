@@ -12,18 +12,27 @@ export async function getUsersModel() {
 }
 
 export async function getUserModel(userId) {
-    const sql = `SELECT * FROM tbl_user WHERE userId=?`
+    const sql = `SELECT * FROM tbl_User WHERE userId=?`
     try {
         const [rows] = await pool.query(sql, [userId])
         return rows[0];
     } catch (error) {
         throw new Error("Failed to fetch particular user from the database")
     }
+}
 
+export async function getUserModelByUsername(username) {
+    const sql = `SELECT * FROM tbl_User WHERE username=?`
+    try {
+        const [rows] = await pool.query(sql, [username])
+        return rows[0]
+    } catch (error) {
+        throw new Error("Username does not exist")
+    }
 }
 
 export async function createUserModel(age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender) {
-    const sql = `INSERT INTO tbl_user (age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender)
+    const sql = `INSERT INTO tbl_User (age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender)
                         VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
     try {
         const [result] = await pool.query(sql, [age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender])
@@ -34,7 +43,7 @@ export async function createUserModel(age, dateJoined, firstName, lastName, emai
 }
 
 // export async function deleteUserModel(userId) {
-//     const sql = `DELETE FROM tbl_user WHERE userId=?`
+//     const sql = `DELETE FROM tbl_User WHERE userId=?`
 //     try { 
 //         result =await pool.query(sql, [userId])
 //         console.log("result"+result)
@@ -51,8 +60,8 @@ export async function createUserModel(age, dateJoined, firstName, lastName, emai
 //     }
 // }
 export async function deleteUserModel(userId) {
-    const checkUserSql = `SELECT * FROM tbl_user WHERE userId=?`;
-    const deleteSql = `DELETE FROM tbl_user WHERE userId=?`;
+    const checkUserSql = `SELECT * FROM tbl_User WHERE userId=?`;
+    const deleteSql = `DELETE FROM tbl_User WHERE userId=?`;
     try { 
         const [userRows] = await pool.query(checkUserSql, [userId]);
         if (userRows.length === 0) {
@@ -74,8 +83,8 @@ export async function deleteUserModel(userId) {
 
 
 export async function updateUserModel(userId, age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender){
-    const checkUserSql = `SELECT * FROM tbl_user WHERE userId=?`;
-    const sql = `UPDATE tbl_user
+    const checkUserSql = `SELECT * FROM tbl_User WHERE userId=?`;
+    const sql = `UPDATE tbl_User
                         SET age=?, dateJoined=?, firstName=?, lastName=?, email=?, education=?, username=?, password=?, birthDate=?, gender=?
                         WHERE userId=?`
     try {

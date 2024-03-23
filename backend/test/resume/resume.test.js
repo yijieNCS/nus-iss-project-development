@@ -7,7 +7,7 @@ const server = use(chaiHttp)
 let requester = undefined
 let testingId = undefined
 
-describe("Testing Session", function() {
+describe("Testing Resume", function() {
 
     before(function() {
         requester = server.request(app).keepOpen()
@@ -75,8 +75,11 @@ describe("Testing Session", function() {
         })
     })
 
-    after(function() {
+    after(function(done) {
         server.request(app).close()
+        requester = undefined
+        testingId = undefined
+        done()
     })
 
 })

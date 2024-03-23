@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('../../../public/fonts/JetBrainsMono-Medium.ttf') format('truetype');
+}
+
+.header {
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+    grid-column: 3 / span 13;
+    grid-row: 1 / span 1;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2), 0 -2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.header-current {
+    grid-column: 7 / span 1;
+    font-family: "JetBrains Mono";
+}

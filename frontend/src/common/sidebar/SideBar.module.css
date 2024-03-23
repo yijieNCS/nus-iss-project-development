@@ -1,0 +1,49 @@
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('../../../public/fonts/JetBrainsMono-Medium.ttf') format('truetype');
+}
+
+.sidebar {
+    display: grid;
+    grid-template-rows: repeat(13, 1fr);
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 13;
+    background-color: #F04748;
+    box-shadow: 3px 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.sidebar-company-title {
+    font-family: "JetBrains Mono";
+    font-size: 18px;
+    color: #333333;
+}
+
+.sidebar-menu {
+    display: flex;
+    justify-self: start;
+    align-items: center;
+    color: #333333;
+    padding-left: 3em;
+    margin-top: 1em;
+    column-gap: 0.5em;
+}
+
+.sidebar-menu p {
+    font-family: "JetBrains Mono";
+}
+
+.sidebar-menu img {
+    width: 24px;
+    height: 24px;
+}
