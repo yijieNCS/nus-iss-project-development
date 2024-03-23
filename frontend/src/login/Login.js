@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import UserContext from "../context/UserContext";
 import axios from "axios";
-import './Login.css'
+import classes from './Login.module.css'
 
 const Login = () => {
 
@@ -40,33 +40,33 @@ const Login = () => {
     }
 
     return (
-        <div className="grid-container">
-            <img className="grid-icon" src="/SgLearnerIcon.png" alt="SGLearner Icon"/>
-            <div className="grid-title">
+        <div className={classes['grid-container']}>
+            <img className={classes["grid-icon"]} src="/SgLearnerIcon.png" alt="SGLearner Icon"/>
+            <div className={classes["grid-title"]}>
                 <h1>SGLearner</h1>
             </div>
-            <form className="grid-form" onSubmit={handleSubmit}>
-                <img className="grid-username-icon" src="/UsernameIcon.png" alt="Username Icon"/>
+            <form className={classes["grid-form"]} onSubmit={handleSubmit}>
+                <img className={classes["grid-username-icon"]} src="/UsernameIcon.png" alt="Username Icon"/>
                 <input
-                    className="grid-username"
+                    className={classes["grid-username"]}
                     type="text"
                     id="username"
                     name="username"
                     placeholder="Username"
                     ref={usernameRef}
                 />
-                <img className="grid-password-icon" src="/PasswordIcon.png" alt="Password Icon"/>
+                <img className={classes["grid-password-icon"]} src="/PasswordIcon.png" alt="Password Icon"/>
                 <input
-                    className="grid-password"
+                    className={classes["grid-password"]}
                     type="password"
                     id="password"
                     name="password"
                     placeholder="Password"
                     ref={passwordRef}
                 />
-                <a className="grid-forgotten-password" href="#">Forgotten Password</a>
-                <button className="grid-login-button" type="submit">Login</button>
-                <button className="grid-register-button">Register</button>
+                <a className={classes["grid-forgotten-password"]} href="#">Forgotten Password</a>
+                <button className={classes["grid-login-button"]}>Login</button>
+                <button className={classes["grid-register-button"]}>Register</button>
             </form>
         </div>
     )

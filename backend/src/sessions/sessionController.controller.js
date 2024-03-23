@@ -5,10 +5,19 @@ import {
     deleteSessionModel,
     updateSessionModel
 } from "./sessionModel.model.js";
+import { Session } from "./sessionEntity.entity.js";
 
 export async function getAllSessions(req, res) {
     try {
-        const sessions = await getSessionsModel()
+        const sessionsData = await getSessionsModel()
+        const sessions = sessionsData.map(row => new Session(
+            row.sessionId,
+            row.tutorId,
+            row.studentId,
+            row.timing,
+            row.status,
+            row.location
+        ))
         res.send(sessions)
     } catch (error) {
         console.error(error)
