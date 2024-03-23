@@ -84,7 +84,7 @@ jobs:
             FOREIGN KEY (`studentId`) REFERENCES tbl_User(`userID`)
         );'
     
-    - name: Create Service Table
+    - name: Create service Table
       run : |
         mysql -h 127.0.0.1 -P 3306 -u yijie -p'newpassword' sg_learner_db -e 'CREATE TABLE `service` (
             `serviceId` INT NOT NULL AUTO_INCREMENT,
