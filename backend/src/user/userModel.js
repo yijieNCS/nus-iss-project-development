@@ -31,16 +31,6 @@ export async function getUserModelByUsername(username) {
     }
 }
 
-export async function getUserModelByUsername(username) {
-    const sql = `SELECT * FROM tbl_User WHERE username=?`
-    try {
-        const [rows] = await pool.query(sql, [username])
-        return rows[0]
-    } catch (error) {
-        throw new Error("Username does not exist")
-    }
-}
-
 
 
 
