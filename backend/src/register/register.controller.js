@@ -8,7 +8,6 @@ export async function register(req, res) {
 
         console.log("username b4",userName)
         if (user) {
-            // If user exists, send an error response back to the frontend
             res.status(400).json({ error: "User already exists" });
         } else {
             // Calculate age
@@ -18,6 +17,14 @@ export async function register(req, res) {
             const monthDiff = today.getMonth() - birthDate.getMonth();
             if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
                 age--;
+            }
+
+            let gen ='N'
+            //gender
+            if (gender === 'male'){
+                gen = 'M'
+            }else{
+                gen = 'F'
             }
 
             // Placeholder later at other pages education can be set
@@ -34,7 +41,7 @@ export async function register(req, res) {
             console.log("DATE: ", new Date());
 
             // If user does not exist, create the user datJoined is NOW() in sql
-            await createUserModel(age, new Date(), firstName, lastName, email, education, userName, password, birthDate, gender);
+            await createUserModel(age, new Date(), firstName, lastName, email, education, userName, password, birthDate, gen);
             res.status(200).json({ success: "User registered successfully" });
         }
     } catch (error) {

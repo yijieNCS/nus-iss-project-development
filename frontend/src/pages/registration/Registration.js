@@ -193,7 +193,7 @@ const Registration = () => {
                             <FontAwesomeIcon icon={faLock} />
                         </div>
                             <div className="divider"></div>
-                            <input type="text" name="password" placeholder="Password" ref={passwordRef} value={formData.password} onChange={handleChange}/>
+                            <input type="password" name="password" placeholder="Password" ref={passwordRef} value={formData.password} onChange={handleChange}/>
                             {errors.password && <div className="error">{errors.password}</div>}
                     </div>
                     <div className="input-container">
@@ -201,7 +201,7 @@ const Registration = () => {
                             <FontAwesomeIcon icon={faLock} />
                         </div>
                             <div className="divider"></div>
-                            <input type="text" name="reEnterPassword" placeholder="Reenter Password" ref={reEnterPasswordRef} value={formData.reEnterPassword} onChange={handleChange}/>
+                            <input type="password" name="reEnterPassword" placeholder="Reenter Password" ref={reEnterPasswordRef} value={formData.reEnterPassword} onChange={handleChange}/>
                             {errors.reEnterPassword && <div className="error">{errors.reEnterPassword}</div>}
                     </div>
 
@@ -211,9 +211,9 @@ const Registration = () => {
                         </div>
                         <div className="inputGroup">
                             <input type="date" name="bDay" value={formData.bDay} onChange={handleChange}/>
-                            {errors.bDay && <div className="error">{errors.bDay}</div>}
+                            
                         </div>
-                        
+                        {errors.bDay && <div className="error">{errors.bDay}</div>}
                     </div>
   
                     <div className="genderContainer">
@@ -222,13 +222,13 @@ const Registration = () => {
                         </div>
                         <div className="divider"></div>
                         <select name="gender" className="genderContainer-select" ref={genderRef} value={formData.gender} onChange={handleChange}>
-                            <option disabled selected value="">Select gender</option>
+                            <option selected value="">Select gender</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                         </select>
-                        {errors.gender && <div className="error">{errors.gender}</div>}
+                        {errors.gender && <div className="gendererror">{errors.gender}</div>}
                     </div>
-            
+                    
                 </div>
                 
                 <div className="button-container">

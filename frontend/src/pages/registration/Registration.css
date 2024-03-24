@@ -7,6 +7,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom:30px;
+    margin-top: 30px;
 }
 .titleContainer h1 {
     margin: 0; /* Set margin to 0 */
@@ -16,8 +17,7 @@
 
 .bgContainer {
     min-width: 80vw; /* Minimum width of 80% of the viewport width */
-    min-height: 80vh; /* Minimum height of 80% of the viewport height */
-    height: 100vh;
+    min-height: 100vh; /* Set a minimum height to fill the viewport */
     display: flex;
     flex-direction: column; /* Stack elements vertically */
     align-items: center;
@@ -32,9 +32,10 @@
     border-radius: 8px; /* Add border radius for rounded corners */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add box shadow for depth */
     width: 50%; /* Adjust width as needed */
-    height:60%;
+    height:90vh;
     display:flex;
     flex-direction: column;
+    margin-bottom: 80px;
   }
 
 .formContainer {
@@ -43,7 +44,7 @@
     justify-content: space-between; /* Align items with space around them */
     height: 90%; /* Ensure the container takes up all available height */
     overflow: hidden; /* Hide any content that overflows the container */
-}
+  }
 
 
 
@@ -81,7 +82,7 @@
   .input-container input {
     flex: 1; /* Take up remaining space */
     padding: 10px; /* Adjust padding as needed */
-    font-size: 16px; /* Set the font size */
+    font-size: 16px; /* Set the font size */ 
     border: none; /* Remove border */
     outline: none; /* Remove outline */
     background-color: transparent; /* Make background transparent */
@@ -91,6 +92,8 @@
   .bdayContainer {
     display: flex;
     align-items: center; /* Align items vertically */
+    position: relative;
+    
 }
 
 
@@ -105,6 +108,7 @@
 .inputGroup {
     display: flex;
     justify-content: space-between;
+    position: relative;
 }
 
 .inputGroup input {
@@ -118,13 +122,14 @@
 }
 
 .genderContainer {
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 50%;
-    background-color: #d9d9d9;
-    border-radius: 10px;
-  }
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 50%;
+  background-color: #d9d9d9;
+  border-radius: 10px;
+  margin-bottom: 20px; /* Add margin to create space for the error message */
+}
 
   .genderContainer-icon {
     margin-left: 10px; /* Adjust margin as needed */
@@ -185,13 +190,25 @@
 
   /*error*/
 
-  
-
 
 .error {
   position: absolute;
-    bottom: -10px; /* Adjust as needed */
+    bottom: -20px; /* Adjust as needed */
     left: 0;
     color: red;
     font-size: 14px;
+}
+
+.bdayContainer .error {
+  position: absolute; /* Position error message relative to bdayContainer */
+  bottom: -20px; /* Adjust as needed to move the error message below the bdayContainer */
+  color: red;
+  font-size: 14px;
+}
+
+.gendererror {
+  position: absolute;
+  bottom: -20px; /* Adjust as needed to move the error message below the genderContainer */
+  color: red;
+  font-size: 14px;
 }
