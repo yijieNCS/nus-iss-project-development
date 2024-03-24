@@ -10,7 +10,7 @@ export async function register(req, res) {
         if (user) {
             res.status(400).json({ error: "User already exists" });
         } else {
-            // Calculate age
+            // Calculate age test
             const today = new Date();
             const birthDate = new Date(bDay);
             let age = today.getFullYear() - birthDate.getFullYear();
