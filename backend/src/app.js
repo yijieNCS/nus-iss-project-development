@@ -3,9 +3,10 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import router from './sessions/sessionRoute.route.js'
 import resumeRouter from './resume/resumeRoute.route.js';
-import serviceRouter from './Service/service-routes.js';
+import serviceRouter from './service/service-routes.js';
 import userRouter from './user/userRoute.js';
 import registerRouter from "./register/register.route.js";
+import loginRouter from "./login/login.route.js";
 import path from 'path'
 import { fileURLToPath } from 'url';
 import {connectDatabase} from "./config/database.js";
@@ -39,6 +40,7 @@ const middleware = (err, req, res, next) => {
 }
 
 app.use(cors({origin:true,credentials: true}));
+app.use(middleware)
 app.use(express.json())
 app.use(middleware) 
 app.use(userRouter)
@@ -46,6 +48,7 @@ app.use(router)
 app.use(resumeRouter)
 app.use(serviceRouter)
 app.use(registerRouter)
+app.use(loginRouter)
 
 app.listen(8080, () => {
     console.log('Server is running on port 8080...')

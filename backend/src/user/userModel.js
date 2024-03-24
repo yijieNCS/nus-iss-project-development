@@ -19,7 +19,6 @@ export async function getUserModel(userId) {
     } catch (error) {
         throw new Error("Failed to fetch particular user from the database")
     }
-
 }
 
 export async function getUserModelByUsername(username) {

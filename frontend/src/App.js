@@ -1,5 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
+<<<<<<< HEAD
 import {BrowserRouter, Routes, Route, Link,NavLink} from 'react-router-dom'
 
 //pages
@@ -17,6 +17,15 @@ function App() {
         </Routes>
       </main>
     </BrowserRouter>
+=======
+import AppRoutes from "./route/Routes";
+
+function App() {
+  return (
+    <div className="App">
+      <AppRoutes/>
+    </div>
+>>>>>>> main
   );
 }
 
