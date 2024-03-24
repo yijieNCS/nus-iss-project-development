@@ -39,6 +39,10 @@ const Login = () => {
         }
     }
 
+    const handleRegistration = () => {
+        navigate("/registration")
+    }
+
     return (
         <div className={classes['grid-container']}>
             <img className={classes["grid-icon"]} src="/SgLearnerIcon.png" alt="SGLearner Icon"/>
@@ -66,7 +70,7 @@ const Login = () => {
                 />
                 <a className={classes["grid-forgotten-password"]} href="#">Forgotten Password</a>
                 <button className={classes["grid-login-button"]}>Login</button>
-                <button className={classes["grid-register-button"]}>Register</button>
+                <button className={classes["grid-register-button"]} onClick={handleRegistration}>Register</button>
             </form>
         </div>
     )
