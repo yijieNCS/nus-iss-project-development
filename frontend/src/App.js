@@ -12,7 +12,7 @@ class App extends React.Component {
         <div><TopHeader /></div> 
         <div className="body-container">
           <div className="side-nav-bar"><SideNavBar /></div>
-          <div><CardList /></div>
+          <CardList />
         </div>
       </div>
       

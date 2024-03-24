@@ -3,12 +3,8 @@
   /* Card.css */
   
   .card {
-    border: 5px solid black;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 200px; /* Adjust card width as needed */
-    background-color: #fff;
+    display: grid; /* Use grid layout */
+    grid-template-columns: 1fr; /* One column */
   }
   
   .card h2 {
