@@ -3,7 +3,7 @@ import './App.css';
 import TopHeader from './header/header';
 import React from 'react';
 import SideNavBar from './navbar/navbar';
-import CardList from './card/cardlist';
+import CardList from './services/card/cardlist';
 
 class App extends React.Component {
   render() {
