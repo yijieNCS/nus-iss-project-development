@@ -24,22 +24,46 @@ export function SideBar() {
                 </li>
                 <li>
                     <ul className={classes['sidebar-sub-menu']}>
-                        <li>Services</li>
-                        <li>Book Appointment</li>
-                        <li>Create Service</li>
+                        <li className={classes['sidebar-sub-menu-title']}>
+                            <h2>Services</h2>
+                            <img src='/icons/servicesIcon.png' alt='Service Icon'/>
+                        </li>
+                        <li className={classes['sidebar-sub-menu-options']}>
+                            <img src="/icons/appointmentIcon.png" alt="Appointment Icon"/>
+                            <a>Book Appointment</a>
+                        </li>
+                        <li className={classes['sidebar-sub-menu-options']}>
+                            <img src="/icons/createServiceIcon.png" alt="Create Service Icon"/>
+                            <a>Create Service</a>
+                        </li>
                     </ul>
                 </li>
                 <li>
                     <ul className={classes['sidebar-sub-menu']}>
-                        <li>Resume</li>
-                        <li>My Resume</li>
+                        <li className={classes['sidebar-sub-menu-title']}>
+                            <h2>Resume</h2>
+                            <img src='/icons/resumeIcon.png' alt="Resume Icon"/>
+                        </li>
+                        <li className={classes['sidebar-sub-menu-options']}>
+                            <img src="/icons/myResumeIcon.png" alt="My Resume Icon"/>
+                            <a>My Resume</a>
+                        </li>
                     </ul>
                 </li>
                 <li>
                     <ul className={classes['sidebar-sub-menu']}>
-                        <li>Report</li>
-                        <li>View Report</li>
-                        <li>Submit Report</li>
+                        <li className={classes['sidebar-sub-menu-title']}>
+                            <h2>Report</h2>
+                            <img src='/icons/warningIcon.png' alt="Report Icon"/>
+                        </li>
+                        <li className={classes['sidebar-sub-menu-options']}>
+                            <img src='/icons/viewReportIcon.png' alt="View Report Icon"/>
+                            <a>View Report</a>
+                        </li>
+                        <li className={classes['sidebar-sub-menu-options']}>
+                            <img src='/icons/submitReportIcon.png' alt="Submit Report Icon"/>
+                            <a>Submit Report</a>
+                        </li>
                     </ul>
                 </li>
             </ul>

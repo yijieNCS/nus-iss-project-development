@@ -37,21 +37,26 @@ ul {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    gap: 2em;
+    grid-row: 2 / span 13;
 }
 
 .sidebar-menu li {
     list-style-type: none;
+    align-self: stretch;
 }
 
 .sidebar-sub-menu {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    gap: 1em;
 }
 
 .sidebar-sub-menu-title {
     display: flex;
-    gap: 4em;
+    justify-content: space-between;
+    padding-right: 1em;
 }
 
 .sidebar-sub-menu-title h2 {
@@ -82,7 +87,7 @@ ul {
 }
 
 .sidebar-sub-menu-options img {
-    width: 24px;
-    height: 24px;
+    width: 18px;
+    height: 18px;
 }
 
