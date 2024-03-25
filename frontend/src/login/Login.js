@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect, useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate , NavLink} from 'react-router-dom'
 import UserContext from "../context/UserContext";
 import axios from "axios";
 import classes from './Login.module.css'
@@ -68,7 +68,7 @@ const Login = () => {
                     placeholder="Password"
                     ref={passwordRef}
                 />
-                <a className={classes["grid-forgotten-password"]} href="#">Forgotten Password</a>
+                <NavLink to="/changepassword" className={classes["grid-forgotten-password"]}>Forgotten Password</NavLink>
                 <button className={classes["grid-login-button"]}>Login</button>
                 <button className={classes["grid-register-button"]} onClick={handleRegistration}>Register</button>
             </form>

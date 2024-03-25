@@ -5,7 +5,7 @@ import axios from "axios";
 import classes from './changePassword.module.css'
 
 
-const changePassword = () => {
+const ChangePassword = () => {
 
     const [formData, setFormData] = useState ({
         username: '',
@@ -31,34 +31,23 @@ const changePassword = () => {
         e.preventDefault()
         formData.username = usernameRef.current.value
         formData.password = passwordRef.current.value
-
-        const response = await axios.post('http://localhost:8080/api/login', formData)
-        if (response.status === 200) {
-            console.log(response)
-            userContext.userId = response.data.userId
-            userContext.firstName = response.data.firstName
-            userContext.lastName = response.data.lastName
-            setLoggedIn(true)
-        }
-    }
-
-    const handleChangePassword= () => {
-        //TO DO Make a prompt ok to n b4 navigate Login
+        formData.newPassword = newPasswordRef.current.value
 
 
-        navigate("/login")
+        // const response = await axios.post('http://localhost:8080/api/login', formData)
+        // if (response.status === 200) {
+        //     console.log(response)
+        //     userContext.userId = response.data.userId
+        //     userContext.firstName = response.data.firstName
+        //     userContext.lastName = response.data.lastName
+        //     setLoggedIn(true)
+        // }
     }
 
     const handleCancel= () => {
         //TO DO
-        navigate("/login")
+        navigate("/")
     }
-
-
-
-
-
-
 
     return ( 
         <div className={classes['grid-container']}>
@@ -87,18 +76,18 @@ const changePassword = () => {
                 />
                 <img className={classes["grid-password-icon"]} src="/PasswordIcon.png" alt="Password Icon"/>
                 <input
-                    className={classes["grid-password"]}
+                    className={classes["grid-forgotten-password"]}
                     type="password"
                     id="newpassword"
                     name="newpassword"
-                    placeholder="Password"
+                    placeholder="NewPassword"
                     ref={newPasswordRef}
                 />
                 <button className={classes["grid-cancel-button"]} onClick={handleCancel}>Cancel</button>
-                <button className={classes["grid-changepassword-button"]} onClick={handleChangePassword}>Change Password</button>
+                <button className={classes["grid-changepassword-button"]}>Change Password</button>
             </form>
         </div>
      );
 }
  
-export default changePassword;
+export default ChangePassword;

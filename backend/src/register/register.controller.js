@@ -8,6 +8,7 @@ export async function register(req, res) {
 
         console.log("username b4",userName)
         if (user) {
+            console.log("User exist")
             res.status(400).json({ error: "User already exists" });
         } else {
             // Calculate age test1 44

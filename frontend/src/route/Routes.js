@@ -8,6 +8,7 @@ import Login from "../login/Login";
 import Sessions from "../sessions/Sessions";
 import {UserProvider} from "../context/UserProvider";
 import Registration from "../registration/Registration";
+import ChangePassword from "../changePassword/changePassword";
 
 function AppRoutes() {
     return (
@@ -17,6 +18,7 @@ function AppRoutes() {
                     <Route exact path="/" element={<Login/>} />
                     <Route exact path="/sessions" element={<Sessions/>}/>
                     <Route exact path="/registration" element={<Registration/>}/>
+                    <Route exact path="/changepassword" element={<ChangePassword/>}/>
                 </Routes>
             </UserProvider>
         </Router>
