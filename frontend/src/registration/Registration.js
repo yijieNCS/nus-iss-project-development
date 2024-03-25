@@ -1,4 +1,5 @@
-import './Registration.css';
+// import './Registration.css';
+import classes from './Registration.module.css';
 import { faUser, faEnvelope,faLock, faBirthdayCake,faTransgender, faLightbulb } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState, useRef ,useEffect} from 'react';
@@ -147,93 +148,97 @@ const Registration = () => {
         }
     }
     return ( 
-        <>
-        <main className="bgContainer">
-            <div className="titleContainer">
+        <>     
+        <main className={classes["bgContainer"]}>
+            <div className={classes["titleContainer"]}>
                 <FontAwesomeIcon icon={faLightbulb} size='5x' color='white' />
                 <h1>SGLearner</h1>
                 <h1>Registration</h1>
             </div>
-            <form className="regForm" onSubmit={handleSubmit}>
-                <div className="formContainer">
-                    <div className="input-container">
-                            <div className="input-icon">          
+            {Registered
+                ? <div className={classes["registermsg"]}>User is registered</div>
+                : <></>
+            }
+            <form className={classes["regForm"]} onSubmit={handleSubmit}>
+                <div className={classes["formContainer"]}>
+                    <div className={classes["input-container"]}>
+                            <div className={classes["input-icon"]}>          
                                 <FontAwesomeIcon icon={faUser} />
                             </div>
-                                <div className="divider"></div>
+                                <div className={classes["divider"]}></div>
                                 <input type="text" name="firstName" placeholder="firstName" ref={firstNameRef} value={formData.firstName} onChange={handleChange}/>
-                                {errors.firstName && <div className="error">{errors.firstName}</div>}
+                                {errors.firstName && <div className={classes["error"]}>{errors.firstName}</div>}
                     </div>
-                    <div className="input-container">
-                            <div className="input-icon">          
+                    <div className={classes["input-container"]}>
+                            <div className={classes["input-icon"]}>          
                                 <FontAwesomeIcon icon={faUser} />
                             </div>
-                                <div className="divider"></div>
+                                <div className={classes["divider"]}></div>
                                 <input type="text" name="lastName" placeholder="lastName" ref={lastNameRef} value={formData.lastName} onChange={handleChange}/>
-                                {errors.lastName && <div className="error">{errors.lastName}</div>}
+                                {errors.lastName && <div className={classes["error"]}>{errors.lastName}</div>}
                     </div>
-                    <div className="input-container">
-                            <div className="input-icon">          
+                    <div className={classes["input-container"]}>
+                            <div className={classes["input-icon"]}>          
                                 <FontAwesomeIcon icon={faUser} />
                             </div>
-                                <div className="divider"></div>
+                                <div className={classes["divider"]}></div>
                                 <input type="text" name="userName" placeholder="UserName" ref={userNameRef} value={formData.userName} onChange={handleChange}/>
-                                {errors.userName && <div className="error">{errors.userName}</div>}
+                                {errors.userName && <div className={classes["error"]}>{errors.userName}</div>}
                     </div>
-                    <div className="input-container">
-                        <div className="input-icon">          
+                    <div className={classes["input-container"]}>
+                        <div className={classes["input-icon"]}>          
                             <FontAwesomeIcon icon={faEnvelope} />
                         </div>
-                            <div className="divider"></div>
+                            <div className={classes["divider"]}></div>
                             <input type="text" name="email" placeholder="Email" ref={emailRef} value={formData.email} onChange={handleChange}/>
-                            {errors.email && <div className="error">{errors.email}</div>}
+                            {errors.email && <div className={classes["error"]}>{errors.email}</div>}
                     </div>
-                    <div className="input-container">
-                        <div className="input-icon">          
+                    <div className={classes["input-container"]}>
+                        <div className={classes["input-icon"]}>          
                             <FontAwesomeIcon icon={faLock} />
                         </div>
-                            <div className="divider"></div>
+                            <div className={classes["divider"]}></div>
                             <input type="password" name="password" placeholder="Password" ref={passwordRef} value={formData.password} onChange={handleChange}/>
-                            {errors.password && <div className="error">{errors.password}</div>}
+                            {errors.password && <div className={classes["error"]}>{errors.password}</div>}
                     </div>
-                    <div className="input-container">
-                        <div className="input-icon">          
+                    <div className={classes["input-container"]}>
+                        <div className={classes["input-icon"]}>          
                             <FontAwesomeIcon icon={faLock} />
                         </div>
-                            <div className="divider"></div>
+                            <div className={classes["divider"]}></div>
                             <input type="password" name="reEnterPassword" placeholder="Reenter Password" ref={reEnterPasswordRef} value={formData.reEnterPassword} onChange={handleChange}/>
-                            {errors.reEnterPassword && <div className="error">{errors.reEnterPassword}</div>}
+                            {errors.reEnterPassword && <div className={classes["error"]}>{errors.reEnterPassword}</div>}
                     </div>
 
-                    <div className="bdayContainer">
-                        <div className="icContainer">
+                    <div className={classes["bdayContainer"]}>
+                        <div className={classes["icContainer"]}>
                             <FontAwesomeIcon icon={faBirthdayCake} />
                         </div>
-                        <div className="inputGroup">
+                        <div className={classes["inputGroup"]}>
                             <input type="date" name="bDay" value={formData.bDay} onChange={handleChange}/>
                             
                         </div>
-                        {errors.bDay && <div className="error">{errors.bDay}</div>}
+                        {errors.bDay && <div className={classes["error"]}>{errors.bDay}</div>}
                     </div>
   
-                    <div className="genderContainer">
-                        <div className="genderContainer-icon">
+                    <div className={classes["genderContainer"]}>
+                        <div className={classes["genderContainer-icon"]}>
                             <FontAwesomeIcon icon={faTransgender} />
                         </div>
                         <div className="divider"></div>
-                        <select name="gender" className="genderContainer-select" ref={genderRef} value={formData.gender} onChange={handleChange}>
+                        <select name="gender" className={classes["genderContainer-select"]} ref={genderRef} value={formData.gender} onChange={handleChange}>
                             <option selected value="">Select gender</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                         </select>
-                        {errors.gender && <div className="gendererror">{errors.gender}</div>}
+                        {errors.gender && <div className={classes["gendererror"]}>{errors.gender}</div>}
                     </div>
                     
                 </div>
                 
-                <div className="button-container">
-                    <button className="cancel-button" onClick={handleCancel}>Cancel</button>
-                    <button className="register-button">Sign Up</button>
+                <div className={classes["button-container"]}>
+                    <button className={classes["cancel-button"]} onClick={handleCancel}>Cancel</button>
+                    <button className={classes["register-button"]}>Sign Up</button>
                 </div>
 
             </form>
