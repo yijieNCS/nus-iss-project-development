@@ -10,8 +10,4 @@ CREATE TABLE `resume` (
 	`description` VARCHAR(15) NOT NULL,
 	PRIMARY KEY (`resumeId`),
     FOREIGN KEY (`userId`) REFERENCES tbl_User(`userID`)
-   
 );
-
-INSERT INTO resume VALUES (NULL,1,5,'2024-01-20 13:34:56','COMPLETED','Ang Mo Kio Ave 5');
-INSERT INTO resume VALUES (NULL,4,2,'2024-01-20 13:34:56','COMPLETED','Bukit Merah Street 43');

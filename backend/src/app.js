@@ -10,6 +10,7 @@ import loginRouter from "./login/login.route.js";
 import path from 'path'
 import { fileURLToPath } from 'url';
 import {connectDatabase} from "./config/database.js";
+import {generateSecretKey} from "./config/secret.js";
 
 const app = express()
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -20,21 +21,12 @@ if (result.error) {
     console.error('Error loading .env file:', result.error);
 } else {
     console.log('Environment variables loaded successfully');
+    process.env.JWT_SECRET = generateSecretKey()
 }
 
 export const pool = connectDatabase()
 
-// Test the database connection pool by executing a sample query test
-// pool.query('SELECT 1')
-//     .then((results) => {
-//         console.log('Database query result:', results);
-//     })
-//     .catch((error) => {
-//         console.error('Error executing database query:', error);
-//     });
-
 const middleware = (err, req, res, next) => {
-
     console.error(err.stack)
     res.status(500).send("Something broke!")
 }
