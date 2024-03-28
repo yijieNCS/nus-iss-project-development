@@ -3,10 +3,8 @@ import {
     getUserModel,
     createUserModel,
     deleteUserModel,
-    updateUserModel
+    updateUserModel, getUserModelByUsername
 } from "./userModel.js";
-
-
 
 export async function getAllUsers(req, res)  {
     try{
@@ -28,8 +26,6 @@ export async function getAllUserById(req, res){
         res.status(500).json({error: error.message})
     }
 }
-
-
 
 export async function createUser(req, res) {
     try {

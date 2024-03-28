@@ -5,7 +5,11 @@
   "type": "module",
   "main": "src/config/database.js",
   "scripts": {
-    "test": "mocha --timeout 20000 --exit"
+    "test-users": "mocha --timeout 20000 --exit ./test/user/users.test.js",
+    "test-sessions": "mocha --timeout 20000 --exit ./test/sessions/session.test.js",
+    "test-resumes": "mocha --timeout 20000 --exit ./test/resume/resume.test.js",
+    "test-services": "mocha --timeout 20000 --exit ./test/service/service.test.js",
+    "test-all": "npm run test-users && npm run test-sessions && npm run test-resumes && npm run test-services"
   },
   "keywords": [],
   "author": "",
@@ -13,8 +17,10 @@
   "dependencies": {
     "chai": "^5.0.3",
     "chai-http": "^4.4.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.1",
     "express": "^5.0.0-beta.1",
+    "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.7.1",
     "sinon": "^17.0.1",
     "supertest": "^6.3.4"

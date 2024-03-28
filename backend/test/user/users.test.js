@@ -68,14 +68,14 @@ describe("Testing Users", function() {
                 "birthDate":"19900111",
                 "gender":"F"
             }
-
+    
             requester.put("/api/user").send(testData).end((err, res) => {
                 expect(res).to.have.status(200)
                 done()
             })
         })
     })
-
+    
     describe("Testing DELETE one User API", function() {
         it("Should return status 200", function(done) {
             requester.delete(`/api/user/${testingId}`).end((err, res) => {
@@ -85,8 +85,11 @@ describe("Testing Users", function() {
         })
     })
 
-    after(function() {
+    after(function(done) {
         server.request(app).close()
+        requester = undefined
+        testingId = undefined
+        done()
     })
 
 })

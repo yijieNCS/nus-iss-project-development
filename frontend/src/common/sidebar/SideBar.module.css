@@ -1,0 +1,93 @@
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('../../../public/fonts/JetBrainsMono-Medium.ttf') format('truetype');
+}
+
+ul {
+    padding: 0;
+}
+
+.sidebar {
+    display: grid;
+    grid-template-rows: repeat(13, 1fr);
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 13;
+    background-color: #F04748;
+    box-shadow: 3px 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.sidebar-company-title {
+    font-family: "JetBrains Mono";
+    font-size: 18px;
+    color: #333333;
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2em;
+    grid-row: 2 / span 13;
+}
+
+.sidebar-menu li {
+    list-style-type: none;
+    align-self: stretch;
+}
+
+.sidebar-sub-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1em;
+}
+
+.sidebar-sub-menu-title {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 1em;
+}
+
+.sidebar-sub-menu-title h2 {
+    margin: 0;
+    padding-left: 0.5em;
+    font-size: 16px;
+    font-family: "JetBrains Mono";
+    color: #333333;
+}
+
+.sidebar-sub-menu-title img {
+    width: 24px;
+    height: 24px;
+}
+
+.sidebar-sub-menu-options {
+    display: flex;
+    align-items: center;
+    padding-left: 1em;
+}
+
+.sidebar-sub-menu-options a {
+    font-size: 12px;
+    font-family: "JetBrains Mono";
+    padding-left: 1em;
+    color: #333333;
+    font-family: "JetBrains Mono";
+}
+
+.sidebar-sub-menu-options img {
+    width: 18px;
+    height: 18px;
+}
+

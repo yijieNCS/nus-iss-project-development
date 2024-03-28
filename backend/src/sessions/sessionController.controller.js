@@ -3,12 +3,22 @@ import {
     getSessionModel,
     createSessionModel,
     deleteSessionModel,
-    updateSessionModel
+    updateSessionModel,
+    getSessionsByUsernameAndUserIdModel
 } from "./sessionModel.model.js";
+import { Session } from "./sessionEntity.entity.js";
 
 export async function getAllSessions(req, res) {
     try {
-        const sessions = await getSessionsModel()
+        const sessionsData = await getSessionsModel()
+        const sessions = sessionsData.map(row => new Session(
+            row.sessionId,
+            row.tutorId,
+            row.studentId,
+            row.timing,
+            row.status,
+            row.location
+        ))
         res.send(sessions)
     } catch (error) {
         console.error(error)
@@ -22,6 +32,34 @@ export async function getAllSessionById(req, res) {
         const session = await getSessionModel(id)
         res.send(session)
     } catch (error) {
+        console.error(error)
+        res.status(500).json({error: error.message})
+    }
+}
+
+export async function getAllSessionsByUsernameAndUserId(req, res) {
+    try {
+        const userId = req.params.userId
+        const username = req.params.username
+        const sessionsData = await getSessionsByUsernameAndUserIdModel(username, userId)
+        sessionsData.forEach(session => {
+            session['timing'] = new Date(session['timing']).toLocaleDateString('en-SG', {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+            })
+        })
+        const sessions = sessionsData.map(row => new Session(
+            row.sessionId,
+            row.firstName,
+            row.lastname,
+            row.timing,
+            row.status,
+            row.location
+        ))
+        console.log(sessions)
+        res.send(sessions)
+    } catch(error) {
         console.error(error)
         res.status(500).json({error: error.message})
     }
