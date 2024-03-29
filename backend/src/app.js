@@ -1,7 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv';
 import cors from 'cors';
-import router from './sessions/sessionRoute.route.js'
+import sessionRouter from './sessions/sessionRoute.route.js'
 import resumeRouter from './resume/resumeRoute.route.js';
 import serviceRouter from './service/service-routes.js';
 import userRouter from './user/userRoute.js';
@@ -36,7 +36,7 @@ app.use(middleware)
 app.use(express.json())
 app.use(middleware) 
 app.use(userRouter)
-app.use(router)
+app.use(sessionRouter)
 app.use(resumeRouter)
 app.use(serviceRouter)
 app.use(registerRouter)
