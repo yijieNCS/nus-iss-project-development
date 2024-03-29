@@ -106,3 +106,18 @@ export async function updateUserModel(userId, age, dateJoined, firstName, lastNa
        throw error
     }
 }
+
+export async function updateUserModelPasswordByUserName(username, newPassword){
+    const sql = `UPDATE tbl_User
+                        SET password=?, 
+                        WHERE username=?`
+    try {
+        const [result] = await pool.query(sql, [ newPassword, username])
+        if (result.affectedRows === 0) {
+            throw new Error("Failed to update user password");
+        }
+        return newPassword
+    } catch(error) {
+       throw error
+    }
+}

@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import UserContext from "../context/UserContext";
 import axios from "axios";
 import classes from './changePassword.module.css'
 
@@ -19,7 +18,9 @@ const ChangePassword = () => {
     const passwordRef = useRef()
     const newPasswordRef = useRef()
 
-    const userContext = useContext(UserContext)
+    const [errors, setErrors] = useState({})
+    //TO DO errors UI (done)
+    //check whether useref needed or handlechange is better
 
     useEffect(() => {
          if (changePassword) {
@@ -27,28 +28,63 @@ const ChangePassword = () => {
          }
     }, [changePassword, navigate])
 
+    const validateForm =()=>{
+        let newErrors ={}
+
+        if (!formData.username){
+            newErrors.username = "username is required"
+        }
+        if (!formData.password){
+            newErrors.password = "password is required"
+        }
+
+        if (!formData.newPassword){
+            newErrors.newPassword = "password is required"
+        }else if(formData.newPassword === formData.password){
+            newErrors.newPassword = "new password entered must be different from password"
+        }
+        setErrors(newErrors)
+        
+        return Object.keys(newErrors).length === 0
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         formData.username = usernameRef.current.value
         formData.password = passwordRef.current.value
         formData.newPassword = newPasswordRef.current.value
 
-
-        // const response = await axios.post('http://localhost:8080/api/login', formData)
-        // if (response.status === 200) {
-        //     console.log(response)
-        //     userContext.userId = response.data.userId
-        //     userContext.firstName = response.data.firstName
-        //     userContext.lastName = response.data.lastName
-        //     setLoggedIn(true)
-        // }
+        const isValid = validateForm()
+        if (isValid){
+            try {
+                const response = await axios.post('http://localhost:8080/api/changepassword', formData);
+                if (response.status === 200) {
+                    setChangePassword(true);
+                }
+            } catch (error) {
+                if (error.response && error.response.status === 400 && error.response.data.error === 'Username does not exists') {
+                    let newErrors={};
+                    console.log('Username does not exists');
+                    setErrors(newErrors.username= "Username does not exists")
+                } else {
+                    console.error('error:', error.message);
+                }
+            }   
+        }else{
+            console.log("Form Validation Failed")
+        }
     }
 
     const handleCancel= () => {
-        //TO DO
         navigate("/")
     }
 
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+
+    };
+    
     return ( 
         <div className={classes['grid-container']}>
             <img className={classes["grid-icon"]} src="/SgLearnerIcon.png" alt="SGLearner Icon"/>
@@ -64,7 +100,9 @@ const ChangePassword = () => {
                     name="username"
                     placeholder="Username"
                     ref={usernameRef}
+                    onChange={handleChange}
                 />
+                {errors.username && <div className={classes["error-username"]}>{errors.username}</div>}
                 <img className={classes["grid-password-icon"]} src="/PasswordIcon.png" alt="Password Icon"/>
                 <input
                     className={classes["grid-password"]}
@@ -73,16 +111,20 @@ const ChangePassword = () => {
                     name="password"
                     placeholder="Password"
                     ref={passwordRef}
+                    onChange={handleChange}
                 />
-                <img className={classes["grid-password-icon"]} src="/PasswordIcon.png" alt="Password Icon"/>
+                {errors.password && <div className={classes["error-password"]}>{errors.password}</div>}
+                <img className={classes["grid-new-password-icon"]} src="/PasswordIcon.png" alt="Password Icon"/>
                 <input
-                    className={classes["grid-forgotten-password"]}
+                    className={classes["grid-new-password"]}
                     type="password"
                     id="newpassword"
-                    name="newpassword"
+                    name="newPassword"
                     placeholder="NewPassword"
                     ref={newPasswordRef}
+                    onChange={handleChange}
                 />
+                {errors.newPassword && <div className={classes["error-newpassword"]}>{errors.newPassword}</div>}
                 <button className={classes["grid-cancel-button"]} onClick={handleCancel}>Cancel</button>
                 <button className={classes["grid-changepassword-button"]}>Change Password</button>
             </form>
