@@ -13,17 +13,16 @@ CREATE TABLE `tbl_User` (
 	`password` VARCHAR(255) NOT NULL,
     `birthDate` DATETIME DEFAULT NULL,
     `gender` VARCHAR(1) NULL,
-    
+    `admin` VARCHAR(1) DEFAULT 'N', -- Default value set to 'N'
 	PRIMARY KEY (`userID`)
 );
 
-INSERT INTO tbl_User VALUES (NULL,27,NOW(),'John','Doe','JohnDoe@gmail.com','Bachelor degree of Electronic and Electrical Engineering','JohnDoe','passJD',null,'M');
-INSERT INTO tbl_User VALUES (NULL,28,NOW(),'Tom','Tan','TomTan@gmail.com','Bachelor degree of Computer Science','TomTan','passTT',null,'M');
-INSERT INTO tbl_User VALUES (NULL,25,NOW(),'Jimmy','Neutron','JimmyNeutron@gmail.com','Bachelor degree of Chemical Engineering','JimmyNeutron','passJN',null,'M');
-INSERT INTO tbl_User VALUES (NULL,26,NOW(),'Dipper','Pines','DipperPines@gmail.com','Bachelor degree of Business Management','DipperPines','passDP',null,'M');
-INSERT INTO tbl_User VALUES (NULL,30,NOW(),'Candace','Flynn','CandaceFlynn@gmail.com','Bachelor degree of Pyschology','CandaceFlynn','passCF',null,'F');
+INSERT INTO tbl_User VALUES (NULL,27,NULL,'John','Doe','JohnDoe@gmail.com','Bachelor degree of Electronic and Electrical Engineering','JohnDoe','passJD',null,'M','N');
+INSERT INTO tbl_User VALUES (NULL,28,NULL,'Tom','Tan','TomTan@gmail.com','Bachelor degree of Computer Science','TomTan','passTT',null,'M','N');
+INSERT INTO tbl_User VALUES (NULL,25,NULL,'Jimmy','Neutron','JimmyNeutron@gmail.com','Bachelor degree of Chemical Engineering','JimmyNeutron','passJN',null,'M','N');
+INSERT INTO tbl_User VALUES (NULL,26,NULL,'Dipper','Pines','DipperPines@gmail.com','Bachelor degree of Business Management','DipperPines','passDP',null,'M','N');
+INSERT INTO tbl_User VALUES (NULL,30,NULL,'Candace','Flynn','CandaceFlynn@gmail.com','Bachelor degree of Pyschology','CandaceFlynn','passCF',null,'F','N');
+INSERT INTO tbl_User VALUES (NULL,30,NULL,'admin','1','admin1@gmail.com','admin','admin1','passA1',null,'M','Y');
 
 SELECT * FROM tbl_user;
 
-ALTER TABLE tbl_User
-ADD `gender` VARCHAR(1) NULL;

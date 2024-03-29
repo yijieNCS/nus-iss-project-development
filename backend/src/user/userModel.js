@@ -34,13 +34,13 @@ export async function getUserModelByUsername(username) {
 
 
 
-export async function createUserModel(age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender) {
-    const sql = `INSERT INTO tbl_User (age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender)
-                        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+export async function createUserModel(age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender,admin) {
+    const sql = `INSERT INTO tbl_User (age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender,admin)
+                        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)`
     try {
-        console.log("Age: "+age+",dateJoined: "+dateJoined+", firstName: "+firstName+", lastName: "+lastName+" ,email: "+email+" ,edu: "+education+" ,username: "+username+" ,password: "+password+" ,birthdate: "+birthDate+" ,gender: "+gender)
+        console.log("Age: "+age+",dateJoined: "+dateJoined+", firstName: "+firstName+", lastName: "+lastName+" ,email: "+email+" ,edu: "+education+" ,username: "+username+" ,password: "+password+" ,birthdate: "+birthDate+" ,gender: "+gender+ " ,admin: "+admin)
 
-        const [result] = await pool.query(sql, [age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender])
+        const [result] = await pool.query(sql, [age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender,admin])
         return result.insertId
     } catch (error) {
         throw new Error("Failed to create the user")
@@ -87,17 +87,17 @@ export async function deleteUserModel(userId) {
 
 
 
-export async function updateUserModel(userId, age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender){
+export async function updateUserModel(userId, age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender,admin){
     const checkUserSql = `SELECT * FROM tbl_User WHERE userId=?`;
     const sql = `UPDATE tbl_User
-                        SET age=?, dateJoined=?, firstName=?, lastName=?, email=?, education=?, username=?, password=?, birthDate=?, gender=?
+                        SET age=?, dateJoined=?, firstName=?, lastName=?, email=?, education=?, username=?, password=?, birthDate=?, gender=?, admin=?
                         WHERE userId=?`
     try {
         const [userRows] = await pool.query(checkUserSql, [userId]);
         if (userRows.length === 0) {
             throw new Error("User not found");
         }
-        const [result] = await pool.query(sql, [age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender, userId])
+        const [result] = await pool.query(sql, [age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender, admin, userId])
         if (result.affectedRows === 0) {
             throw new Error("Failed to update the user");
         }

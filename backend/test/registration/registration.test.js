@@ -17,12 +17,13 @@ describe("Testing registration", function() {
             const testData = {
                 firstName: "Zuko",
                 lastName: "Prince",
-                userName: "PrinceZuko",
+                username: "PrinceZuko",
                 email: "PrinceZuko@gmail.com",
                 password: "passPZ",
                 reEnterPassword: "passPZ",
                 bDay: new Date(),
                 gender:'M',
+                admin:'N'
             }
             requester.post("/api/register").send(testData).end((err, res) => {
                 expect(res).to.have.status(200)
@@ -39,12 +40,13 @@ describe("Testing registration", function() {
             const testData = {
                 firstName: "John",
                 lastName: "Doe",
-                userName: "JohnDoe",
+                username: "JohnDoe",
                 email: "JohnDoe@gmail.com",
                 password: "passJD",
                 reEnterPassword: "passJD",
                 bDay: new Date(),
                 gender:'M',
+                admin:'N'
             }
             requester.post("/api/register").send(testData).end((err, res) => {
                 expect(res).to.have.status(400)
