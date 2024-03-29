@@ -24,7 +24,7 @@ const ChangePassword = () => {
 
     useEffect(() => {
          if (changePassword) {
-             navigate("/sessions")
+             navigate("/")
          }
     }, [changePassword, navigate])
 
