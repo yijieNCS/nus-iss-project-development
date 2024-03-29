@@ -56,7 +56,7 @@ jobs:
             `password` VARCHAR(255) NOT NULL,
             `birthDate` DATETIME DEFAULT NULL,
             `gender` VARCHAR(1) NOT NULL,
-            `admin` VARCHAR(1) DEFAULT 'N',
+            `admin` VARCHAR(1) NOT NULL,
             PRIMARY KEY (`userID`)
         );'
 
