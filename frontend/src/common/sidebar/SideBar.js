@@ -30,7 +30,7 @@ export function SideBar() {
                         </li>
                         <li className={classes['sidebar-sub-menu-options']}>
                             <img src="/icons/appointmentIcon.png" alt="Appointment Icon"/>
-                            <a>Book Appointment</a>
+                            <a href="/services">Book Appointment</a>
                         </li>
                         <li className={classes['sidebar-sub-menu-options']}>
                             <img src="/icons/createServiceIcon.png" alt="Create Service Icon"/>

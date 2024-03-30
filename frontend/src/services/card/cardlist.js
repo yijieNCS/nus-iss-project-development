@@ -1,32 +1,44 @@
-import React, { useState } from 'react';
+// CardList.js
+import React, { useState, useEffect } from 'react';
 import Card from './Card';
-import './cardlist.css'; // Import your CSS file for styling
+import styles from './cardlist.module.css'; // Import your CSS file for styling
+import axios from "axios";
 
 const CardList = () => {
-  const [cards, setCards] = useState([
-    { id: 1, tutorname: 'Card 1', rate: 'rate for card 1',yearsofexp:'years of experience: 2'},
-    { id: 2, tutorname: 'Card 2', rate: 'rate for card 2' ,yearsofexp:'years of experience: 2'},
-    { id: 3, tutorname: 'Card 3', rate: 'rate for card 3' ,yearsofexp:'years of experience: 2'},
-    { id: 3, tutorname: 'Card 4', rate: 'rate for card 3' ,yearsofexp:'years of experience: 2'}
-  ]);
+  const [services, setServices] = useState([]);
 
-  // Function to add a new card
-  const addCard = () => {
-    const newCard = {
-      id: cards.length + 1,
-      tutorname: `Card ${cards.length + 1}`,
-      rate: `rate for card ${cards.length + 1}`,
-      yearsofexp:'2'
-    };
-    setCards([...cards, newCard]);
-  };
+  const getServices = async () => {
+    try {
+      const sessionsData = await axios.get(`http://localhost:8080/api/services/`);
+      setServices(sessionsData.data);
+    } catch (error) {
+      console.error('Error fetching the session: ', error);
+    }
+  }
 
-  return (    
-    <div className='card-list'>
-      {cards.map((card,index) => (
-        <Card key={card.id} tutorname={card.tutorname} rate={card.rate} yearsofexp='years of experience: 2' className={`card-column-${index + 1}`} />
+  useEffect(() => {
+    getServices();
+  }, []);
+
+  return (
+    <div className={styles["card-list"]}>
+      {services.map((service, index) => (
+        <div
+          key={index}
+          className={styles["card-container"]}
+          style={{
+            '--start-column': (index % 11) + 3, // Start at column 3, and reset to column 3 when index exceeds 10
+            '--start-row': Math.floor(index / 11) + 2, // Start at row 2
+          }}
+        >
+          <Card
+            subject={service.subject}
+            topic={service.topic} 
+            rate={service.rate}
+            tutorname={service.userId} //change to user full name
+          />
+        </div>
       ))}
-    
     </div>
   );
 }

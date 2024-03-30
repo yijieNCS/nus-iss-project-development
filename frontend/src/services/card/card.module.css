@@ -7,11 +7,5 @@
     grid-template-columns: 1fr; /* One column */
   }
   
-  .card h2 {
-    margin-top: 0;
-  }
   
-  .card p {
-    margin-bottom: 0;
-  }
   

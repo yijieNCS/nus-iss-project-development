@@ -1,14 +1,14 @@
 // Card.js
-
 import React from 'react';
+import styles from './card.module.css'; 
 
-const Card = ({ tutorname, rate, yearsofexp,className  }) => {
+const Card = ({ subject,topic, rate, tutorname, className}) => {
   return (
-    <div className='card'>
-      <h2>{tutorname}</h2>
+    <div className={className}>
+      <h2>{subject}</h2>
+      <p>{topic}</p>
       <p>{rate}</p>
-      <p>{yearsofexp}</p>
-
+      <p>{tutorname}</p>
     </div>
   );
 }

@@ -1,0 +1,16 @@
+/* CardList.css */
+/* eslint-disable */
+/* cardlist.module.css */
+
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjust column width as needed */
+  grid-gap: 1rem;
+}
+
+.card-container {
+  display: grid;
+  grid-column: var(--start-column, 1) / span 1; /* Default to column 1 */
+  grid-row: var(--start-row, 1) / span 1; /* Default to row 1 */
+}
+
