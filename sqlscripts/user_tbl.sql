@@ -22,8 +22,3 @@ INSERT INTO tbl_User VALUES (NULL,28,NOW(),'Tom','Tan','TomTan@gmail.com','Bache
 INSERT INTO tbl_User VALUES (NULL,25,NOW(),'Jimmy','Neutron','JimmyNeutron@gmail.com','Bachelor degree of Chemical Engineering','JimmyNeutron','passJN',null,'M');
 INSERT INTO tbl_User VALUES (NULL,26,NOW(),'Dipper','Pines','DipperPines@gmail.com','Bachelor degree of Business Management','DipperPines','passDP',null,'M');
 INSERT INTO tbl_User VALUES (NULL,30,NOW(),'Candace','Flynn','CandaceFlynn@gmail.com','Bachelor degree of Pyschology','CandaceFlynn','passCF',null,'F');
-
-SELECT * FROM tbl_user;
-
-ALTER TABLE tbl_User
-ADD `gender` VARCHAR(1) NULL;

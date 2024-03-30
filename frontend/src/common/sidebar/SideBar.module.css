@@ -3,6 +3,10 @@
     src: url('../../../public/fonts/JetBrainsMono-Medium.ttf') format('truetype');
 }
 
+ul {
+    padding: 0;
+}
+
 .sidebar {
     display: grid;
     grid-template-rows: repeat(13, 1fr);
@@ -31,19 +35,59 @@
 
 .sidebar-menu {
     display: flex;
-    justify-self: start;
-    align-items: center;
-    color: #333333;
-    padding-left: 3em;
-    margin-top: 1em;
-    column-gap: 0.5em;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2em;
+    grid-row: 2 / span 13;
 }
 
-.sidebar-menu p {
+.sidebar-menu li {
+    list-style-type: none;
+    align-self: stretch;
+}
+
+.sidebar-sub-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1em;
+}
+
+.sidebar-sub-menu-title {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 1em;
+}
+
+.sidebar-sub-menu-title h2 {
+    margin: 0;
+    padding-left: 0.5em;
+    font-size: 16px;
     font-family: "JetBrains Mono";
+    color: #333333;
 }
 
-.sidebar-menu img {
+.sidebar-sub-menu-title img {
     width: 24px;
     height: 24px;
 }
+
+.sidebar-sub-menu-options {
+    display: flex;
+    align-items: center;
+    padding-left: 1em;
+}
+
+.sidebar-sub-menu-options a {
+    font-size: 12px;
+    font-family: "JetBrains Mono";
+    padding-left: 1em;
+    color: #333333;
+    font-family: "JetBrains Mono";
+}
+
+.sidebar-sub-menu-options img {
+    width: 18px;
+    height: 18px;
+}
+

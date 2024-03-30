@@ -18,31 +18,17 @@
     grid-row: 1 / span 5;
 }
 
-.content-card-user {
+.content-card-information {
     display: flex;
     grid-column: 3 / span 1;
-    grid-row: 1 / span 1;
+    grid-auto-flow: row;
     align-items: center;
     justify-content: flex-start;
+    padding-left: 0.5em;
+    gap: 0.5em;
 }
 
-.content-card-user img {
+.content-card-information img {
     width: 24px;
     height: 24px;
-}
-
-.content-card-time {
-    display: flex;
-    grid-column: 3 / span 1;
-    grid-row: 2 / span 1;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.content-card-location {
-    display: flex;
-    grid-column: 3 / span 1;
-    grid-row: 3 / span 1;
-    align-items: center;
-    justify-content: flex-start;
 }

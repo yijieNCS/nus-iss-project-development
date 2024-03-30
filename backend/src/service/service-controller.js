@@ -34,8 +34,8 @@ export async function getServiceById(req,res)
 export async function createService(req, res)
 {
     try{
-        const {userId, rate} = req.body
-        const serviceId = await createServiceModel(userId, rate)
+        const {userId, subject, topic, experience, rate} = req.body
+        const serviceId = await createServiceModel(userId, subject, topic, experience, rate)
         res.status(200).send(`Service Id: ${serviceId} is created Successfully`)
     }
     catch (error) {
@@ -46,10 +46,9 @@ export async function createService(req, res)
 
 export async function updateServiceById(req, res) {
     try {
-        const {serviceId, userId, rate} = req.body
-        const serviceIdRes = await updateServiceModel(serviceId, userId, rate)
+        const {serviceId, userId, subject, topic, experience, rate} = req.body
+        const serviceIdRes = await updateServiceModel(serviceId, userId, subject, topic, experience, rate)
         res.status(200).send(`Service Id: ${serviceIdRes} is updated Successfully`)
-        //res.status(200).send(`Result: ${Object.keys(serviceIdRes)} `)
     } catch (error) {
         console.error(error)
         res.status(500).json({error: error.message})

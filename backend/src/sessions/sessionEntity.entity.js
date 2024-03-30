@@ -1,9 +1,15 @@
 export class Session {
-    constructor(sessionId, tutorId, studentId, timing, status, location) {
+    constructor(sessionId, firstName, lastname, date, status, location) {
+        // this.sessionId = sessionId
+        // this.tutorId = tutorId
+        // this.studentId = studentId
+        // this.timing = timing
+        // this.status = status
+        // this.location = location
         this.sessionId = sessionId
-        this.tutorId = tutorId
-        this.studentId = studentId
-        this.timing = timing
+        this.firstName = firstName
+        this.lastName = lastname
+        this.date = date
         this.status = status
         this.location = location
     }

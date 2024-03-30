@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { jwtDecode } from "jwt-decode";
 import UserContext from "../context/UserContext";
 import axios from "axios";
 import classes from './Login.module.css'
@@ -31,12 +32,20 @@ const Login = () => {
 
         const response = await axios.post('http://localhost:8080/api/login', formData)
         if (response.status === 200) {
-            console.log(response)
-            userContext.userId = response.data.userId
-            userContext.firstName = response.data.firstName
-            userContext.lastName = response.data.lastName
+            // console.log(jwtDecode(response.data['accessToken']))
+            sessionStorage.setItem('accessToken', response.data['accessToken'])
+            const decodedData = jwtDecode(response.data['accessToken'])
+            const user = {
+                userId: decodedData.userId,
+                username: decodedData.username
+            }
+            sessionStorage.setItem('userData', JSON.stringify(user))
             setLoggedIn(true)
         }
+    }
+
+    const handleRegistration = () => {
+        navigate("/registration")
     }
 
     return (
@@ -66,7 +75,7 @@ const Login = () => {
                 />
                 <a className={classes["grid-forgotten-password"]} href="#">Forgotten Password</a>
                 <button className={classes["grid-login-button"]}>Login</button>
-                <button className={classes["grid-register-button"]}>Register</button>
+                <button className={classes["grid-register-button"]} onClick={handleRegistration}>Register</button>
             </form>
         </div>
     )

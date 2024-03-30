@@ -21,21 +21,30 @@ export async function getService(id) {
     }
 }
 
-
-export async function createServiceModel(userId, rate) {
-    const sql = `INSERT INTO service (userId, rate) VALUES(?, ?)`
+export async function getServicebyUserId(userid) {  //get all service(subjects) cards by userid for resume page
+    const sql = `SELECT * FROM service WHERE userId = ?` 
     try {
-        const [result] = await pool.query(sql, [userId, rate])
+        const [rows] = await pool.query(sql, [user])
+        return rows[0];
+    } catch (error) {
+        throw new Error("Failed to fetch particular session from the database")
+    }
+}
+
+export async function createServiceModel(userId, subject, topic, experience, rate) {
+    const sql = `INSERT INTO service (userId, subject, topic, experience, rate) VALUES(?, ?, ?, ?, ?)`
+    try {
+        const [result] = await pool.query(sql, [userId, subject, topic, experience, rate])
         return result.insertId
     } catch (error) {
-        throw new Error("Failed to create the session")
+        throw new Error("Failed to create the service")
     }    
 }
 
-export async function updateServiceModel(serviceId, userId, rate){
-    const sql = `UPDATE service SET userId=?, rate=? WHERE serviceId=?`
+export async function updateServiceModel(serviceId, userId, subject, topic, experience, rate){
+    const sql = `UPDATE service SET userId=?, subject=?, topic=?, experience=?, rate=? WHERE serviceId=?` 
     try {
-        const [result] = await pool.query(sql, [userId, rate,serviceId])
+        const [result] = await pool.query(sql, [userId, subject, topic, experience, rate, serviceId])
         return serviceId
     } catch(error) {
         throw new Error(error)
