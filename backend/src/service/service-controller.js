@@ -49,7 +49,6 @@ export async function updateServiceById(req, res) {
         const {serviceId, userId, subject, topic, experience, rate} = req.body
         const serviceIdRes = await updateServiceModel(serviceId, userId, subject, topic, experience, rate)
         res.status(200).send(`Service Id: ${serviceIdRes} is updated Successfully`)
-        //res.status(200).send(`Result: ${Object.keys(serviceIdRes)} `)
     } catch (error) {
         console.error(error)
         res.status(500).json({error: error.message})
