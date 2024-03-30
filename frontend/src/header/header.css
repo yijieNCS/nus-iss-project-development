@@ -1,0 +1,39 @@
+.topheader {
+    
+    display: grid;
+    grid-template-columns: auto 1fr auto; /* Adjust column widths as needed */
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    
+  }
+  
+  .top-header h1 {
+    margin: 0;
+    grid-column: 2;
+  }
+
+  .header {
+    display: grid;
+    grid-template-columns: repeat(3, auto); /* Three columns */
+    align-items: center; /* Align items vertically */
+    background-color: #333;
+    color: white;
+    padding: 15px 20px; /* Adjust padding as needed */
+  }
+  
+  .resume {
+    font-weight: bold;
+  }
+
+  .sglearner {
+    font-weight: bold;
+    text-align:center
+
+
+  }
+  
+  .profile-icon {
+    justify-self: end; /* Align to the end of the grid cell */
+  }

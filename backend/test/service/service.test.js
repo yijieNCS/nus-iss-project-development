@@ -17,7 +17,10 @@ describe("Testing Services", function() {
         it("Should return status 200", function(done) {
             const testData = {
                 "userId": 1,
-                "rate": 8.50
+                "subject": "MATH",
+                "topic": "Algebra",
+                "experience": 3,
+                "rate": 30
             }
             requester.post("/api/service").send(testData).end((err, res) => {
                 expect(res).to.have.status(200)
@@ -45,12 +48,17 @@ describe("Testing Services", function() {
         })
     })
 
+    //testing for get all services(subjects) cards by userid for resume page
+    
     describe("Testing UPDATE one service", function() {
         it("Should return status 200", function(done) {
             const testData = {
                 "serviceId": testingId,
                 "userId": 1,
-                "rate": 8.50
+                "subject": "PHYSICS",
+                "topic": "Static Materials",
+                "experience": 3,
+                "rate": 50
             }
 
             requester.put("/api/service/").send(testData).end((err, res) => {
