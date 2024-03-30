@@ -30,7 +30,7 @@ describe("Testing Users", function() {
             }
             requester.post("/api/user").send(testData).end((err, res) => {
                 expect(res).to.have.status(200)
-                testingId = res.text.split(" ")[2]   //res.body:  User Id: 7 is created Successfully , 7 is the testing id for this case
+                testingId = res.text.split(" ")[2]
                 done()
             })
         })

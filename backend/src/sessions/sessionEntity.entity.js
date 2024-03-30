@@ -1,9 +1,14 @@
 export class Session {
-    constructor(sessionId, tutorId, studentId, timing, status, location) {
+    constructor(sessionId, firstName, lastname, date, status, location) {
+
+        // if (new.target === Session) {
+        //     throw new Error('Abstract class cannot be instantiated directly')
+        // }
+
         this.sessionId = sessionId
-        this.tutorId = tutorId
-        this.studentId = studentId
-        this.timing = timing
+        this.firstName = firstName
+        this.lastName = lastname
+        this.date = date
         this.status = status
         this.location = location
     }

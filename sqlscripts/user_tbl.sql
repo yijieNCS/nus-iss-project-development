@@ -25,4 +25,3 @@ INSERT INTO tbl_User VALUES (NULL,28,NULL,'Candace','Flynn','CandaceFlynn@gmail.
 INSERT INTO tbl_User VALUES (NULL,30,NULL,'admin','1','admin1@gmail.com','admin','admin1','passA1',null,'M','Y');
 
 SELECT * FROM tbl_user;
-
