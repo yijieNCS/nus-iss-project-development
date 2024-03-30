@@ -25,7 +25,8 @@ describe("Testing Users", function() {
                 "username":"QueenR",
                 "password":"passQR",
                 "birthDate":"19900111",
-                "gender":"F"
+                "gender":"F",
+                "admin":'N'
             }
             requester.post("/api/user").send(testData).end((err, res) => {
                 expect(res).to.have.status(200)
@@ -66,7 +67,8 @@ describe("Testing Users", function() {
                 "username":"QueenR",
                 "password":"passQR",
                 "birthDate":"19900111",
-                "gender":"F"
+                "gender":"F",
+                "admin":'N'
             }
     
             requester.put("/api/user").send(testData).end((err, res) => {

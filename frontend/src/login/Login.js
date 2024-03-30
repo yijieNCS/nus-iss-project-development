@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect, useContext } from 'react'
+import { useNavigate , NavLink} from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { jwtDecode } from "jwt-decode";
 import { Modal } from "../common/modal/Modal";
@@ -87,7 +88,7 @@ const Login = () => {
                     placeholder="Password"
                     ref={passwordRef}
                 />
-                <a className={classes["grid-forgotten-password"]} href="#">Forgotten Password</a>
+                <NavLink to="/changepassword" className={classes["grid-forgotten-password"]}>Forgotten Password</NavLink>
                 <button className={classes["grid-login-button"]}>Login</button>
                 <button className={classes["grid-register-button"]} onClick={handleRegistration}>Register</button>
             </form>
