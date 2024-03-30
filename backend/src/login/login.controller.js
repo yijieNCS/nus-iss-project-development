@@ -5,7 +5,12 @@ export async function login(req, res) {
     try {
         const { username, password } = req.body
         const user = await getUserModelByUsername(username)
-        if (password === user.password) {
+
+        if (!user) {
+            res.status(401).json({
+                error: "Username does not exist"
+            })
+        } else if (password === user.password) {
             const accessToken = jwt.sign({
                 userId: user.userID,
                 username: user.username
@@ -15,7 +20,12 @@ export async function login(req, res) {
                 success: "Login Successfully",
                 accessToken
             })
+        } else {
+            res.status(401).json({
+                error: "Password is incorrect"
+            })
         }
+
     } catch (error) {
         console.error(error)
         res.status(500).json({ error: error.message })

@@ -22,7 +22,7 @@
   align-items: center;
   justify-content: center;
   background-color: red; /* For browsers that do not support gradients */
-  background-image: linear-gradient(#f04447,#e9721c );
+  background: linear-gradient(to bottom, rgba(240, 68, 71, 1), rgba(233, 114, 28, 0.65));
 }
 
 .regForm {
@@ -210,4 +210,9 @@ position: absolute;
 bottom: -20px; /* Adjust as needed to move the error message below the genderContainer */
 color: red;
 font-size: 14px;
+}
+
+.registermsg{
+  color: rgb(152, 235, 142);
+  font-size: 14px;
 }

@@ -29,7 +29,7 @@ export async function getAllUserById(req, res){
 
 export async function createUser(req, res) {
     try {
-        const {  age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender} = req.body
+        const {  age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender,admin} = req.body
         const userId = await createUserModel(
             age,
             dateJoined,
@@ -40,7 +40,8 @@ export async function createUser(req, res) {
             username,
             password,
             birthDate,
-            gender
+            gender,
+            admin
         )
         res.status(200).send(`User Id: ${userId} is created Successfully`)
     } catch (error) {
@@ -62,7 +63,7 @@ export async function deleteUserById(req, res) {
 
 export async function updateUserById(req, res) {
     try {
-        const { userId, age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender} = req.body
+        const { userId, age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender,admin} = req.body
         const userIdRes = await updateUserModel(
             userId,
             age,
@@ -75,10 +76,15 @@ export async function updateUserById(req, res) {
             password,
             birthDate,
             gender,
+            admin
         )
         res.status(200).send(`User Id: ${userIdRes} is updated Successfully`)
     } catch (error) {
         console.error(error)
         res.status(500).json({error: error.message})
     }
+}
+
+export async function getCurrentUser(req, res, next) {
+    next()
 }

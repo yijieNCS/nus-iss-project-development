@@ -57,7 +57,6 @@ export async function getAllSessionsByUsernameAndUserId(req, res) {
             row.status,
             row.location
         ))
-        console.log(sessions)
         res.send(sessions)
     } catch(error) {
         console.error(error)
@@ -108,5 +107,21 @@ export async function updateSessionById(req, res) {
     } catch (error) {
         console.error(error)
         res.status(500).json({error: error.message})
+    }
+}
+
+const buildSessionType = (userId, session) => {
+
+    let role = null
+
+    if (userId === session.studentId) {
+        role = "Student"
+    } else if (userId === session.tutorId) {
+        role = "Tutor"
+    }
+
+    const sessionType = {
+        student: () => ({}),
+        tutor: () => ({})
     }
 }
