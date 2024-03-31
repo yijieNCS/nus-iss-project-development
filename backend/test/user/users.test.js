@@ -18,7 +18,7 @@ describe("Testing Users", function() {
             const testData = {
                 "userId": null,
                 "age":26,
-                "firstName": "Queen",
+                "firstName": "QueenASD",
                 "lastName":"Rogue",
                 "email":"QueenRogue@gmail.com",
                 "education":"Bachelor of Computer Science",
