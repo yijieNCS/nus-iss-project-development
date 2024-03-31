@@ -16,9 +16,9 @@ describe("Testing Users", function() {
     describe("Testing POST one user API", function() {
         it("Should return status 200", function(done) {
             const testData = {
+                "userId": null,
                 "age":26,
-                "dateJoined":null,
-                "firstName":"Queen",
+                "firstName": "Queen",
                 "lastName":"Rogue",
                 "email":"QueenRogue@gmail.com",
                 "education":"Bachelor of Computer Science",
@@ -93,5 +93,4 @@ describe("Testing Users", function() {
         testingId = undefined
         done()
     })
-
 })
