@@ -5,8 +5,30 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      AWS_INSTANCE_SG_ID: sg-0f915b94f7a4223b0
 
     steps:
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: Singapore
+    
+    - name: Get runner IP address
+      id: ip
+      uses: haythem/public-ip@v1.2
+    
+    - name: Whitelist runner IP address
+      run: |
+        aws ec2 authorize-security-group-ingress \
+         --group-id$AWS_INSTANCE_SG_ID\
+         --protocol tcp\
+         --port 22\
+         --cidr ${{steps.ip.outputs.ipv4}}/32
+
     - uses: actions/checkout@v2
 
     - name: Set up Node.js
@@ -27,6 +49,11 @@ jobs:
         echo "MYSQL_DATABASE=sg_learner_db" >> backend/.env
         echo "JWT_SECRET"="" >> backend/.env
 
-    - name: Check IP Address
-      run: curl https://api.ipify.org
+    - name: Revoke runner ip address
+      run: |
+       aws ec2 revoke-security-group-ingress\
+       --group-id $AWS_INSTANCE_SG_ID \
+       --protocol tcp \
+       --port 22 \
+       --cidr ${{ steps.ip.outputs.ipv4 }}/32
     
