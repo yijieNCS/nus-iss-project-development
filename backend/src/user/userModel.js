@@ -1,12 +1,11 @@
 import { pool } from "../app.js";
 
 export async function getUsersModel() {
-    const sql = `SELECT * FROM tbl_User`
+    const sql = `SELECT * FROM users`
     try {
         const [rows] = await pool.query(sql)
         return rows
     } catch (error) {
-        console.error(pool.user)
         throw new Error("Failed to fetch users from the database")
     }
 }

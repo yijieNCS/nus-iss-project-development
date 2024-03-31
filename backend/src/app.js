@@ -26,6 +26,13 @@ if (result.error) {
 }
 
 export const pool = connectDatabase()
+pool.getConnection((err, connection) => {
+    if (err) {
+        console.error(err)
+    } else {
+        console.log("The connection is successful")
+    }
+})
 
 const middleware = (err, req, res, next) => {
     console.error(err.stack)

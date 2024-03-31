@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect, useContext } from 'react'
 import { useNavigate , NavLink} from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
 import { jwtDecode } from "jwt-decode";
 import { Modal } from "../common/modal/Modal";
 import UserContext from "../context/UserContext";

@@ -8,7 +8,6 @@ import React, {useContext, useEffect, useState} from "react"
 
 function Services() {
 
-
     return (
       <div className={classes["grid-container"]}>
         <Header/>
