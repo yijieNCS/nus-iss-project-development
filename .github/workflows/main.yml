@@ -53,7 +53,7 @@ jobs:
 
     - name: Revoke runner ip address
       run: |
-       aws ec2 revoke-security-group-ingress\
+       aws ec2 revoke-security-group-ingress \
        --group-id $AWS_INSTANCE_SG_ID \
        --protocol tcp \
        --port 22 \
