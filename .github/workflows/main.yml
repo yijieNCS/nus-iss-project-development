@@ -26,7 +26,7 @@ jobs:
     - name: Whitelist runner IP address
       run: |
         aws ec2 authorize-security-group-ingress \
-         --group-id$AWS_INSTANCE_SG_ID\
+         --group-id $AWS_INSTANCE_SG_ID\
          --protocol tcp\
          --port 22\
          --cidr ${{steps.ip.outputs.ipv4}}/32
