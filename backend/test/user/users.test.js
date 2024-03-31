@@ -24,7 +24,7 @@ describe("Testing Users", function() {
                 "education":"Bachelor of Computer Science",
                 "username":"QueenR",
                 "password":"passQR",
-                "birthDate":"19900111",
+                "birthDate":null,
                 "gender":"F",
                 "admin":'N'
             }

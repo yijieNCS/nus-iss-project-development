@@ -39,7 +39,7 @@ export async function createUserModel(age, dateJoined, firstName, lastName, emai
         const [result] = await pool.query(sql, [age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender,admin])
         return result.insertId
     } catch (error) {
-        throw new Error("Failed to create the user")
+        throw new Error(`The error is ${error}`)
     }
 }
 
