@@ -13,7 +13,7 @@ const Registration = () => {
         {
         firstName:'',
         lastName:'',
-        userName:'',
+        username:'',
         email:'',
         password:'',
         reEnterPassword:'',
@@ -32,7 +32,7 @@ const Registration = () => {
 
     const firstNameRef = useRef()
     const lastNameRef = useRef()
-    const userNameRef = useRef()
+    const usernameRef = useRef()
     const emailRef = useRef()
     const passwordRef = useRef()
     const reEnterPasswordRef = useRef()
@@ -72,8 +72,8 @@ const Registration = () => {
             newErrors.lastName = "Last name is required"
         }
 
-        if (!formData.userName){
-            newErrors.userName = "userName is required"
+        if (!formData.username){
+            newErrors.username = "username is required"
         }
 
         if (!formData.email){
@@ -113,7 +113,7 @@ const Registration = () => {
         console.log("hi")
         formData.firstName = firstNameRef.current.value
         formData.lastName = lastNameRef.current.value
-        formData.userName = userNameRef.current.value
+        formData.username = usernameRef.current.value
         formData.email = emailRef.current.value
         formData.password = passwordRef.current.value
         formData.reEnterPassword = reEnterPasswordRef.current.value
@@ -135,7 +135,7 @@ const Registration = () => {
                     // User already exists, display an error message to the user
                     let newErrors={};
                     console.log('User already exists');
-                    setErrors(newErrors.userName= "userName already exist")
+                    setErrors(newErrors.username= "username already exist")
                     // Handle the error in your UI (e.g., display an error message)
                 } else {
                     // Other errors, log the error for debugging
@@ -182,8 +182,8 @@ const Registration = () => {
                                 <FontAwesomeIcon icon={faUser} />
                             </div>
                                 <div className={classes["divider"]}></div>
-                                <input type="text" name="userName" placeholder="UserName" ref={userNameRef} value={formData.userName} onChange={handleChange}/>
-                                {errors.userName && <div className={classes["error"]}>{errors.userName}</div>}
+                                <input type="text" name="username" placeholder="Username" ref={usernameRef} value={formData.username} onChange={handleChange}/>
+                                {errors.username && <div className={classes["error"]}>{errors.username}</div>}
                     </div>
                     <div className={classes["input-container"]}>
                         <div className={classes["input-icon"]}>          
