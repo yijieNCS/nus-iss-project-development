@@ -5,7 +5,8 @@ import chaiHttp from "chai-http"
 const server = use(chaiHttp)
 let requester = undefined
 
-describe("Testing changePassword", function() {
+//test
+describe("Testing changePassword function", function() {
 
     before(function() {
         requester = server.request(app).keepOpen()
