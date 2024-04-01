@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import sessionRouter from './sessions/sessionRoute.route.js'
 import resumeRouter from './resume/resumeRoute.route.js';
-import serviceRouter from './service/service-routes.js';u
+import serviceRouter from './service/service-routes.js';
 import userRouter from './user/userRoute.js';
 import registerRouter from "./register/register.route.js";
 import loginRouter from "./login/login.route.js";
