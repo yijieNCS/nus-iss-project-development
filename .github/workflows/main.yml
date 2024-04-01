@@ -28,7 +28,7 @@ jobs:
         aws ec2 authorize-security-group-ingress \
          --group-id $AWS_INSTANCE_SG_ID\
          --protocol tcp\
-         --port 22\
+         --port 3306\
          --cidr ${{steps.ip.outputs.ipv4}}/32
 
     - uses: actions/checkout@v2
@@ -58,8 +58,8 @@ jobs:
     - name: Revoke runner ip address
       run: |
        aws ec2 revoke-security-group-ingress \
-       --group-id $AWS_INSTANCE_SG_ID \
-       --protocol tcp \
-       --port 22 \
+       --group-id $AWS_INSTANCE_SG_ID\
+       --protocol tcp\
+       --port 3306\
        --cidr ${{ steps.ip.outputs.ipv4 }}/32
     
