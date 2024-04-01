@@ -51,6 +51,10 @@ jobs:
         echo "MYSQL_DATABASE=sg_learner_db" >> backend/.env
         echo "JWT_SECRET"="" >> backend/.env
 
+    - name: Run tests
+      working-directory: ./backend
+      run: npm run test-all
+
     - name: Revoke runner ip address
       run: |
        aws ec2 revoke-security-group-ingress \
