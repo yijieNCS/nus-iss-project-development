@@ -5,7 +5,6 @@ export async function login(req, res) {
         const { username, password } = req.body
         const user = await getUserModelByUsername(username)
         if (password === user.password) {
-            console.log(user)
             res.status(200).json({
                 success: "Login Successfully",
                 userId: user.userId,

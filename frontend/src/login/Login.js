@@ -35,6 +35,7 @@ const Login = () => {
             userContext.userId = response.data.userId
             userContext.firstName = response.data.firstName
             userContext.lastName = response.data.lastName
+            console.log("userId at login: " +userContext.userId)
             setLoggedIn(true)
         }
     }

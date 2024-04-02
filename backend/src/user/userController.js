@@ -3,7 +3,7 @@ import {
     getUserModel,
     createUserModel,
     deleteUserModel,
-    updateUserModel, getUserModelByUsername
+    updateUserModel, getnonAdminUserModelExcept, deleteUserModelbyUsername
 } from "./userModel.js";
 
 export async function getAllUsers(req, res)  {
@@ -20,6 +20,18 @@ export async function getAllUserById(req, res){
     try{
         const id =req.params.id
         const user = await getUserModel(id)
+        res.send(user)
+    } catch(error){
+        console.error(error)
+        res.status(500).json({error: error.message})
+    }
+}
+
+
+export async function getAllUserExceptById(req, res){
+    try{
+        const id =req.params.id
+        const user = await getnonAdminUserModelExcept(id)
         res.send(user)
     } catch(error){
         console.error(error)
@@ -55,6 +67,18 @@ export async function deleteUserById(req, res) {
         const id = req.params.id
         const userId = await deleteUserModel(id)
         res.status(200).send(`User Id: ${userId} is deleted Successfully`)
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({error: error.message})
+    }
+}
+
+export async function deleteUserByUsername(req, res) {
+    try {
+        const usernameparam = req.params.username
+        console.log("usernameparam: "+usernameparam)
+        const username = await deleteUserModelbyUsername(usernameparam)
+        res.status(200).send(`Username: ${username} is deleted Successfully`)
     } catch (error) {
         console.error(error)
         res.status(500).json({error: error.message})

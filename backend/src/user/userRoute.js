@@ -4,7 +4,9 @@ import {
     getAllUserById,
     createUser,
     deleteUserById,
-    updateUserById
+    updateUserById,
+    deleteUserByUsername,
+    getAllUserExceptById
 } from "./userController.js";
 
 const userRouter = express.Router()
@@ -13,9 +15,13 @@ userRouter.get('/api/users', getAllUsers)
 
 userRouter.get('/api/user/:id', getAllUserById)
 
+userRouter.get('/api/userexcept/:id', getAllUserExceptById)
+
 userRouter.post('/api/user', createUser)
 
 userRouter.delete('/api/user/:id', deleteUserById)
+
+userRouter.delete('/api/username/:username', deleteUserByUsername)
 
 userRouter.put('/api/user/', updateUserById)
 

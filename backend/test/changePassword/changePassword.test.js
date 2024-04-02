@@ -26,6 +26,20 @@ describe("Testing changePassword", function() {
         })
     })
 
+    describe("Testing the changePassword function: Revert Success", function() {
+        it("Should return 200", function(done) {
+            const testData = {
+                username: "JohnDoe",
+                password: "passjd",
+                newPassword: "passJD"
+            }
+            requester.post("/api/changepassword").send(testData).end((err, res) => {
+                expect(res).to.have.status(200)
+                done()
+            })
+        })
+    })
+
     describe("Testing the login function: Wrong Username", function() {
         it("Should return 401 with error message", function(done) {
             const errorMsg = "Username does not exists"

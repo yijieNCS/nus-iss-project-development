@@ -1,6 +1,7 @@
 import React from 'react'
 import classes from './SideBar.module.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {NavLink} from 'react-router-dom'
 
 export function SideBar() {
     return (
@@ -18,7 +19,7 @@ export function SideBar() {
                         </li>
                         <li className={classes['sidebar-sub-menu-options']}>
                             <img src="/icons/sessionsIcon.png" alt="Session Icon"/>
-                            <a>Upcoming Sessions</a>
+                            <NavLink to="/sessions">Upcoming Sessions</NavLink>
                         </li>
                     </ul>
                 </li>
@@ -58,11 +59,11 @@ export function SideBar() {
                         </li>
                         <li className={classes['sidebar-sub-menu-options']}>
                             <img src='/icons/viewReportIcon.png' alt="View Report Icon"/>
-                            <a>View Report</a>
+                            <NavLink to="/viewreport">View Report</NavLink>
                         </li>
                         <li className={classes['sidebar-sub-menu-options']}>
                             <img src='/icons/submitReportIcon.png' alt="Submit Report Icon"/>
-                            <a>Submit Report</a>
+                            <NavLink to="/submitreport">Submit Report</NavLink>
                         </li>
                     </ul>
                 </li>

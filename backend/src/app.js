@@ -8,6 +8,7 @@ import userRouter from './user/userRoute.js';
 import registerRouter from "./register/register.route.js";
 import loginRouter from "./login/login.route.js";
 import changePWRouter from "./changePassword/changePassword.route.js";
+import reportRouter from "./report/reportRoute.route.js";
 import path from 'path'
 import { fileURLToPath } from 'url';
 import {connectDatabase} from "./config/database.js";
@@ -43,6 +44,7 @@ app.use(serviceRouter)
 app.use(registerRouter)
 app.use(loginRouter)
 app.use(changePWRouter)
+app.use(reportRouter)
 
 app.listen(8080, () => {
     console.log('Server is running on port 8080...')

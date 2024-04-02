@@ -23,7 +23,8 @@ const Registration = () => {
     )
 
     const [Registered, setRegistered] = useState(false)
-
+    const [alertVisible, setAlertVisible] = useState(false)
+    const [userExistVisible, setUserExistVisible] = useState(false)
     useEffect(() => {
         if (Registered) {
             console.log("To Home Page")
@@ -107,7 +108,13 @@ const Registration = () => {
 
     const [errors, setErrors] = useState({})
 
+    const handleOkClick = () => {
+        setAlertVisible(false);
+    }
 
+    const handleUserOkClick =()=>{
+        setUserExistVisible(false);
+    }
     const handleSubmit = async(e)=>{
         e.preventDefault()
         console.log("hi")
@@ -127,18 +134,17 @@ const Registration = () => {
             try {
                 const response = await axios.post('http://localhost:8080/api/register', formData);
                 if (response.status === 200) {
-                    setRegistered(true);
+                    setRegistered(true)
+                    setAlertVisible(true)
                     // Registration successful, navigate to another page or display a success message
                 }
             } catch (error) {
                 if (error.response && error.response.status === 400 && error.response.data.error === 'User already exists') {
-                    // User already exists, display an error message to the user
                     let newErrors={};
                     console.log('User already exists');
                     setErrors(newErrors.username= "username already exist")
-                    // Handle the error in your UI (e.g., display an error message)
+                    setUserExistVisible(true)
                 } else {
-                    // Other errors, log the error for debugging
                     console.error('Registration error:', error.message);
                     // Handle the error in your UI (e.g., display a generic error message)
                 }
@@ -155,10 +161,6 @@ const Registration = () => {
                 <h1>SGLearner</h1>
                 <h1>Registration</h1>
             </div>
-            {Registered
-                ? <div className={classes["registermsg"]}>User is registered</div>
-                : <></>
-            }
             <form className={classes["regForm"]} onSubmit={handleSubmit}>
                 <div className={classes["formContainer"]}>
                     <div className={classes["input-container"]}>
@@ -225,7 +227,7 @@ const Registration = () => {
                         <div className={classes["genderContainer-icon"]}>
                             <FontAwesomeIcon icon={faTransgender} />
                         </div>
-                        <div className="divider"></div>
+                        <div className={classes["divider"]}></div>
                         <select name="gender" className={classes["genderContainer-select"]} ref={genderRef} value={formData.gender} onChange={handleChange}>
                             <option selected value="">Select gender</option>
                             <option value="male">Male</option>
@@ -242,6 +244,18 @@ const Registration = () => {
                 </div>
 
             </form>
+            {alertVisible && (
+                <div className={classes.alert}>
+                    <p>User registered successfully!</p>
+                    <button className={classes.okButton} onClick={handleOkClick}>OK</button>
+                </div>
+            )}
+            {userExistVisible && (
+                <div className={classes.alert}>
+                    <p>User already Exist!</p>
+                    <button className={classes.okButton} onClick={handleUserOkClick}>OK</button>
+                </div>
+            )}
         </main>
         </>
        
