@@ -5,6 +5,7 @@ import chaiHttp from "chai-http"
 const server = use(chaiHttp)
 let requester = undefined
 
+//test
 describe("Testing changePassword", function() {
 
     before(function() {
@@ -17,6 +18,20 @@ describe("Testing changePassword", function() {
                 username: "JohnDoe",
                 password: "passJD",
                 newPassword: "passjd"
+            }
+            requester.post("/api/changepassword").send(testData).end((err, res) => {
+                expect(res).to.have.status(200)
+                done()
+            })
+        })
+    })
+
+    describe("Testing the changePassword function: Revert Success", function() {
+        it("Should return 200", function(done) {
+            const testData = {
+                username: "JohnDoe",
+                password: "passjd",
+                newPassword: "passJD"
             }
             requester.post("/api/changepassword").send(testData).end((err, res) => {
                 expect(res).to.have.status(200)

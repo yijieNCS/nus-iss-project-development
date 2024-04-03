@@ -1,0 +1,82 @@
+
+
+.reportcontent-card {
+    display: grid;
+    grid-template-columns: repeat(6, auto);
+    grid-template-rows: 25% 50% 25%;
+    grid-column: 3 / span 7;
+    grid-auto-flow: row;
+    box-shadow:
+            2px 2px 6px rgba(0, 0, 0, 0.1),
+            -2px 2px 6px rgba(0, 0, 0, 0.1),
+            2px -2px 6px rgba(0, 0, 0, 0.1),
+            -2px -2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin-bottom: 50px;
+}
+
+.leftcontent {
+    background-color: gray;
+    grid-column: 1 ; /* Span two columns */
+    grid-row: 1 / span 3; /* Span three rows */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+.reporteduserContainer {
+    grid-column: 1 / span 2; /* Span two columns */
+    grid-row: 2; /* Second row */
+    display: flex;
+    align-items: center;
+    background-color: #d9d9d9;
+    border-radius: 10px;
+    margin-bottom: 20px; /* Add margin to create space for the error message */
+    position: relative; /* Ensure position is relative */
+    z-index: 1; /* Set a z-index higher than the reporteduserContainer */
+}
+
+.divider {
+    height: 20px; /* Adjust height as needed */
+    width: 1px; /* Adjust width as needed */
+    background-color: black;
+    margin: 0 5px; /* Adjust margin as needed */
+    position: relative; /* Ensure position is relative */
+    z-index: 2; /* Set a z-index higher than the reporteduserContainer */
+  }
+
+
+  .reporteduserContainer-input {
+    flex: 1; /* Take up remaining space */
+    padding: 10px; /* Adjust padding as needed */
+    font-size: 16px; /* Set the font size */ 
+    border: none; /* Remove border */
+    outline: none; /* Remove outline */
+    background-color: transparent; /* Make background transparent */
+  }
+
+.reportdescContainer {
+    grid-column: 3; /* Third column */
+    grid-row: 1 / span 2; /* Span two rows */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+
+
+.reportdescContainer textarea {
+    width: 100%; /* Adjust width as needed */
+    height: 200px; /* Adjust height as needed */
+    padding: 10px; /* Adjust padding as needed */
+    font-size: 16px; /* Adjust font size as needed */
+    border: 2px solid #ccc; /* Add border */
+    border-radius: 5px; /* Add rounded corners */
+    resize: vertical; /* Allow vertical resizing */
+    resize: horizontal; 
+}
+
+
+

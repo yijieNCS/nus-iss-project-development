@@ -20,6 +20,17 @@ export async function getUserModel(userId) {
     }
 }
 
+export async function getnonAdminUserModelExcept(userId) {
+    const sql = `SELECT * FROM tbl_User WHERE userId!=? AND ADMIN='N'`
+    try {
+        const [rows] = await pool.query(sql, [userId])
+        return rows;
+    } catch (error) {
+        throw new Error("Failed to fetch particular user from the database")
+    }
+}
+
+
 export async function getUserModelByUsername(username) {
     const sql = `SELECT * FROM users WHERE username=?`
     try {
@@ -62,6 +73,29 @@ export async function deleteUserModel(userId) {
         throw error;
     }
 }
+
+export async function deleteUserModelbyUsername(username) {
+    const checkUserSql = `SELECT * FROM tbl_User WHERE username=?`;
+    const deleteSql = `DELETE FROM tbl_User WHERE username=?`;
+    try { 
+        const [userRows] = await pool.query(checkUserSql, [username]);
+        if (userRows.length === 0) {
+            throw new Error("User not found");
+        }
+        
+        const result = await pool.query(deleteSql, [username]);
+        if (result.affectedRows === 0) {
+            throw new Error("Failed to delete the user");
+        }
+        
+        return username;
+    } catch (error) {
+        throw error;
+    }
+}
+
+
+
 
 export async function updateUserModel(userId, age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender,admin){
     const checkUserSql = `SELECT * FROM users WHERE userId=?`;
