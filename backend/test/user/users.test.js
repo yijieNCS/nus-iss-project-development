@@ -16,21 +16,21 @@ describe("Testing Users", function() {
     describe("Testing POST one user API", function() {
         it("Should return status 200", function(done) {
             const testData = {
+                "userId": null,
                 "age":26,
-                "dateJoined":null,
-                "firstName":"Queen",
+                "firstName": "QueenASD",
                 "lastName":"Rogue",
                 "email":"QueenRogue@gmail.com",
                 "education":"Bachelor of Computer Science",
                 "username":"QueenR",
                 "password":"passQR",
-                "birthDate":"19900111",
+                "birthDate":null,
                 "gender":"F",
                 "admin":'N'
             }
             requester.post("/api/user").send(testData).end((err, res) => {
                 expect(res).to.have.status(200)
-                testingId = res.text.split(" ")[2]   //res.body:  User Id: 7 is created Successfully , 7 is the testing id for this case
+                testingId = res.text.split(" ")[2]
                 done()
             })
         })
@@ -93,5 +93,4 @@ describe("Testing Users", function() {
         testingId = undefined
         done()
     })
-
 })

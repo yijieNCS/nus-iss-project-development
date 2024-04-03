@@ -1,18 +1,17 @@
 import { pool } from "../app.js";
 
 export async function getUsersModel() {
-    const sql = `SELECT * FROM tbl_User`
+    const sql = `SELECT * FROM users`
     try {
         const [rows] = await pool.query(sql)
         return rows
     } catch (error) {
-        console.error(pool.user)
         throw new Error("Failed to fetch users from the database")
     }
 }
 
 export async function getUserModel(userId) {
-    const sql = `SELECT * FROM tbl_User WHERE userId=?`
+    const sql = `SELECT * FROM users WHERE userId=?`
     try {
         const [rows] = await pool.query(sql, [userId])
         return rows[0];
@@ -33,7 +32,7 @@ export async function getnonAdminUserModelExcept(userId) {
 
 
 export async function getUserModelByUsername(username) {
-    const sql = `SELECT * FROM tbl_User WHERE username=?`
+    const sql = `SELECT * FROM users WHERE username=?`
     try {
         const [rows] = await pool.query(sql, [username])
         return rows[0]
@@ -42,11 +41,8 @@ export async function getUserModelByUsername(username) {
     }
 }
 
-
-
-
 export async function createUserModel(age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender,admin) {
-    const sql = `INSERT INTO tbl_User (age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender,admin)
+    const sql = `INSERT INTO users (age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender,admin)
                         VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)`
     try {
         console.log("Age: "+age+",dateJoined: "+dateJoined+", firstName: "+firstName+", lastName: "+lastName+" ,email: "+email+" ,edu: "+education+" ,username: "+username+" ,password: "+password+" ,birthdate: "+birthDate+" ,gender: "+gender+ " ,admin: "+admin)
@@ -54,14 +50,13 @@ export async function createUserModel(age, dateJoined, firstName, lastName, emai
         const [result] = await pool.query(sql, [age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender,admin])
         return result.insertId
     } catch (error) {
-        throw new Error("Failed to create the user")
+        throw new Error(`The error is ${error}`)
     }
 }
 
-
 export async function deleteUserModel(userId) {
-    const checkUserSql = `SELECT * FROM tbl_User WHERE userId=?`;
-    const deleteSql = `DELETE FROM tbl_User WHERE userId=?`;
+    const checkUserSql = `SELECT * FROM users WHERE userId=?`;
+    const deleteSql = `DELETE FROM users WHERE userId=?`;
     try { 
         const [userRows] = await pool.query(checkUserSql, [userId]);
         if (userRows.length === 0) {
@@ -103,8 +98,8 @@ export async function deleteUserModelbyUsername(username) {
 
 
 export async function updateUserModel(userId, age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender,admin){
-    const checkUserSql = `SELECT * FROM tbl_User WHERE userId=?`;
-    const sql = `UPDATE tbl_User
+    const checkUserSql = `SELECT * FROM users WHERE userId=?`;
+    const sql = `UPDATE users
                         SET age=?, dateJoined=?, firstName=?, lastName=?, email=?, education=?, username=?, password=?, birthDate=?, gender=?, admin=?
                         WHERE userId=?`
     try {
@@ -123,7 +118,7 @@ export async function updateUserModel(userId, age, dateJoined, firstName, lastNa
 }
 
 export async function updateUserModelPasswordByUserName(username, newPassword){
-    const sql = `UPDATE tbl_User SET password=? WHERE username=?`
+    const sql = `UPDATE users SET password=? WHERE username=?`
     try {
         const [result] = await pool.query(sql, [ newPassword, username])
         if (result.affectedRows === 0) {

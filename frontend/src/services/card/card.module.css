@@ -1,0 +1,11 @@
+
+  
+  /* Card.css */
+  
+  .card {
+    display: grid; /* Use grid layout */
+    grid-template-columns: 1fr; /* One column */
+  }
+  
+  
+  

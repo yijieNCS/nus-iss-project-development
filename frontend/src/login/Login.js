@@ -1,5 +1,7 @@
 import React, { useRef, useState, useEffect, useContext } from 'react'
 import { useNavigate , NavLink} from 'react-router-dom'
+import { jwtDecode } from "jwt-decode";
+import { Modal } from "../common/modal/Modal";
 import UserContext from "../context/UserContext";
 import axios from "axios";
 import classes from './Login.module.css'
@@ -11,6 +13,10 @@ const Login = () => {
         password: ''
     })
     const [LoggedIn, setLoggedIn] = useState(false)
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [errorMsg, setErrorMsg] = useState("")
+    const closeModal = () => setIsModalOpen(false)
+
     const navigate = useNavigate()
 
     const usernameRef = useRef()
@@ -29,14 +35,23 @@ const Login = () => {
         formData.username = usernameRef.current.value
         formData.password = passwordRef.current.value
 
-        const response = await axios.post('http://localhost:8080/api/login', formData)
-        if (response.status === 200) {
-            console.log(response)
-            userContext.userId = response.data.userId
-            userContext.firstName = response.data.firstName
-            userContext.lastName = response.data.lastName
-            console.log("userId at login: " +userContext.userId)
-            setLoggedIn(true)
+        try {
+            const response = await axios.post('http://localhost:8080/api/login', formData)
+            if (response.status === 200) {
+                sessionStorage.setItem('accessToken', response.data['accessToken'])
+                const decodedData = jwtDecode(response.data['accessToken'])
+                const user = {
+                    userId: decodedData.userId,
+                    username: decodedData.username
+                }
+                sessionStorage.setItem('userData', JSON.stringify(user))
+                setLoggedIn(true)
+            }
+        } catch (e) {
+            if (e.response && e.response.status === 401) {
+                setErrorMsg(e.response.data['error'])
+                setIsModalOpen(true)
+            }
         }
     }
 
@@ -46,6 +61,9 @@ const Login = () => {
 
     return (
         <div className={classes['grid-container']}>
+            <Modal isOpen={isModalOpen} onClose={closeModal}>
+                <p>{errorMsg}</p>
+            </Modal>
             <img className={classes["grid-icon"]} src="/SgLearnerIcon.png" alt="SGLearner Icon"/>
             <div className={classes["grid-title"]}>
                 <h1>SGLearner</h1>

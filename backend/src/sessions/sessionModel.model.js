@@ -21,6 +21,22 @@ export async function getSessionModel(sessionId) {
     }
 }
 
+export async function getSessionsByUsernameAndUserIdModel(username, userId) {
+    const sql =
+        `SELECT 
+        sessions.sessionId, sessions.timing, sessions.status, sessions.location, 
+        users.firstName, users.lastname, users.gender
+        FROM
+        sessions left join users on (sessions.tutorId = users.userID or sessions.studentId = users.userID)
+        WHERE (sessions.tutorId=? or sessions.studentId=?) AND users.username!=?`
+    try {
+        const [rows] = await pool.query(sql, [userId, userId, username])
+        return rows
+    } catch (error) {
+        throw new Error("Failed to fetch user session information")
+    }
+}
+
 export async function createSessionModel(tutorId, studentId, timing, status, location) {
     const sql = `INSERT INTO sessions (tutorId, studentId, timing, status, location)
                         VALUES(?, ?, ?, ?, ?)`
