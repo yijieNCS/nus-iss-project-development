@@ -36,7 +36,6 @@ const middleware = (err, req, res, next) => {
 app.use(cors({origin:true,credentials: true}));
 app.use(middleware)
 app.use(express.json())
-app.use(middleware) 
 app.use(userRouter)
 app.use(sessionRouter)
 app.use(resumeRouter)

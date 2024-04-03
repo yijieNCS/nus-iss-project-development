@@ -7,8 +7,8 @@ CREATE TABLE `report` (
 	`reportedUser` INT NOT NULL,
 	`reportBy` INT NOT NULL,
 	PRIMARY KEY (`reportId`),
- 	FOREIGN KEY (`reportedUser`) REFERENCES tbl_User(`userID`),
-	FOREIGN KEY (`reportBy`) REFERENCES tbl_User(`userID`)
+ 	FOREIGN KEY (`reportedUser`) REFERENCES tbl_User(`userId`),
+	FOREIGN KEY (`reportBy`) REFERENCES tbl_User(`userId`)
 );
 
 INSERT INTO report VALUES (NULL,'bad tutor',1,2);

@@ -9,7 +9,7 @@ CREATE TABLE service (
     experience INT NOT NULL,
     rate FLOAT NOT NULL,
     PRIMARY KEY (serviceId),
-    FOREIGN KEY (userId) REFERENCES tbl_User(userID)
+    FOREIGN KEY (userId) REFERENCES tbl_User(userId)
 );
 
 INSERT INTO service VALUES (NULL,1,'MATH','Algebra', 3, 50);

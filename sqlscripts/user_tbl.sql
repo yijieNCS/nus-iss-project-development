@@ -14,7 +14,7 @@ CREATE TABLE `tbl_User` (
     `birthDate` DATETIME DEFAULT NULL,
     `gender` VARCHAR(1) NOT NULL,
     `admin` VARCHAR(1) NOT NULL,
-	PRIMARY KEY (`userID`)
+	PRIMARY KEY (`userId`)
 );
 
 INSERT INTO tbl_User VALUES (NULL,31,NULL,'John','Doe','JohnDoe@gmail.com','Bachelor degree of Electronic and Electrical Engineering','JohnDoe','passJD','1995-05-15 00:00:00','M','N');

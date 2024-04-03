@@ -3,7 +3,8 @@ import {
     getReportModel,
     createReportModel,
     deleteReportModel,
-    updateReportModel
+    updateReportModel,
+    getAllReportByReportedUserModel
 } from "./reportModel.model.js";
 import { Report } from "./reportEntity.entity.js";
 
@@ -33,6 +34,18 @@ export async function getAllReportById(req, res) {
         res.status(500).json({error: error.message})
     }
 }
+
+export async function getAllReportByReportedUser(req, res) {
+    try {
+        const id = req.params.id
+        const report = await getAllReportByReportedUserModel(id)
+        res.send(report)
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({error: error.message})
+    }
+}
+
 
 export async function createReport(req, res) {
     try {

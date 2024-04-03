@@ -21,6 +21,16 @@ export async function getReportModel(reportId) {
     }
 }
 
+export async function getAllReportByReportedUserModel(reportedUser) {
+    const sql = `SELECT * FROM report WHERE reportedUser=?`
+    try {
+        const [rows] = await pool.query(sql, [reportedUser])
+        return rows;
+    } catch (error) {
+        throw new Error("Failed to fetch particular report from the database")
+    }
+}
+
 export async function createReportModel(report, reportedUser, reportBy) {
     const sql = `INSERT INTO report (report, reportedUser, reportBy)
                         VALUES(?, ?, ?)`
