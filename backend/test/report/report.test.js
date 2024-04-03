@@ -62,6 +62,24 @@ describe("Testing Report", function() {
         })
     })
 
+    describe("Testing the reportedUser function: Success", function() {
+        it("Should return 200", function(done) {
+            const testData = {
+                "reportedUser": 1,
+            }
+            requester.get(`/api/reporteduser/${testData.reportedUser}`).end((err, res) => {
+                expect(res).to.have.status(200)
+                // Check the properties of the first report in the array
+                const firstReport = res.body[0];
+                expect(firstReport).to.have.property('reportId');
+                expect(firstReport).to.have.property('report').to.equal('very bad and horrible tutor');
+                expect(firstReport).to.have.property('reportedUser').to.equal(1);
+                expect(firstReport).to.have.property('reportBy').to.equal(3);
+                done()
+            })
+        })
+    })
+
     describe("Testing DELETE one report API", function() {
         it("Should return status 200", function(done) {
             requester.delete(`/api/report/${testingId}`).end((err, res) => {
@@ -70,6 +88,10 @@ describe("Testing Report", function() {
             })
         })
     })
+
+
+    
+
 
     after(function(done) {
         server.request(app).close()
