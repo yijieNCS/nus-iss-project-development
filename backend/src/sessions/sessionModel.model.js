@@ -25,10 +25,10 @@ export async function getSessionsByUsernameAndUserIdModel(username, userId) {
     const sql =
         `SELECT 
         sessions.sessionId, sessions.timing, sessions.status, sessions.location, 
-        tbl_User.firstName, tbl_User.lastname, tbl_User.gender
+        users.firstName, users.lastname, users.gender
         FROM
-        sessions left join tbl_User on (sessions.tutorId = tbl_User.userID or sessions.studentId = tbl_User.userID)
-        WHERE (sessions.tutorId=? or sessions.studentId=?) AND tbl_User.username!=?`
+        sessions left join users on (sessions.tutorId = users.userID or sessions.studentId = users.userID)
+        WHERE (sessions.tutorId=? or sessions.studentId=?) AND users.username!=?`
     try {
         const [rows] = await pool.query(sql, [userId, userId, username])
         return rows
