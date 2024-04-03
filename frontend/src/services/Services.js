@@ -4,8 +4,6 @@ import { Header } from "../common/header/Header";
 import CardList from '../services/card/cardlist';
 import React, {useContext, useEffect, useState} from "react"
 
-
-
 function Services() {
 
     return (

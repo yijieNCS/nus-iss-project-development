@@ -23,5 +23,3 @@ INSERT INTO tbl_User VALUES (NULL,26,NULL,'Jimmy','Neutron','JimmyNeutron@gmail.
 INSERT INTO tbl_User VALUES (NULL,27,NULL,'Dipper','Pines','DipperPines@gmail.com','Bachelor degree of Business Management','DipperPines','passDP','1997-05-15 00:00:00','M','N');
 INSERT INTO tbl_User VALUES (NULL,28,NULL,'Candace','Flynn','CandaceFlynn@gmail.com','Bachelor degree of Pyschology','CandaceFlynn','passCF','1996-05-15 00:00:00','F','N');
 INSERT INTO tbl_User VALUES (NULL,30,NULL,'admin','1','admin1@gmail.com','admin','admin1','passA1',null,'M','Y');
-
-SELECT * FROM tbl_user;

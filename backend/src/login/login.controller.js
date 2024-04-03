@@ -12,7 +12,7 @@ export async function login(req, res) {
             })
         } else if (password === user.password) {
             const accessToken = jwt.sign({
-                userId: user.userID,
+                userId: user.userId,
                 username: user.username
             }, process.env.JWT_SECRET, {expiresIn: '1h'})
 
