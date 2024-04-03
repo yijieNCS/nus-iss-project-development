@@ -20,4 +20,4 @@ jobs:
             
             - name: Install Frontend dependencies
               working-directory: ./frontend
-              run: npm-install
+              run: npm install
