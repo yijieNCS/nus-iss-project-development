@@ -21,7 +21,7 @@ export async function getUserModel(userId) {
 }
 
 export async function getnonAdminUserModelExcept(userId) {
-    const sql = `SELECT * FROM tbl_User WHERE userId!=? AND ADMIN='N'`
+    const sql = `SELECT * FROM users WHERE userId!=? AND ADMIN='N'`
     try {
         const [rows] = await pool.query(sql, [userId])
         return rows;
@@ -75,8 +75,8 @@ export async function deleteUserModel(userId) {
 }
 
 export async function deleteUserModelbyUsername(username) {
-    const checkUserSql = `SELECT * FROM tbl_User WHERE username=?`;
-    const deleteSql = `DELETE FROM tbl_User WHERE username=?`;
+    const checkUserSql = `SELECT * FROM users WHERE username=?`;
+    const deleteSql = `DELETE FROM users WHERE username=?`;
     try { 
         const [userRows] = await pool.query(checkUserSql, [username]);
         if (userRows.length === 0) {
