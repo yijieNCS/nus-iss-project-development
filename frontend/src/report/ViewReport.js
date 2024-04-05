@@ -8,12 +8,14 @@ import ReportCard from "./reportcard/ReportCard"; // Import as default
 const ViewReport = () => {
 
     const [reports, setReports] = useState([])
+    const [userAdmin, setUserAdmin] = useState([])
 
     useEffect(() => {
         const userData = JSON.parse(sessionStorage.getItem('userData'));
         const userId = userData ? userData.userId : null;
         if (userId) {
             getReports(userId);
+            getUser(userId);
         }
     }, []);
 
@@ -23,6 +25,21 @@ const ViewReport = () => {
             const reportsData = await axios.get(`http://localhost:8080/api/reporteduser/${userId}`);
             console.log("Response:", reportsData);
             setReports(reportsData.data);
+        } catch (error) {
+            console.error('Error fetching the reports: ', error);
+        }
+    };
+
+    const getUser = async (userId) => {
+        try {
+            console.log("userId: in getUser " + userId);
+            const userData = await axios.get(`http://localhost:8080/api/user/${userId}`);
+            console.log("userData:", userData);
+            if (userData.data.admin){
+                setUserAdmin(true)
+            }else{
+                setUserAdmin(false)
+            }
         } catch (error) {
             console.error('Error fetching the reports: ', error);
         }

@@ -37,6 +37,34 @@ export async function getSessionsByUsernameAndUserIdModel(username, userId) {
     }
 }
 
+// export async function getSessionsByUsernameAndUserIdModel2(username, userId) {
+//     const sql =
+//         `SELECT 
+//         sessions.sessionId, 
+//         sessions.timing, 
+//         sessions.status, 
+//         sessions.location, 
+//         users.firstName, 
+//         users.lastname, 
+//         users.gender,
+//         services.subject,
+//         services.topic,
+//         services.rate
+//     FROM sessions 
+//     LEFT JOIN users 
+//         ON sessions.tutorId = users.userID OR sessions.studentId = users.userID
+//     LEFT JOIN services
+//         ON users.userID = services.userId
+//     WHERE (sessions.tutorId = ? OR sessions.studentId = ?) AND users.username != ?;
+//     `
+//     try {
+//         const [rows] = await pool.query(sql, [userId, userId, username]) //tutor id and studet id
+//         return rows
+//     } catch (error) {
+//         throw new Error("Failed to fetch user session information")
+//     }
+// }
+
 export async function createSessionModel(tutorId, studentId, timing, status, location) {
     const sql = `INSERT INTO sessions (tutorId, studentId, timing, status, location)
                         VALUES(?, ?, ?, ?, ?)`

@@ -15,6 +15,7 @@ function Sessions() {
             const userData = JSON.parse(sessionStorage.getItem('userData'))
             const sessionsData
                 = await axios.get(`http://localhost:8080/api/sessions/${userData['userId']}/${userData['username']}`)
+            console.log(sessionsData.data)
             setSessions(sessionsData.data)
         } catch (error) {
             console.error('Error fetching the session: ', error)

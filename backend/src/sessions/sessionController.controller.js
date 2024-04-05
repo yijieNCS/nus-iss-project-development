@@ -4,7 +4,8 @@ import {
     createSessionModel,
     deleteSessionModel,
     updateSessionModel,
-    getSessionsByUsernameAndUserIdModel
+    getSessionsByUsernameAndUserIdModel,
+    // getSessionsByUsernameAndUserIdModel2
 } from "./sessionModel.model.js";
 import { Session } from "./sessionEntity.entity.js";
 
@@ -63,6 +64,34 @@ export async function getAllSessionsByUsernameAndUserId(req, res) {
         res.status(500).json({error: error.message})
     }
 }
+
+// export async function getAllSessionsByUsernameAndUserId2(req, res) {
+//     try {
+//         const userId = req.params.userId
+//         const username = req.params.username
+//         const sessionsData = await getSessionsByUsernameAndUserIdModel2(username, userId)
+//         sessionsData.forEach(session => userId === session.studentId ? studentSessionCreator(session) : tutorSessionCreator(session))
+//         sessionsData.forEach(session => {
+//             session['timing'] = new Date(session['timing']).toLocaleDateString('en-SG', {
+//                 year: "numeric",
+//                 month: "long",
+//                 day: "numeric",
+//             })
+//         })
+//         const sessions = sessionsData.map(row => new Session(
+//             row.sessionId,
+//             row.firstName,
+//             row.lastname,
+//             row.timing,
+//             row.status,
+//             row.location
+//         ))
+//         res.send(sessions)
+//     } catch(error) {
+//         console.error(error)
+//         res.status(500).json({error: error.message})
+//     }
+// }
 
 export async function createSession(req, res) {
     try {

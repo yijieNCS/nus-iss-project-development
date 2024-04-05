@@ -105,6 +105,7 @@ export function SideBar() {
                                 <img src='/icons/submitReportIcon.png' alt="Submit Report Icon"/>
                                 <NavLink to="/registration">Create Admin</NavLink>
                             </li>
+                            
                         </ul>
                     </li>
                 )}
