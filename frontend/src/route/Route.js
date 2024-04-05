@@ -10,7 +10,7 @@ import Sessions from "../sessions/Sessions";
 import Services from "../services/Services";
 import {UserProvider} from "../context/UserProvider";
 import Registration from "../registration/Registration";
-import ChangePassword from "../changePassword/ChangePassword";
+import ChangePassword from "../changePassword/changePassword";
 import SubmitReport from "../report/SubmitReport";
 import ViewReport from "../report/ViewReport";
 

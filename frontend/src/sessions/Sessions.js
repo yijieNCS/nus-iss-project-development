@@ -11,11 +11,9 @@ function Sessions() {
 
     const getSessions = async () => {
         try {
-            console.log(sessionStorage)
             const userData = JSON.parse(sessionStorage.getItem('userData'))
             const sessionsData
                 = await axios.get(`http://localhost:8080/api/sessions/${userData['userId']}/${userData['username']}`)
-            console.log(sessionsData.data)
             setSessions(sessionsData.data)
         } catch (error) {
             console.error('Error fetching the session: ', error)
@@ -34,10 +32,7 @@ function Sessions() {
                 {sessions.map(session => (
                     <ContentCard
                         key={session.sessionId}
-                        firstName={session.firstName}
-                        timing={session.date}
-                        location={session.location}
-                        status={session.status}
+                        {...session}
                     />
                 ))}
             </main>
