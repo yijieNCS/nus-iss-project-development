@@ -1027,7 +1027,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="291" parent="1" name="sg_learner_db">
-      <LastIntrospectionLocalTimestamp>2024-04-05.12:13:54</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-04-07.10:39:25</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="292" parent="1" name="sys">
@@ -1119,7 +1119,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="312" parent="299" name="serviceId">
-      <AutoIncrement>24</AutoIncrement>
+      <AutoIncrement>29</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1169,7 +1169,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="322" parent="300" name="sessionId">
-      <AutoIncrement>1</AutoIncrement>
+      <AutoIncrement>22</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1242,7 +1242,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="337" parent="301" name="userId">
-      <AutoIncrement>39</AutoIncrement>
+      <AutoIncrement>54</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1289,11 +1289,11 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Position>10</Position>
     </column>
     <column id="347" parent="301" name="gender">
-      <DasType>varchar(1)|0s</DasType>
+      <DasType>varchar(6)|0s</DasType>
       <Position>11</Position>
     </column>
     <column id="348" parent="301" name="admin">
-      <DasType>varchar(1)|0s</DasType>
+      <DasType>tinyint(1)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>12</Position>
     </column>
