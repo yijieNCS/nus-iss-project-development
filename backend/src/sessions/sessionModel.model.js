@@ -37,11 +37,11 @@ export async function getSessionsByUsernameAndUserIdModel(username, userId) {
     }
 }
 
-export async function createSessionModel(tutorId, studentId, timing, status, location) {
-    const sql = `INSERT INTO sessions (tutorId, studentId, timing, status, location)
+export async function createSessionModel(tutorId, studentId, serviceId, timing, status, location) {
+    const sql = `INSERT INTO sessions (tutorId, studentId, serviceId, timing, status, location)
                         VALUES(?, ?, ?, ?, ?)`
     try {
-        const [result] = await pool.query(sql, [tutorId, studentId, timing, status, location])
+        const [result] = await pool.query(sql, [tutorId, studentId, serviceId, timing, status, location])
         return result.insertId
     } catch (error) {
         throw new Error("Failed to create the session")
@@ -58,12 +58,12 @@ export async function deleteSessionModel(sessionId) {
     }
 }
 
-export async function updateSessionModel(sessionId, tutorId, studentId, timing, status, location){
+export async function updateSessionModel(sessionId, tutorId, studentId, serviceId, timing, status, location){
     const sql = `UPDATE sessions
-                        SET tutorId=?, studentId=?, timing=?, status=?, location=?
+                        SET tutorId=?, studentId=?, serviceId=?, timing=?, status=?, location=?
                         WHERE sessionId=?`
     try {
-        const [result] = await pool.query(sql, [tutorId, studentId, timing, status, location, sessionId])
+        const [result] = await pool.query(sql, [tutorId, studentId, serviceId, timing, status, location, sessionId])
         return result.insertId
     } catch(error) {
         throw new Error("Failed to update the session")
