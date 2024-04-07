@@ -18,6 +18,7 @@ describe("Testing Session", function() {
             const testData = {
                 "tutorId": 1,
                 "studentId": 2,
+                "serviceId": 7,
                 "timing": "2024-05-09 15:35:00",
                 "status": "COMPLETED",
                 "location": "Toa Payoh Ave 10"
