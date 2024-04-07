@@ -41,13 +41,41 @@ export async function getUserModelByUsername(username) {
     }
 }
 
-export async function createUserModel(age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender,admin) {
-    const sql = `INSERT INTO users (age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender,admin)
-                        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)`
-    try {
-        console.log("Age: "+age+",dateJoined: "+dateJoined+", firstName: "+firstName+", lastName: "+lastName+" ,email: "+email+" ,edu: "+education+" ,username: "+username+" ,password: "+password+" ,birthdate: "+birthDate+" ,gender: "+gender+ " ,admin: "+admin)
+// async function createUserModel({
+//                                    age = null,
+//                                    dateJoined = null,
+//                                    firstName = null,
+//                                    lastName = null,
+//                                    email = null,
+//                                    education = null,
+//                                    username = null,
+//                                    password = null,
+//                                    birthDate = null,
+//                                    gender = null,
+//                                    admin = false // Assuming admin defaults to false if not provided
+//                                }) {
+//     // Your code here
+// }
 
-        const [result] = await pool.query(sql, [age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender,admin])
+// INSERT INTO users (userId, age, firstName, lastName, email, education, username, password, birthDate, gender, admin)
+// VALUES (NULL,28,'John','Doe','JohnDoe@gmail.com','Bachelor degree of Electronic and Electrical Engineering','JohnDoe','passJD','1995-05-15 00:00:00','M','N');
+
+export async function createUserModel({
+  age = 0,
+  firstName = null,
+  lastName = null,
+  email = null,
+  education = null,
+  username = null,
+  password = null,
+  birthDate = null,
+  gender = null,
+  admin = null
+}) {
+    const sql = `INSERT INTO users (age, firstName, lastName, email, education, username, password, birthDate, gender, admin)
+                        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+    try {
+        const [result] = await pool.query(sql, [age, firstName, lastName, email, education, username, password, birthDate, gender, admin])
         return result.insertId
     } catch (error) {
         throw new Error(`The error is ${error}`)
