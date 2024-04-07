@@ -32,10 +32,7 @@ function Sessions() {
                 {sessions.map(session => (
                     <ContentCard
                         key={session.sessionId}
-                        firstName={session.firstName}
-                        timing={session.date}
-                        location={session.location}
-                        status={session.status}
+                        {...session}
                     />
                 ))}
             </main>

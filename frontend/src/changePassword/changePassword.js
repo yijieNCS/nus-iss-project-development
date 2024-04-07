@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from "axios";
-import classes from './ChangePassword.module.css'
+import classes from './changePassword.module.css'
 
 
 const ChangePassword = () => {

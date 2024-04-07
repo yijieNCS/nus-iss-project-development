@@ -4,9 +4,10 @@ import {
     createSessionModel,
     deleteSessionModel,
     updateSessionModel,
-    getSessionsByUsernameAndUserIdModel
+    getSessionsByUsernameAndUserIdModel,
 } from "./sessionModel.model.js";
 import { Session } from "./sessionEntity.entity.js";
+import { studentSessionCreator, tutorSessionCreator } from "./sessionFactory.factory.js";
 
 export async function getAllSessions(req, res) {
     try {
@@ -39,24 +40,15 @@ export async function getAllSessionById(req, res) {
 
 export async function getAllSessionsByUsernameAndUserId(req, res) {
     try {
-        const userId = req.params.userId
+        const userId = parseInt(req.params.userId)
         const username = req.params.username
-        const sessionsData = await getSessionsByUsernameAndUserIdModel(username, userId)
-        sessionsData.forEach(session => {
-            session['timing'] = new Date(session['timing']).toLocaleDateString('en-SG', {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-            })
-        })
-        const sessions = sessionsData.map(row => new Session(
-            row.sessionId,
-            row.firstName,
-            row.lastname,
-            row.timing,
-            row.status,
-            row.location
-        ))
+        const sessionsRaw = await getSessionsByUsernameAndUserIdModel(username, userId)
+        const sessions = []
+        sessionsRaw.forEach(session =>
+            userId === session.studentId
+                ? sessions.push(studentSessionCreator(session))
+                : sessions.push(tutorSessionCreator(session))
+        )
         res.send(sessions)
     } catch(error) {
         console.error(error)
@@ -66,10 +58,11 @@ export async function getAllSessionsByUsernameAndUserId(req, res) {
 
 export async function createSession(req, res) {
     try {
-        const { tutorId, studentId, timing, status, location } = req.body
+        const { tutorId, studentId, serviceId, timing, status, location } = req.body
         const sessionId = await createSessionModel(
             tutorId,
             studentId,
+            serviceId,
             timing,
             status,
             location
@@ -94,11 +87,12 @@ export async function deleteSessionById(req, res) {
 
 export async function updateSessionById(req, res) {
     try {
-        const { sessionId, tutorId, studentId, timing, status, location } = req.body
+        const { sessionId, tutorId, studentId, serviceId, timing, status, location } = req.body
         const sessionIdRes = await updateSessionModel(
             sessionId,
             tutorId,
             studentId,
+            serviceId,
             timing,
             status,
             location
@@ -107,21 +101,5 @@ export async function updateSessionById(req, res) {
     } catch (error) {
         console.error(error)
         res.status(500).json({error: error.message})
-    }
-}
-
-const buildSessionType = (userId, session) => {
-
-    let role = null
-
-    if (userId === session.studentId) {
-        role = "Student"
-    } else if (userId === session.tutorId) {
-        role = "Tutor"
-    }
-
-    const sessionType = {
-        student: () => ({}),
-        tutor: () => ({})
     }
 }
