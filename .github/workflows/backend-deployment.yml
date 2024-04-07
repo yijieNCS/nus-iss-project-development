@@ -24,7 +24,7 @@ jobs:
 
             - name: Create .env file
               run: |
-                echo "MYSQL_HOST=${{ secrets.MYSQL_HOST }}> backend/.env
+                echo "MYSQL_HOST=${{ secrets.MYSQL_HOST }}"> backend/.env
                 echo "MYSQL_USER=${{ secrets.MYSQL_USER }}" >> backend/.env
                 echo "MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}" >> backend/.env
                 echo "MYSQL_PORT=${{ secrets.MYSQL_PORT }}" >> backend/.env

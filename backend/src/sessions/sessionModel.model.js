@@ -39,7 +39,7 @@ export async function getSessionsByUsernameAndUserIdModel(username, userId) {
 
 export async function createSessionModel(tutorId, studentId, serviceId, timing, status, location) {
     const sql = `INSERT INTO sessions (tutorId, studentId, serviceId, timing, status, location)
-                        VALUES(?, ?, ?, ?, ?)`
+                        VALUES(?, ?, ?, ?, ?, ?)`
     try {
         const [result] = await pool.query(sql, [tutorId, studentId, serviceId, timing, status, location])
         return result.insertId
