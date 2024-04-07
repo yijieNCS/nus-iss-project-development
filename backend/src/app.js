@@ -8,6 +8,7 @@ import userRouter from './user/userRoute.js';
 import registerRouter from "./register/register.route.js";
 import loginRouter from "./login/login.route.js";
 import changePWRouter from "./changePassword/changePassword.route.js";
+import reportRouter from "./report/reportRoute.route.js";
 import path from 'path'
 import { fileURLToPath } from 'url';
 import {connectDatabase} from "./config/database.js";
@@ -26,13 +27,6 @@ if (result.error) {
 }
 
 export const pool = connectDatabase()
-pool.getConnection((err, connection) => {
-    if (err) {
-        console.error(err)
-    } else {
-        console.log("The connection is successful")
-    }
-})
 
 const middleware = (err, req, res, next) => {
     console.error(err.stack)
@@ -42,7 +36,6 @@ const middleware = (err, req, res, next) => {
 app.use(cors({origin:true,credentials: true}));
 app.use(middleware)
 app.use(express.json())
-app.use(middleware) 
 app.use(userRouter)
 app.use(sessionRouter)
 app.use(resumeRouter)
@@ -50,6 +43,7 @@ app.use(serviceRouter)
 app.use(registerRouter)
 app.use(loginRouter)
 app.use(changePWRouter)
+app.use(reportRouter)
 
 app.listen(8080, () => {
     console.log('Server is running on port 8080...')

@@ -11,6 +11,8 @@ import Services from "../services/Services";
 import {UserProvider} from "../context/UserProvider";
 import Registration from "../registration/Registration";
 import ChangePassword from "../changePassword/changePassword";
+import SubmitReport from "../report/SubmitReport";
+import ViewReport from "../report/ViewReport";
 
 function AppRoutes() {
     return (
@@ -21,6 +23,8 @@ function AppRoutes() {
                     <Route exact path="/sessions" element={<Sessions/>}/>
                     <Route exact path="/registration" element={<Registration/>}/>
                     <Route exact path="/changepassword" element={<ChangePassword/>}/>
+                    <Route exact path="/submitreport" element={<SubmitReport/>}/>
+                    <Route exact path="/viewreport" element={<ViewReport/>}/>
                     <Route exact path="/services" element={<Services/>}/>
                 </Routes>
             </UserProvider>
