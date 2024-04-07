@@ -42,14 +42,6 @@ jobs:
       working-directory: ./backend
       run: npm install
 
-    # - name: Create .env file
-    #   run: |
-    #     echo "MYSQL_HOST=sg-learner-db.c32qkcwscdls.ap-southeast-1.rds.amazonaws.com" > backend/.env
-    #     echo "MYSQL_USER=admin" >> backend/.env
-    #     echo "MYSQL_PASSWORD=password123" >> backend/.env
-    #     echo "MYSQL_PORT=3306" >> backend/.env
-    #     echo "MYSQL_DATABASE=sg_learner_db" >> backend/.env
-    #     echo "JWT_SECRET"="" >> backend/.env
     - name: Create .env file
       run: |
         echo "MYSQL_HOST=${{ secrets.MYSQL_HOST }}" > backend/.env
