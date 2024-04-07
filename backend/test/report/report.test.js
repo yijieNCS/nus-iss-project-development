@@ -89,10 +89,6 @@ describe("Testing Report", function() {
         })
     })
 
-
-    
-
-
     after(function(done) {
         server.request(app).close()
         requester = undefined
