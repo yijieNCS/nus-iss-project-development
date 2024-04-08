@@ -36,7 +36,7 @@ describe("Testing registration", function() {
                 "email": "princeZuko@gmail.com",
                 "username": "admin2",
                 "password": "passAd2",
-                "bDay": "2016-04-01 11:31:47",
+                "birthDate": "2016-04-01 11:31:47",
                 "gender": "Male",
                 "admin": false
             }
@@ -44,7 +44,7 @@ describe("Testing registration", function() {
             const response = normalUserCreator(testData)
 
             const today = new Date()
-            const birthDate = new Date(testData['bDay'])
+            const birthDate = new Date(testData['birthDate'])
             let age = today.getFullYear() - birthDate.getFullYear()
             const monthDiff = today.getMonth() - birthDate.getMonth()
             if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
@@ -65,7 +65,7 @@ describe("Testing registration", function() {
                 "email": "princeZuko@gmail.com",
                 "username": "princeZuko",
                 "password": "passPZ",
-                "bDay": "2016-04-01 11:31:47",
+                "birthDate": "2016-04-01 11:31:47",
                 "gender": "Male",
                 "admin": false
             }
@@ -98,7 +98,7 @@ describe("Testing registration", function() {
                 email: "JohnDoe@gmail.com",
                 password: "passJD",
                 reEnterPassword: "passJD",
-                bDay: new Date(),
+                birthDate: new Date(),
                 gender:'Male',
                 admin: false
             }

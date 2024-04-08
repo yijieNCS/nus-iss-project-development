@@ -9,6 +9,7 @@ import axios from "axios";
 const Registration = () => {
     const navigate = useNavigate();
 
+    const [isAdmin, setIsAdmin] = useState(false)
     const [formData,setFormData] = useState(
         {
         firstName:'',
@@ -17,14 +18,25 @@ const Registration = () => {
         email:'',
         password:'',
         reEnterPassword:'',
-        bDay:"",
-        gender:''
+        birthDate:"",
+        gender:'',
+        admin:''
     }
     )
 
     const [Registered, setRegistered] = useState(false)
     const [alertVisible, setAlertVisible] = useState(false)
     const [userExistVisible, setUserExistVisible] = useState(false)
+
+    useEffect(() => {
+        if (sessionStorage.getItem('userData') !== null){
+            const admin = JSON.parse(sessionStorage.getItem('userData')).admin;
+            setIsAdmin(true)
+            console.log("admin: "+admin) 
+        }
+        console.log("sessionStorage.getItem('userData'): "+sessionStorage.getItem('userData')) 
+   }, [])
+
     useEffect(() => {
         if (Registered) {
             console.log("To Home Page")
@@ -38,11 +50,19 @@ const Registration = () => {
     const passwordRef = useRef()
     const reEnterPasswordRef = useRef()
     const genderRef = useRef()
+    const adminRef = useRef()
+    const birthDateRef = useRef()
     
 
     const handleCancel = () => {
-        // Navigate to the login page
-        navigate('/');
+        if (isAdmin){
+            navigate('/viewreport')
+        }
+        else{
+            // Navigate to the login page
+            navigate('/');
+        }
+        
     };
 
     const isValidEmail = (email) => {
@@ -69,7 +89,7 @@ const Registration = () => {
             newErrors.firstName = "First name is required"
         }
 
-        if (!formData.lastName){
+        if (!isAdmin && !formData.lastName){
             newErrors.lastName = "Last name is required"
         }
 
@@ -93,13 +113,14 @@ const Registration = () => {
             newErrors.reEnterPassword = "reEnterPassword entered must be same as password"
         }
 
-        if (!formData.bDay){
-            newErrors.bDay = "birthday is required"
+        if (!isAdmin && !formData.birthDate){
+            newErrors.birthDate = "birthday is required"
         }
 
-        if (!formData.gender){
+        if (!isAdmin && !formData.gender){
             newErrors.gender = "gender is required"
         }
+
 
         setErrors(newErrors)
         
@@ -124,10 +145,16 @@ const Registration = () => {
         formData.email = emailRef.current.value
         formData.password = passwordRef.current.value
         formData.reEnterPassword = reEnterPasswordRef.current.value
-        // formData.month = monthRef.current.value
-        // formData.day = dayRef.current.value
-        // formData.year = yearRef.current.value
+        formData.birthDate = birthDateRef.current.value
         formData.gender = genderRef.current.value
+         
+        if (isAdmin){
+            formData.admin = true
+        }else{
+            formData.admin = false
+            
+        }
+        
 
         const isValid = validateForm()
         if (isValid){
@@ -176,8 +203,8 @@ const Registration = () => {
                                 <FontAwesomeIcon icon={faUser} />
                             </div>
                                 <div className={classes["divider"]}></div>
-                                <input type="text" name="lastName" placeholder="lastName" ref={lastNameRef} value={formData.lastName} onChange={handleChange}/>
-                                {errors.lastName && <div className={classes["error"]}>{errors.lastName}</div>}
+                                <input type="text" name="lastName" placeholder="lastName" ref={lastNameRef} value={!isAdmin ? null: formData.lastName} onChange={handleChange} readOnly={isAdmin} />
+                                {!isAdmin &&  errors.lastName && <div className={classes["error"]}>{errors.lastName}</div>}
                     </div>
                     <div className={classes["input-container"]}>
                             <div className={classes["input-icon"]}>          
@@ -217,10 +244,10 @@ const Registration = () => {
                             <FontAwesomeIcon icon={faBirthdayCake} />
                         </div>
                         <div className={classes["inputGroup"]}>
-                            <input type="date" name="bDay" value={formData.bDay} onChange={handleChange}/>
+                            <input type="date" name="birthDate" ref={birthDateRef} value={!isAdmin ? null:formData.birthDate} onChange={handleChange} readOnly={isAdmin}/>
                             
                         </div>
-                        {errors.bDay && <div className={classes["error"]}>{errors.bDay}</div>}
+                        {!isAdmin && errors.birthDate && <div className={classes["error"]}>{errors.birthDate}</div>}
                     </div>
   
                     <div className={classes["genderContainer"]}>
@@ -228,14 +255,23 @@ const Registration = () => {
                             <FontAwesomeIcon icon={faTransgender} />
                         </div>
                         <div className={classes["divider"]}></div>
-                        <select name="gender" className={classes["genderContainer-select"]} ref={genderRef} value={formData.gender} onChange={handleChange}>
+                        <select name="gender" className={classes["genderContainer-select"]} ref={genderRef} value={!isAdmin ? null:formData.gender} onChange={handleChange} disabled={isAdmin}>
                             <option selected value="">Select gender</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                         </select>
-                        {errors.gender && <div className={classes["gendererror"]}>{errors.gender}</div>}
+                        {!isAdmin &&  errors.gender && <div className={classes["gendererror"]}>{errors.gender}</div>}
                     </div>
                     
+                    {isAdmin && (<div className={classes["input-container"]}>
+                            <div className={classes["input-icon"]}>          
+                                <FontAwesomeIcon icon={faUser} />
+                            </div>
+                                <div className={classes["divider"]}></div>
+                                <input type="text" name="admin" placeholder="admin" ref={adminRef} readOnly={true} value="Admin User: true" onChange={handleChange}/>
+                    </div>)
+                    }
+
                 </div>
                 
                 <div className={classes["button-container"]}>

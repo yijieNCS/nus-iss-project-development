@@ -13,7 +13,8 @@ export async function login(req, res) {
         } else if (password === user.password) {
             const accessToken = jwt.sign({
                 userId: user.userId,
-                username: user.username
+                username: user.username,
+                admin: user.admin
             }, process.env.JWT_SECRET, {expiresIn: '1h'})
 
             res.status(200).json({

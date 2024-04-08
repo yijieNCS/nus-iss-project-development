@@ -1,9 +1,29 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import classes from './SideBar.module.css'
 import { NavLink } from 'react-router-dom'
 
 export function SideBar() {
-    
+
+    const [isAdmin, setIsAdmin] = useState(false)
+
+    const getUser = async () => {
+        try {
+            const userData = JSON.parse(sessionStorage.getItem('userData'))
+            console.log("admin " +userData.admin)
+            if (userData.admin ===1){
+                setIsAdmin(true)
+            }else{
+                setIsAdmin(false)
+            }
+            
+        } catch (error) {
+            console.error('Error fetching user: ', error)
+        }
+    }
+
+    useEffect(() => {
+        getUser()
+    }, []);
     return (
         <aside className={classes.sidebar}>
             <div className={classes['sidebar-title']}>
@@ -67,19 +87,20 @@ export function SideBar() {
                         </li>
                     </ul>
                 </li>
-                <li>
-                    <ul className={classes['sidebar-sub-menu']}>
-                        <li className={classes['sidebar-sub-menu-title']}>
-                            <h2>Admin Options</h2>
-                            {/* Add admin-specific options */}
+                {isAdmin && (
+                        <li>
+                            <ul className={classes['sidebar-sub-menu']}>
+                                <li className={classes['sidebar-sub-menu-title']}>
+                                    <h2>Admin Options</h2>
+                                    {/* Add admin-specific options */}
+                                </li>
+                                <li className={classes['sidebar-sub-menu-options']}>
+                                    <img src='/icons/submitReportIcon.png' alt="Submit Report Icon"/>
+                                    <NavLink to="/registration">Create Admin</NavLink>
+                                </li>
+                            </ul>
                         </li>
-                        <li className={classes['sidebar-sub-menu-options']}>
-                            <img src='/icons/submitReportIcon.png' alt="Submit Report Icon"/>
-                            <NavLink to="/registration">Create Admin</NavLink>
-                        </li>
-
-                    </ul>
-                </li>
+                    )}
             </ul>
         </aside>
     )
