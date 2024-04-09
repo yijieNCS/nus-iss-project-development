@@ -55,7 +55,7 @@ jobs:
                   docker pull ${{ secrets.DOCKER_USERNAME }}/sg_learner_server:latest
                   docker stop sg_learner_server || true
                   docker rm sg_learner_server ||true
-                  docker run -d -- name sg_learner_server -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/sg_learner_server:latest
+                  docker run -d --name sg_learner_server -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/sg_learner_server:latest
                   docker image prune -a --force
 
 
