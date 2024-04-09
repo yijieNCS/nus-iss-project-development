@@ -1,0 +1,21 @@
+/* CardList.css */
+/* eslint-disable */
+/* cardlist.module.css */
+
+.card-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust column width as needed */
+    grid-column:3/ span 13; 
+    grid-row: 6/ span 13; 
+    grid-auto-rows: 200px;
+  }
+  
+  
+  .card-list2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust column width as needed */
+    grid-column:3/ span 13; 
+    grid-row: 6/ span 13; 
+    grid-auto-rows: 200px;
+  }
+  

@@ -47,7 +47,8 @@ export function SideBar() {
                         </li>
                         <li className={classes['sidebar-sub-menu-options']}>
                             <img src="/icons/myResumeIcon.png" alt="My Resume Icon"/>
-                            <a>My Resume</a>
+                            <NavLink to ="/viewresume">My Resume</NavLink>
+                            
                         </li>
                     </ul>
                 </li>
