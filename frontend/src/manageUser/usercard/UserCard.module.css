@@ -1,0 +1,66 @@
+.reportcontent-card {
+    display: flex;
+    flex-direction: column;
+    grid-column: 3 / span 6;
+    box-shadow:
+            2px 2px 6px rgba(0, 0, 0, 0.1),
+            -2px 2px 6px rgba(0, 0, 0, 0.1),
+            2px -2px 6px rgba(0, 0, 0, 0.1),
+            -2px -2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 50px;
+    justify-content: center; /* Center the items vertically */
+    align-items: center; /* Center the items horizontally */
+}
+
+
+.input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 60%;
+    background-color: #d9d9d9;
+    border-radius: 10px;
+    margin-bottom: 10px; 
+  }
+
+  .input-icon {
+    margin-left: 10px; /* Adjust margin as needed */
+  }
+  
+  .divider {
+    height: 40px; /* Adjust height as needed */
+    width: 1px; /* Adjust width as needed */
+    background-color: black;
+    margin: 0 10px; /* Adjust margin as needed */
+  }
+  
+  .input-container input {
+    padding: 10px; /* Adjust padding as needed */
+    font-size: 16px; /* Set the font size */ 
+    border: none; /* Remove border */
+    outline: none; /* Remove outline */
+    background-color: transparent; /* Make background transparent */
+  
+  }
+
+  .input-icon {
+    margin-left: 10px; /* Adjust margin as needed */
+  }
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .ban-button {
+    width:100px;
+    background-color: #dc3545;
+    color: #fff;
+  }
+  
+  .ban-button:hover {
+    background-color: #bd2130;
+  }
+  

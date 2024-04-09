@@ -1,6 +1,7 @@
 import express from "express"
 import {
     getAllUsers,
+    getAllUsersAdminandNormalUser,
     getAllUserById,
     createUser,
     deleteUserById,
@@ -13,6 +14,8 @@ const userRouter = express.Router()
 
 userRouter.get('/api/users', getAllUsers)
 
+userRouter.get('/api/adminandnormalusers', getAllUsersAdminandNormalUser)
+
 userRouter.get('/api/user/:id', getAllUserById)
 
 userRouter.get('/api/userexcept/:id', getAllUserExceptById)
@@ -24,5 +27,6 @@ userRouter.delete('/api/user/:id', deleteUserById)
 userRouter.delete('/api/username/:username', deleteUserByUsername)
 
 userRouter.put('/api/user/', updateUserById)
+
 
 export default userRouter

@@ -98,6 +98,10 @@ export function SideBar() {
                                     <img src='/icons/submitReportIcon.png' alt="Submit Report Icon"/>
                                     <NavLink to="/registration">Create Admin</NavLink>
                                 </li>
+                                <li className={classes['sidebar-sub-menu-options']}>
+                                    <img src='/icons/submitReportIcon.png' alt="Submit Report Icon"/>
+                                    <NavLink to="/manageuser">Manage User</NavLink>
+                                </li>
                             </ul>
                         </li>
                     )}
