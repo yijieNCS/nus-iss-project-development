@@ -24,7 +24,7 @@ const AddSession = () => {
 
                     <div className={classes["readinput-container"]}>
                             <div className={classes["input-icon"]}>          
-                                <FontAwesomeIcon icon={faUser} />
+                            <img src="/icons/studentIcon.png" alt="User Icon"/>
                             </div>
                                 <div className={classes["divider"]}></div>
                                 <input type="text" name="student" placeholder="student"  value="" readOnly={true} className={classes["input-container-input"]} />
@@ -32,7 +32,7 @@ const AddSession = () => {
 
                     <div className={classes["readinput-container"]}>
                                 <div className={classes["input-icon"]}>          
-                                    <FontAwesomeIcon icon={faUser} />
+                                <img src="/icons/statusIcon.png" alt="status Icon"/>
                                 </div>
                                     <div className={classes["divider"]}></div>
                                     <input type="text" name="subject" placeholder="subject"  value="" readOnly={true} className={classes["input-container-input"]}/>                          
@@ -40,7 +40,7 @@ const AddSession = () => {
 
                     <div className={classes["readinput-container"]}>
                                 <div className={classes["input-icon"]}>          
-                                    <FontAwesomeIcon icon={faUser} />
+                                <img src="/icons/locationIcon.png" alt="location Icon"/>
                                 </div>
                                     <div className={classes["divider"]}></div>
                                     <input type="text" name="location" placeholder="location" value="" readOnly={true} className={classes["input-container-input"]}/>
@@ -48,7 +48,7 @@ const AddSession = () => {
 
                     <div className={classes["dateContainer"]}>
                             <div className={classes["icContainer"]}>
-                                <FontAwesomeIcon icon={faBirthdayCake} />
+                            <img src="/icons/clockIcon.png" alt="clockIcon Icon"/>
                             </div>
                             <div className={classes["inputGroup"]}>
                                 <input type="date" name="birthDate"  value="" />          
@@ -57,7 +57,7 @@ const AddSession = () => {
 
                     <div className={classes["input-container"]}>
                                 <div className={classes["input-icon"]}>          
-                                    <FontAwesomeIcon icon={faUser} />
+                                <img src="/icons/clockIcon.png" alt="clockIcon Icon"/>
                                 </div>
                                     <div className={classes["divider"]}></div>
                                     <input type="text" name="duration" placeholder="duration" value="" className={classes["input-container-input"]} />
@@ -66,7 +66,7 @@ const AddSession = () => {
 
                     <div className={classes["readinput-container"]}>
                                 <div className={classes["input-icon"]}>          
-                                    <FontAwesomeIcon icon={faUser} />
+                                <img src="/icons/statusIcon.png" alt="status Icon"/>
                                 </div>
                                     <div className={classes["divider"]}></div>
                                     <input type="text" name="topic" placeholder="topic" value="" readOnly={true} className={classes["input-container-input"]}/>                              
@@ -74,7 +74,7 @@ const AddSession = () => {
 
                     <div className={classes["input-container"]}>
                                 <div className={classes["input-icon"]}>          
-                                    <FontAwesomeIcon icon={faUser} />
+                                <img src="/icons/statusIcon.png" alt="status Icon"/>
                                 </div>
                                     <div className={classes["divider"]}></div>
                                     <input type="text" name="rate" placeholder="rate" value="" className={classes["input-container-input"]} />
@@ -82,7 +82,7 @@ const AddSession = () => {
 
                     <div className={classes["readinput-container"]}>
                                 <div className={classes["input-icon"]}>          
-                                    <FontAwesomeIcon icon={faUser} />
+                                    <img src="/icons/statusIcon.png" alt="status Icon"/>
                                 </div>
                                     <div className={classes["divider"]}></div>
                                     <input type="text" name="service" placeholder="service" value="" readOnly={true} className={classes["input-container-input"]}/>                   
