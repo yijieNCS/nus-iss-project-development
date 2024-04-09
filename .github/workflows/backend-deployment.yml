@@ -1,9 +1,10 @@
 name: Build and Deploy Backend Docker Images
 
-on:
-  pull_request:
-    branches:
-      - main
+# on:
+#   pull_request:
+#     branches:
+#       - main
+on: [push]
 
 jobs:
     build:
@@ -43,5 +44,19 @@ jobs:
                 file: ./backend/Dockerfile
                 push: true
                 tags: ${{ secrets.DOCKER_USERNAME }}/sg_learner_server:latest
+
+            - name: SSH into EC2 Deployment
+              uses: appleboy/ssh-action@master
+              with:
+                host: ${{ secrets.EC2_HOST }}
+                username: ${{ secrets.EC2_USERNAME }}
+                key: ${{ secrets.EC2_PRIVATE_KEY }}
+                script: |
+                  docker pull ${{ secrets.DOCKER_USERNAME }}/sg_learner_server:latest
+                  docker stop sg_learner_server || true
+                  docker rm sg_learner_server ||true
+                  docker run -d -- name sg_learner_server -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/sg_learner_server:latest
+                  docker image prune -a --force
+
 
             
