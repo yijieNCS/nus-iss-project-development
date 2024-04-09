@@ -41,6 +41,10 @@ export function SideBar() {
                             <img src="/icons/sessionsIcon.png" alt="Session Icon"/>
                             <NavLink to="/sessions">Upcoming Sessions</NavLink>
                         </li>
+                        <li className={classes['sidebar-sub-menu-options']}>
+                            <img src="/icons/sessionsIcon.png" alt="Session Icon"/>
+                            <NavLink to="/addsession">Add Session</NavLink>
+                        </li>
                     </ul>
                 </li>
                 <li>
