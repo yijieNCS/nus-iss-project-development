@@ -27,7 +27,7 @@ const CardList = () => {
             subject={service.subject}
             topic={service.topic} 
             rate={service.rate}
-            tutorname={service.userId} //change to user full name
+            yearsexp={service.experience} 
           />
       ))}
     </div>

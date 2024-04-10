@@ -6,8 +6,8 @@ const Card = ({ subject,topic, rate, tutorname}) => {
   return (
     <div className={styles["card"]}>
       <h2>{subject}</h2>
-      <p>{topic}</p>
-      <p>{rate}</p>
+      <p>Topic: {topic}</p>
+      <p>Rate: ${rate}/hr</p>
       <p>{tutorname}</p>
     </div>
   );

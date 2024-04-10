@@ -28,3 +28,26 @@
     left: 55%;
     transform: translate(-50%, -50%);
   }
+  .edit-button {
+    position: absolute;
+    top: 36%;
+    left: 97%;
+    transform: translate(-50%, -50%);
+  }
+
+  .addsvc-button {
+    position: absolute;
+    top: 30%;
+    left: 97%;
+    transform: translate(-50%, -50%);
+  }
+
+  input[type="text"] { width: 200px; }
+
+  .visible {
+    display: block;
+  }
+  
+  .hidden {
+    display: none;
+  }

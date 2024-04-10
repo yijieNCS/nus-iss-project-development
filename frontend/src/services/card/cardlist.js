@@ -11,6 +11,7 @@ const CardList = () => {
     try {
       const sessionsData = await axios.get(`http://localhost:8080/api/services/`);
       setServices(sessionsData.data);
+      
     } catch (error) {
       console.error('Error fetching the session: ', error);
     }
