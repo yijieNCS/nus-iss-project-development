@@ -2,10 +2,9 @@ name: Build and Deploy Backend Docker Images
 
 on:
   pull_request:
+    types: [closed]
     branches:
       - main
-
-# on: [push]
 
 jobs:
     build:
