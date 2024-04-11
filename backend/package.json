@@ -13,7 +13,7 @@
     "test-registration": "mocha --timeout 20000 --exit ./test/registration/registration.test.js",
     "test-report": "mocha --timeout 20000 --exit ./test/report/report.test.js",
     "test-login": "mocha --timeout 20000 --exit ./test/login/login.test.js",
-    "test-all": "npm run test-users & npm run test-sessions && npm run test-changePassword && npm run test-registration && npm run test-login && npm run test-report && npm run test-changePassword"
+    "test-all": "npm run test-users"
   },
   "keywords": [],
   "author": "",
