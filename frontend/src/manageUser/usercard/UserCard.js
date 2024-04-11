@@ -23,7 +23,7 @@ const UserCard = ({...props}) => {
                     <FontAwesomeIcon icon={faBirthdayCake} />
                 </div>
                 <div className={classes["divider"]}></div>
-                <input type="text" name="birthDate" placeholder="birthDate"  value={props.birthDate} readOnly={true}/>
+                <input type="text" name="birthDate" placeholder="birthDate"  value={props.birthDate.split("T")[0]} readOnly={true}/>
                 
             </div>
             <div className={classes["input-container"]}>
