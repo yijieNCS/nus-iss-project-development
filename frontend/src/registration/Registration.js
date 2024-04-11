@@ -203,7 +203,7 @@ const Registration = () => {
                                 <FontAwesomeIcon icon={faUser} />
                             </div>
                                 <div className={classes["divider"]}></div>
-                                <input type="text" name="lastName" placeholder="lastName" ref={lastNameRef} value={!isAdmin ? null: formData.lastName} onChange={handleChange} readOnly={isAdmin} />
+                                <input type="text" name="lastName" placeholder={isAdmin?"lastName (not needed)":"lastName"}ref={lastNameRef} value={!isAdmin ? null: formData.lastName} onChange={handleChange} readOnly={isAdmin} />
                                 {!isAdmin &&  errors.lastName && <div className={classes["error"]}>{errors.lastName}</div>}
                     </div>
                     <div className={classes["input-container"]}>
