@@ -14,7 +14,8 @@ import ChangePassword from "../changePassword/changePassword";
 import SubmitReport from "../report/SubmitReport";
 import ViewReport from "../report/ViewReport";
 import Resume from '../resume/Resume';
-
+import ManageUser from '../manageUser/manageUser';
+import AddSession from '../sessions/AddSession';
 
 function AppRoutes() {
     return (
@@ -23,10 +24,12 @@ function AppRoutes() {
                 <Routes>
                     <Route exact path="/" element={<Login/>} />
                     <Route exact path="/sessions" element={<Sessions/>}/>
+                    <Route exact path="/addsession" element={<AddSession/>}/>
                     <Route exact path="/registration" element={<Registration/>}/>
                     <Route exact path="/changepassword" element={<ChangePassword/>}/>
                     <Route exact path="/submitreport" element={<SubmitReport/>}/>
                     <Route exact path="/viewreport" element={<ViewReport/>}/>
+                    <Route exact path="/manageuser" element={<ManageUser/>}/>
                     <Route exact path="/services" element={<Services/>}/>
                     <Route exact path="/viewresume" element={<Resume/>}/>
                 </Routes>
