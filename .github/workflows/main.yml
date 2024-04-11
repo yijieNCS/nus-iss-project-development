@@ -1,6 +1,10 @@
 name: Continous Integration Pipeline
 
-on: [push]
+on:
+  push:
+    branches-ignore:
+      - main
+
 
 permissions:
   id-token: write 

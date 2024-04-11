@@ -18,11 +18,11 @@ const Login = () => {
     const closeModal = () => setIsModalOpen(false)
 
     const navigate = useNavigate()
+    const serverUrl = process.env.REACT_APP_SERVER_URL_PROD
+    console.log(`The server URL is ${serverUrl}`)
 
     const usernameRef = useRef()
     const passwordRef = useRef()
-
-    const userContext = useContext(UserContext)
 
     useEffect(() => {
          if (LoggedIn) {
@@ -36,7 +36,7 @@ const Login = () => {
         formData.password = passwordRef.current.value
 
         try {
-            const response = await axios.post('http://localhost:8080/api/login', formData)
+            const response = await axios.post(`${serverUrl}/api/login`, formData)
             if (response.status === 200) {
                 sessionStorage.setItem('accessToken', response.data['accessToken'])
                 const decodedData = jwtDecode(response.data['accessToken'])
