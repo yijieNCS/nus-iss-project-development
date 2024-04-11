@@ -11,7 +11,6 @@ const CardList = () => {
     try {
       const sessionsData = await axios.get(`http://localhost:8080/api/services/`);
       setServices(sessionsData.data);
-      
     } catch (error) {
       console.error('Error fetching the session: ', error);
     }
@@ -22,13 +21,13 @@ const CardList = () => {
   }, []);
 
   return (
-    <div className={styles["card-list"]}>
+    <div className={styles["card-list2"]}>
       {services.map((service, index) => (
           <Card
             subject={service.subject}
             topic={service.topic} 
             rate={service.rate}
-            tutorname={service.userId} //change to user full name
+            yearsexp={service.experience} 
           />
       ))}
     </div>

@@ -22,10 +22,22 @@
     overflow-y: auto;
 }
 
-.card-list2 {
+.user-info-box {
+    border: 1px solid black;
+    border-radius: 5px;
+    
+    /* display: grid;
+    grid-template-columns: repeat(13, 1fr); */
+    grid-column: 12 / span 13;
+    grid-row: 4/ span 1;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2), 0 -2px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  .card-list2 {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust column width as needed */
     grid-column:3/ span 13; 
-    grid-row: 5/ span 13; 
+    grid-row: 4/ span 13; 
     grid-auto-rows: 200px;
   }
+  
