@@ -5,10 +5,26 @@ import {
     deleteUserModel,
     updateUserModel, getnonAdminUserModelExcept, deleteUserModelbyUsername
 } from "./userModel.js";
-
+import { adminUserCreator, normalUserCreator } from "../register/registerFactory.factory.js"
 export async function getAllUsers(req, res)  {
     try{
         const users = await getUsersModel()
+        res.send(users)
+    } catch(error){
+        console.error(error)
+        res.status(500).json({error: error.message})
+    }
+}
+
+export async function getAllUsersAdminandNormalUser(req, res)  {
+    try{
+        const usersRaw = await getUsersModel()
+        const users = []
+        usersRaw.forEach(user =>
+            user.admin === 1
+                ? users.push(adminUserCreator(user))
+                : users.push(normalUserCreator(user))
+        )
         res.send(users)
     } catch(error){
         console.error(error)

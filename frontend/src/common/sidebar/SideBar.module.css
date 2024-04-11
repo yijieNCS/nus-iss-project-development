@@ -14,7 +14,28 @@ ul {
     grid-row: 1 / span 13;
     background-color: #F04748;
     box-shadow: 3px 0 8px rgba(0, 0, 0, 0.2);
+    overflow-y: auto; /* Add vertical scrolling if content exceeds the height */  
 }
+/* Style the scrollbar track */
+.sidebar::-webkit-scrollbar {
+    width: 8px; /* Set the width of the scrollbar */
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Light grey */
+}
+
+/* Style the scrollbar handle */
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: #888; /* Grey */
+    border-radius: 5px; /* Roundness of the scrollbar handle */
+}
+
+/* Change cursor style on scrollbar handle hover */
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Dark grey */
+}
+
 
 .sidebar-title {
     display: flex;
@@ -39,6 +60,7 @@ ul {
     align-items: flex-start;
     gap: 2em;
     grid-row: 2 / span 13;
+
 }
 
 .sidebar-menu li {

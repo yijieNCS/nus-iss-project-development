@@ -42,7 +42,8 @@ const Login = () => {
                 const decodedData = jwtDecode(response.data['accessToken'])
                 const user = {
                     userId: decodedData.userId,
-                    username: decodedData.username
+                    username: decodedData.username,
+                    admin: decodedData.admin
                 }
                 sessionStorage.setItem('userData', JSON.stringify(user))
                 setLoggedIn(true)

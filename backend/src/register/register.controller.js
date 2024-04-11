@@ -3,8 +3,8 @@ import { adminUserCreator, normalUserCreator } from "./registerFactory.factory.j
 
 export async function register(req, res) {
     try {
-
-        const { firstName, lastName, username, email, password, bDay, gender, admin } = req.body
+        console.log(req.body)
+        const { firstName, lastName, username, email, password, birthDate, gender, admin } = req.body
         const user = await getUserModelByUsername(username)
 
         let userData = undefined
@@ -15,12 +15,13 @@ export async function register(req, res) {
 
             let education = "Unknown";
 
-            if (admin === "Y") {
+            if (admin) {
                 userData = adminUserCreator({
                     firstName,
                     email,
                     username,
-                    password
+                    password,
+                    admin
                 })
             } else {
                 userData = normalUserCreator({
@@ -30,11 +31,11 @@ export async function register(req, res) {
                     education,
                     username,
                     password,
-                    bDay,
+                    birthDate,
                     gender,
+                    admin
                 })
             }
-
             await createUserModel(userData)
             res.status(200).json({ success: "User registered successfully" });
         }
