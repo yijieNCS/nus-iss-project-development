@@ -32,20 +32,20 @@ jobs:
             - name: Build and Push Docker Image
               uses: docker/build-push-action@v5
               with:
-                context: ./backend
+                context: ./frontend
                 file: ./frontend/Dockerfile
                 push: true
                 tags: ${{ secrets.DOCKER_USERNAME }}/sg_learner_client:latest
 
-            - name: SSH into EC2 Deployment
-              uses: appleboy/ssh-action@master
-              with:
-                host: ${{ secrets.EC2_CLIENT_HOST }}
-                username: ${{ secrets.EC2_USERNAME }}
-                key: ${{ secrets.EC2_CLIENT_KEY }}
-                script: |
-                  docker pull ${{ secrets.DOCKER_USERNAME }}/sg_learner_client:latest
-                  docker stop sg_learner_client || true
-                  docker rm sg_learner_client || true
-                  docker run -d --name sg_learner_client -p 3000:3000 ${{ secrets.DOCKER_USERNAME }}/sg_learner_client:latest
-                  docker image prune -a --force
+            # - name: SSH into EC2 Deployment
+            #   uses: appleboy/ssh-action@master
+            #   with:
+            #     host: ${{ secrets.EC2_CLIENT_HOST }}
+            #     username: ${{ secrets.EC2_USERNAME }}
+            #     key: ${{ secrets.EC2_CLIENT_KEY }}
+            #     script: |
+            #       docker pull ${{ secrets.DOCKER_USERNAME }}/sg_learner_client:latest
+            #       docker stop sg_learner_client || true
+            #       docker rm sg_learner_client || true
+            #       docker run -d --name sg_learner_client -p 3000:3000 ${{ secrets.DOCKER_USERNAME }}/sg_learner_client:latest
+            #       docker image prune -a --force
