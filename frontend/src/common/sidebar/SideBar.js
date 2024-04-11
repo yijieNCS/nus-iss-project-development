@@ -31,6 +31,8 @@ export function SideBar() {
                 <h2 className={classes['sidebar-company-title']}>SGLearner</h2>
             </div>
             <ul className={classes['sidebar-menu']}>
+            {!isAdmin && (
+            <>
                 <li>
                     <ul className={classes['sidebar-sub-menu']}>
                         <li className={classes['sidebar-sub-menu-title']}>
@@ -91,23 +93,45 @@ export function SideBar() {
                         </li>
                     </ul>
                 </li>
+                
+                </>
+                )}
                 {isAdmin && (
+                    <>
                         <li>
-                            <ul className={classes['sidebar-sub-menu']}>
-                                <li className={classes['sidebar-sub-menu-title']}>
-                                    <h2>Admin Options</h2>
-                                    {/* Add admin-specific options */}
-                                </li>
-                                <li className={classes['sidebar-sub-menu-options']}>
-                                    <img src='/icons/submitReportIcon.png' alt="Submit Report Icon"/>
-                                    <NavLink to="/registration">Create Admin</NavLink>
-                                </li>
-                                <li className={classes['sidebar-sub-menu-options']}>
-                                    <img src='/icons/submitReportIcon.png' alt="Submit Report Icon"/>
-                                    <NavLink to="/manageuser">Manage User</NavLink>
-                                </li>
-                            </ul>
-                        </li>
+                        <ul className={classes['sidebar-sub-menu']}>
+                            <li className={classes['sidebar-sub-menu-title']}>
+                                <h2>Report</h2>
+                                <img src='/icons/warningIcon.png' alt="Report Icon"/>
+                            </li>
+                            <li className={classes['sidebar-sub-menu-options']}>
+                                <img src='/icons/viewReportIcon.png' alt="View Report Icon"/>
+                                <NavLink to="/viewreport">View Report</NavLink>
+                            </li>
+                            <li className={classes['sidebar-sub-menu-options']}>
+                                <img src='/icons/submitReportIcon.png' alt="Submit Report Icon"/>
+                                <NavLink to="/submitreport">Submit Report</NavLink>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul className={classes['sidebar-sub-menu']}>
+                            <li className={classes['sidebar-sub-menu-title']}>
+                                <h2>Admin Options</h2>
+                                {/* Add admin-specific options */}
+                            </li>
+                            <li className={classes['sidebar-sub-menu-options']}>
+                                <img src='/icons/submitReportIcon.png' alt="Submit Report Icon"/>
+                                <NavLink to="/registration">Create Admin</NavLink>
+                            </li>
+                            <li className={classes['sidebar-sub-menu-options']}>
+                                <img src='/icons/submitReportIcon.png' alt="Submit Report Icon"/>
+                                <NavLink to="/manageuser">Manage User</NavLink>
+                            </li>
+                        </ul>
+                    </li>
+                    </>
+                    
                     )}
             </ul>
         </aside>
