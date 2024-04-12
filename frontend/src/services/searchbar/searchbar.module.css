@@ -1,0 +1,17 @@
+.searchbar form {
+    display: flex;
+    align-items: center; /* Center items vertically */
+  }
+  
+  form > div {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    margin-right: 10px; /* Add some space between elements */
+  }
+  
+  form > div > select,
+  form > div > input[type="text"],
+  form > div > button {
+    margin-right: 5px; /* Add some space between elements */
+  }
+  

@@ -4,11 +4,11 @@ import styles from './card.module.css';
 
 const Card = ({ subject,topic, rate, tutorname}) => {
   return (
-    <div>
+    <div className={styles["card"]}>
       <h2>{subject}</h2>
-      <p>{topic}</p>
-      <p>{rate}</p>
-      <p>{tutorname}</p>
+      <p>Topic: {topic}</p>
+      <p>Rate: {rate}</p>
+      <p>Tutor: {tutorname}</p>
     </div>
   );
 }

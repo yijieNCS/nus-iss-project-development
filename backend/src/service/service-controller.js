@@ -3,6 +3,8 @@ import {
     getService,
     createServiceModel,
     updateServiceModel,
+    getSubject,
+    getTopic,
     deleteServiceModel
 } from "./service-model.js";
 
@@ -14,6 +16,31 @@ export async function getAllServices(req, res)
         res.send(services)
     }
     catch (error){
+        console.error(error)
+        res.status(500).json({error: error.message})
+    }
+}
+
+export async function getServiceBySubject(req,res)
+{
+    try {
+        console.log('Request params:', req.params)
+        const subject = req.params.Subject
+        const service = await getSubject(subject)
+        res.send(service)
+    } catch (error){
+        console.error(error)
+        res.status(500).json({error: error.message})
+    }
+}
+
+export async function getServiceByTopic(req,res)
+{
+    try {
+        const topic = req.params.Topic
+        const service = await getTopic(topic)
+        res.send(service)
+    } catch (error){
         console.error(error)
         res.status(500).json({error: error.message})
     }
