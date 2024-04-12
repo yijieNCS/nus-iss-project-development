@@ -79,3 +79,26 @@
 }
 
 
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+.ban-button {
+    height: 35px;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    background-color: #d43747;
+    color: #fff;
+  }
+  
+  .ban-button:hover {
+    background-color: #bd2130;
+  }

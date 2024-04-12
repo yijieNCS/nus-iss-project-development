@@ -6,10 +6,11 @@ import axios from "axios";
 
 const CardList = () => {
   const [services, setServices] = useState([]);
+  const serverUrl =  process.env.REACT_APP_SERVER_URL
 
   const getServices = async () => {
     try {
-      const sessionsData = await axios.get(`http://localhost:8080/api/services/`);
+      const sessionsData = await axios.get(`${serverUrl}/api/services/`);
       setServices(sessionsData.data);
     } catch (error) {
       console.error('Error fetching the session: ', error);

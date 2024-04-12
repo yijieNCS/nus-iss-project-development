@@ -8,6 +8,7 @@ import classes from './Login.module.css'
 
 const Login = () => {
 
+    const serverUrl =  process.env.REACT_APP_SERVER_URL
     const [formData, setFormData] = useState ({
         username: '',
         password: ''
@@ -36,7 +37,7 @@ const Login = () => {
         formData.password = passwordRef.current.value
 
         try {
-            const response = await axios.post('http://localhost:8080/api/login', formData)
+            const response = await axios.post(`${serverUrl}/api/login`, formData)
             if (response.status === 200) {
                 sessionStorage.setItem('accessToken', response.data['accessToken'])
                 const decodedData = jwtDecode(response.data['accessToken'])

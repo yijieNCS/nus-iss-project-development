@@ -10,13 +10,13 @@ import axios from "axios";
 const Resume = () => {
 
 
-
+    const serverUrl =  process.env.REACT_APP_SERVER_URL
     const [users, setUser] = useState([]);
 
     const getUser = async () => {//display current user info
       try {
         const userData1 = JSON.parse(sessionStorage.getItem('userData'))
-        const usersData = await axios.get(`http://localhost:8080/api/user/${userData1.userId}`);
+        const usersData = await axios.get(`${serverUrl}/api/user/${userData1.userId}`);
         
         console.log(userData1);
         
