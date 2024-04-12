@@ -87,20 +87,14 @@ export async function deleteUserByUsername(req, res) {
 
 export async function updateUserById(req, res) {
     try {
-        const { userId, age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender,admin} = req.body
+        const { userId, firstName, lastName, email, education} = req.body
         const userIdRes = await updateUserModel(
             userId,
-            age,
-            dateJoined,
             firstName,
             lastName,
             email,
-            education,
-            username,
-            password,
-            birthDate,
-            gender,
-            admin
+            education
+           
         )
         res.status(200).send(`User Id: ${userIdRes} is updated Successfully`)
     } catch (error) {
@@ -108,6 +102,8 @@ export async function updateUserById(req, res) {
         res.status(500).json({error: error.message})
     }
 }
+
+
 
 export async function getCurrentUser(req, res, next) {
     next()

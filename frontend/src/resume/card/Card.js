@@ -9,6 +9,8 @@ const Card = ({ subject,topic, rate, yearsexp}) => {
       <p>Topic: {topic}</p>
       <p>Rate: ${rate}/hr</p>
       <p>Years of Experience: {yearsexp}</p>
+      <button>Edit</button>
+      <button>Delete</button>
     </div>
   );
 }
