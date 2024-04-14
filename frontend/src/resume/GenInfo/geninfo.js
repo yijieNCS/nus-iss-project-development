@@ -1,13 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classes from './geninfo.module.css';
 import axios from "axios";
+import { Form, Input } from "antd";
 
-const Geninfo = ({ firstname: initialFirstname, education: initialEducation, email: initialEmail, lastname: initialLastname }) => {
+const Geninfo = ({ firstname: initialFirstname, education: initialEducation, email: initialEmail, lastname: initialLastname, addService }) => {
     // State variables to manage the values of input fields
-    const [firstname, setFirstname] = useState(initialFirstname);
-    const [lastname, setLastname] = useState(initialLastname);
-    const [education, setEducation] = useState(initialEducation);
-    const [email, setEmail] = useState(initialEmail);
+    const [form] = Form.useForm();
+
+    const formInitialValues = {
+        firstName: initialFirstname,
+        lastName: initialLastname,
+        education: initialEducation,
+        email: initialEmail,
+    }
+
+    useEffect(() => {
+        form.setFieldsValue(formInitialValues);
+    }, [initialFirstname, initialLastname, initialEducation, initialEmail]);
     
     // State variable to manage edit mode
     const [editMode, setEditMode] = useState(false);
@@ -15,92 +24,84 @@ const Geninfo = ({ firstname: initialFirstname, education: initialEducation, ema
     const toggleEditMode = () => {
         // Toggle edit mode
         setEditMode(!editMode);
-        console.log(firstname);
-        console.log(firstname);
-
+        console.log(editMode);
+        if (editMode==true){
+            saveChanges();
+        }
+        
     };
-    
 
-    const handleInputChange = (event) => {
-        // Update state variables based on input changes
-        const { name, value } = event.target;
-        switch (name) {
-            case 'firstname':
-                setFirstname(value);
-                break;
-            case 'lastname':
-                setLastname(value);
-                break;
-            case 'education':
-                setEducation(value);
-                break;
-            case 'email':
-                setEmail(value);
-                break;
-            default:
-                break;
+
+    const saveChanges = async() => {
+        try {
+            // PUT request to update user data
+            const userData1 = JSON.parse(sessionStorage.getItem('userData'));
+            const userId = userData1.userId;
+            const values = form.getFieldsValue();
+            // console.log(userId,firstName,lastname,education,email);
+            console.log('values', values);
+            await axios.put('http://localhost:8080/api/user/', {
+                userId: userId,
+                ...values,
+                // firstName: firstname,
+                // lastName: lastname,
+                // education: education,
+                // email: email
+            });
+           
+            // Exit edit mode
+            
+        } catch (error) {
+            console.error('Error updating user data: ', error);
         }
     };
 
-    const saveChanges = () => {
-        // You can implement logic to save changes here
-        console.log("Saving changes...");
-        console.log("Firstname:", firstname);
-        console.log("Lastname:", lastname);
-        console.log("Education:", education);
-        console.log("Email:", email);
-        toggleEditMode(); // Exit edit mode after saving changes
-    };
+    const formFields = [
+        {
+            name: 'firstName',
+            label: 'First Name:',
+            input: <Input />
+        },
+        {
+            name: 'lastName',
+            label: 'Last Name:',
+            input: <Input />
+        },
+        {
+            name: 'education',
+            label: 'Education',
+            input: <Input />
+        },
+        {
+            name: 'email',
+            label: 'Email:',
+            input: <Input />
+        },
+    ]
 
     return (
-        <div className={classes["user-info-box"] } >
+        <div className={classes["user-info-box"]}>
             <div className={classes["centered"]}>
                 <h2>General Information</h2>
-                
-                <label>First Name: </label>
-                <input 
-                    type="text" 
-                    name="firstname" 
-                    value={firstname} 
-                    onChange={handleInputChange} 
+                <Form
+                    form={form}
                     disabled={!editMode}
-                />
-                
-                <br />
-                <label>Last Name: </label>
-                <input 
-                    type="text" 
-                    name="lastname" 
-                    value={lastname} 
-                    onChange={handleInputChange} 
-                    disabled={!editMode}
-                />
-                <br />
-                <label>Education: </label>
-                <input 
-                    type="text" 
-                    name="education" 
-                    value={education} 
-                    
-                    onChange={handleInputChange} 
-                    disabled={!editMode}
-                />
-                <br />
-                <label>Email: </label>
-                <input 
-                    type="text" 
-                    name="email" 
-                    value={email} 
-                    onChange={handleInputChange} 
-                    disabled={!editMode}
-                />
-                <br />
+                    labelCol={{ span: 8}}
+                    wrapperCol={{ span: 16}}
+                    initialValues={formInitialValues}
+                >
+                    {formFields.map((item) => (
+                        <Form.Item {...item} style={{ marginBottom: '8px' }}>
+                            {item.input}
+                        </Form.Item>
+                    ))}
+                </Form>
             </div>
             <div className={classes["addsvc-button"]}>
-                <button onClick={() => console.log("add service")}>Add Service</button>
+                <button onClick={addService}>Add Service</button>
             </div>
             <div className={classes["edit-button"]}>
-                <button onClick={toggleEditMode}>{editMode ? 'Cancel' : 'Edit'}</button>
+                <button onClick={toggleEditMode}>{editMode ? 'Save' : 'Edit'}</button>
             </div>
         </div>
     );

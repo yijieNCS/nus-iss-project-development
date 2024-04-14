@@ -42,12 +42,13 @@
     transform: translate(-50%, -50%);
   }
 
-  input[type="text"] { width: 200px; }
+.inputinfo
+{ width: 200px; }
 
-  .visible {
-    display: block;
-  }
-  
-  .hidden {
-    display: none;
-  }
+.visible {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
