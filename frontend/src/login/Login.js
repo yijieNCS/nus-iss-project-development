@@ -8,7 +8,6 @@ import classes from './Login.module.css'
 
 const Login = () => {
 
-    const serverUrl =  process.env.REACT_APP_SERVER_URL
     const [formData, setFormData] = useState ({
         username: '',
         password: ''
@@ -19,7 +18,7 @@ const Login = () => {
     const closeModal = () => setIsModalOpen(false)
 
     const navigate = useNavigate()
-    const serverUrl = process.env.REACT_APP_SERVER_URL_PROD
+    const serverUrl = process.env.REACT_APP_SERVER_URL
     console.log(`The server URL is ${serverUrl}`)
 
     const usernameRef = useRef()
