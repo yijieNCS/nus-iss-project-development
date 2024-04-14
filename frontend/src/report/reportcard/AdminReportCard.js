@@ -1,12 +1,10 @@
-
-import classes from './ReportCard.module.css'
-import React, {useEffect, useState} from "react"
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import classes from './AdminReportCard.module.css';
 
-
-const ReportCard = (props) => {
+const AdminReportCard = (props) => {
     const serverUrl =  process.env.REACT_APP_SERVER_URL
-    const { report, reportedUser, reportBy } = props
+    const { report, reportBy, reportedUser, isDeleted, handleDelete } = props;
 
     const [reporterName, setReporterName] = useState('');
     const [reportedName, setReportedName] = useState('');
@@ -36,8 +34,8 @@ const ReportCard = (props) => {
 
         fetchReportedUserName();
     }, [reportedUser]);
-    
-    return ( 
+
+    return isDeleted ? null : (
         <div className={classes["reportcontent-card"]}>
             <div className={classes["leftcontent"]}>
                 <h2>Reported by {reporterName}</h2>
@@ -51,12 +49,14 @@ const ReportCard = (props) => {
             </div>
             
             <div className={classes["reportdescContainer"]}>
-                <h3><label for="reportbox">Report Description:</label></h3>
+                <h3><label htmlFor="reportbox">Report Description:</label></h3>
                 <textarea id="reportbox" name="reportbox" value={report} readOnly></textarea>
+                <div className={classes["button-container"]}>
+                    <button className={classes["ban-button"]} onClick={handleDelete}>Ban</button>
+                </div>
             </div> 
         </div>
+    );
+};
 
-     );
-}
- 
-export default ReportCard;
+export default AdminReportCard;

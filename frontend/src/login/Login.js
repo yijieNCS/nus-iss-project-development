@@ -18,7 +18,7 @@ const Login = () => {
     const closeModal = () => setIsModalOpen(false)
 
     const navigate = useNavigate()
-    const serverUrl = process.env.REACT_APP_SERVER_URL_PROD
+    const serverUrl = process.env.REACT_APP_SERVER_URL
     console.log(`The server URL is ${serverUrl}`)
 
     const usernameRef = useRef()

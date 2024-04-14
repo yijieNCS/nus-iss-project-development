@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
 const Registration = () => {
+    const serverUrl =  process.env.REACT_APP_SERVER_URL
     const navigate = useNavigate();
 
     const [isAdmin, setIsAdmin] = useState(false)
@@ -159,7 +160,7 @@ const Registration = () => {
         const isValid = validateForm()
         if (isValid){
             try {
-                const response = await axios.post('http://localhost:8080/api/register', formData);
+                const response = await axios.post(`${serverUrl}/api/register`, formData);
                 if (response.status === 200) {
                     setRegistered(true)
                     setAlertVisible(true)

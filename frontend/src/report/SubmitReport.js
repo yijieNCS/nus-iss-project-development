@@ -6,6 +6,7 @@ import axios from "axios";
 
 
 const SubmitReport = () => {
+    const serverUrl =  process.env.REACT_APP_SERVER_URL
     const reportedUserRef = useRef()
     const reportRef = useRef()
     
@@ -34,7 +35,7 @@ const SubmitReport = () => {
 
     const fetchUserInfo = async (userId) => {
         try {
-            const userData = await axios.get(`http://localhost:8080/api/user/${userId}`);
+            const userData = await axios.get(`${serverUrl}/api/user/${userId}`);
             setReportBy(userData.data.username);
             setFormData(prevState => ({
                 ...prevState,
@@ -47,7 +48,7 @@ const SubmitReport = () => {
 
     const fetchReportedUsers = async (userId) => {
         try {
-            const response = await axios.get(`http://localhost:8080/api/userexcept/${userId}`);
+            const response = await axios.get(`${serverUrl}/api/userexcept/${userId}`);
             setReportedUsers(response.data);
         } catch (error) {
             console.error('Error fetching reported users:', error);
@@ -94,7 +95,7 @@ const SubmitReport = () => {
         const isValid = validateForm()
         if (isValid){
             try {
-                const response = await axios.post('http://localhost:8080/api/report', formData);
+                const response = await axios.post(`${serverUrl}/api/report`, formData);
                 if (response.status === 200) {
                     setReported(true)
                     setAlertVisible(true)
