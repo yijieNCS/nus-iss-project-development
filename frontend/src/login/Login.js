@@ -8,6 +8,7 @@ import classes from './Login.module.css'
 
 const Login = () => {
 
+    const serverUrl =  process.env.REACT_APP_SERVER_URL
     const [formData, setFormData] = useState ({
         username: '',
         password: ''

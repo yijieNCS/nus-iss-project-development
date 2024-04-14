@@ -5,11 +5,12 @@ import styles from './cardlist.module.css'; // Import your CSS file for styling
 import axios from "axios";
 
 const CardList = () => {
+  const serverUrl =  process.env.REACT_APP_SERVER_URL
   const [services, setServices] = useState([]);
 
   const getServices = async () => {
     try {
-      const sessionsData = await axios.get(`http://localhost:8080/api/services/`);
+      const sessionsData = await axios.get(`${serverUrl}/api/services/`);
       setServices(sessionsData.data);
       
     } catch (error) {

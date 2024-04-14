@@ -1,28 +1,49 @@
 import { SideBar } from "../common/sidebar/SideBar";
 import { Header } from "../common/header/Header";
-import classes from './ViewReport.module.css'
-import React, { useEffect, useState} from "react"
+import classes from './ViewReport.module.css';
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import ReportCard from "./reportcard/ReportCard"; // Import as default
+import ReportCard from "./reportcard/ReportCard";
+import AdminReportCard from "./reportcard/AdminReportCard";
 
 const ViewReport = () => {
-
-    const [reports, setReports] = useState([])
-    const [userAdmin, setUserAdmin] = useState([])
+    const serverUrl =  process.env.REACT_APP_SERVER_URL;
+    const [reports, setReports] = useState([]);
+    const [isAdmin, setIsAdmin] = useState([]);
+    const [deletedReports, setDeletedReports] = useState([]);
 
     useEffect(() => {
         const userData = JSON.parse(sessionStorage.getItem('userData'));
-        const userId = userData ? userData.userId : null;
-        if (userId) {
-            getReports(userId);
-            getUser(userId);
+        if (userData.admin === 1) {
+            setIsAdmin(true);
+            getAllReports()
+        } 
+        else {
+            setIsAdmin(false);
+            const userId = userData ? userData.userId : null;
+            if (userId) {
+                getReportsById(userId);
+            }
         }
     }, []);
 
-    const getReports = async (userId) => {
+    useEffect(() => {
+        console.log('The reports:', reports);
+    }, [reports]);
+
+    const getAllReports = async () => {
         try {
-            console.log("userId: in view " + userId);
-            const reportsData = await axios.get(`http://localhost:8080/api/reporteduser/${userId}`);
+            
+            const reportsData = await axios.get(`${serverUrl}/api/reports/`);
+            console.log("Response:", reportsData);
+            setReports(reportsData.data);
+        } catch (error) {
+            console.error('Error fetching the reports: ', error);
+        }
+    };
+    const getReportsById = async (userId) => {
+        try {
+            const reportsData = await axios.get(`${serverUrl}/api/reporteduser/${userId}`);
             console.log("Response:", reportsData);
             setReports(reportsData.data);
         } catch (error) {
@@ -30,39 +51,42 @@ const ViewReport = () => {
         }
     };
 
-    const getUser = async (userId) => {
+
+    const handleDelete = async (reportId) => {
         try {
-            console.log("userId: in getUser " + userId);
-            const userData = await axios.get(`http://localhost:8080/api/user/${userId}`);
-            console.log("userData:", userData);
-            if (userData.data.admin){
-                setUserAdmin(true)
-            }else{
-                setUserAdmin(false)
-            }
+            await axios.delete(`${serverUrl}/api/report/${reportId}`);
+            setDeletedReports([...deletedReports, reportId]);
         } catch (error) {
-            console.error('Error fetching the reports: ', error);
+            console.error("Error deleting report:", error);
         }
     };
-
-    useEffect(() => {
-        console.log('The reports:', reports);
-    }, [reports]);
-
 
     return ( 
         <div className={classes["grid-container"]}>
             <Header/>
             <SideBar/>
             <main className={classes["content"]}>
-                {reports.map(report => (
-                    <ReportCard
-                        key={report.reportId}
-                        report={report.report}
-                        reportedUser={report.reportedUser}
-                        reportBy={report.reportBy}
-                    />
-                ))}           
+                {
+                    isAdmin 
+                    ? reports.map(report => (
+                        <AdminReportCard
+                            key={report.reportId}
+                            report={report.report}
+                            reportedUser={report.reportedUser}
+                            reportBy={report.reportBy}
+                            isDeleted={deletedReports.includes(report.reportId)} 
+                            handleDelete={() => handleDelete(report.reportId)}
+                        />
+                    ))   
+                    : reports.map(report => (
+                        <ReportCard
+                            key={report.reportId}
+                            report={report.report}
+                            reportedUser={report.reportedUser}
+                            reportBy={report.reportBy}                      
+                        />
+                    ))      
+                }           
             </main>
         </div>
      );

@@ -6,6 +6,7 @@ import classes from './changePassword.module.css'
 
 const ChangePassword = () => {
 
+    const serverUrl= process.env.REACT_APP_SERVER_URL
     const [formData, setFormData] = useState ({
         username: '',
         password: '',
@@ -57,7 +58,7 @@ const ChangePassword = () => {
         const isValid = validateForm()
         if (isValid){
             try {
-                const response = await axios.post('http://localhost:8080/api/changepassword', formData);
+                const response = await axios.post(`${serverUrl}/api/changepassword`, formData);
                 if (response.status === 200) {
                     setChangePassword(true);
                 }

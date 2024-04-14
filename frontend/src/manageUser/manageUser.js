@@ -7,6 +7,7 @@ import UserCard from "./usercard/UserCard";
 import AdminCard from "./adminusercard/AdminCard"
 const ManageUser = () => {
 
+    const serverUrl =  process.env.REACT_APP_SERVER_URL
     const [users, setUsers] = useState([])
     const [normalUsers, setNormalUsers] = useState([])
     const [adminUsers, setAdminUsers] = useState([])
@@ -21,7 +22,7 @@ const ManageUser = () => {
             try {  
                 const loginData = JSON.parse(sessionStorage.getItem('userData'))
 
-                const usersData = await axios.get(`http://localhost:8080/api/adminandnormalusers`);
+                const usersData = await axios.get(`${serverUrl}/api/adminandnormalusers`);
                 console.log("usersData: ", usersData);
                 setUsers(usersData.data);
                 // Separate admin and normal users into different arrays
@@ -38,7 +39,7 @@ const ManageUser = () => {
 
     const handleAdminBan = async (username) => {
         try {
-          await axios.delete(`http://localhost:8080/api/username/${username}`);
+          await axios.delete(`${serverUrl}/api/username/${username}`);
           console.log("User banned successfully.");
           setBannedAdminUsers([...bannedAdminUsers, username]); 
 
@@ -48,14 +49,14 @@ const ManageUser = () => {
       };
 
     const handleNormalBan = async (username) => {
-    try {
-        await axios.delete(`http://localhost:8080/api/username/${username}`);
-        console.log("User banned successfully.");
-        setBannedNormalUsers([...bannedNormalUsers, username]); 
+        try {
+            await axios.delete(`${serverUrl}/api/username/${username}`);
+            console.log("User banned successfully.");
+            setBannedNormalUsers([...bannedNormalUsers, username]); 
 
-    } catch (error) {
-        console.error("Error banning user:", error);
-    }
+        } catch (error) {
+            console.error("Error banning user:", error);
+        }
     };
     const handleToggle = () => {
         setIsAdmin(!isAdmin); // Toggle the value of isAdmin
