@@ -19,11 +19,11 @@ const Login = () => {
     const closeModal = () => setIsModalOpen(false)
 
     const navigate = useNavigate()
+    const serverUrl = process.env.REACT_APP_SERVER_URL_PROD
+    console.log(`The server URL is ${serverUrl}`)
 
     const usernameRef = useRef()
     const passwordRef = useRef()
-
-    const userContext = useContext(UserContext)
 
     useEffect(() => {
          if (LoggedIn) {

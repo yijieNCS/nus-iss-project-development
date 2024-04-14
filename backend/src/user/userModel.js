@@ -122,21 +122,21 @@ export async function deleteUserModelbyUsername(username) {
         throw error;
     }
 }
+//  for updating geninfo
 
 
 
-
-export async function updateUserModel(userId, age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender,admin){
+export async function updateUserModel(userId, firstName, lastName, email, education){
     const checkUserSql = `SELECT * FROM users WHERE userId=?`;
     const sql = `UPDATE users
-                        SET age=?, dateJoined=?, firstName=?, lastName=?, email=?, education=?, username=?, password=?, birthDate=?, gender=?, admin=?
+                        SET firstName=?, lastName=?, email=?, education=?
                         WHERE userId=?`
     try {
         const [userRows] = await pool.query(checkUserSql, [userId]);
         if (userRows.length === 0) {
             throw new Error("User not found");
         }
-        const [result] = await pool.query(sql, [age, dateJoined, firstName, lastName, email, education, username, password, birthDate, gender, admin, userId])
+        const [result] = await pool.query(sql, [firstName, lastName, email, education, userId])
         if (result.affectedRows === 0) {
             throw new Error("Failed to update the user");
         }
