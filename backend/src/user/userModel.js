@@ -72,6 +72,7 @@ export async function createUserModel({
   gender = null,
   admin = null
 }) {
+    console.log("Age "+age+" firstName: "+firstName+" lastName"+lastName+ "email: "+email+"education "+education+"ousername: "+username + "password: "+password+ "birthDate "+birthDate+"gender: "+gender+ " admin: "+admin)
     const sql = `INSERT INTO users (age, firstName, lastName, email, education, username, password, birthDate, gender, admin)
                         VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
     try {

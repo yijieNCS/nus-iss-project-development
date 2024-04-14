@@ -25,13 +25,13 @@ const adminUser = (userInfo) => {
         email: userInfo.email,
         username: userInfo.username,
         password: userInfo.password,
-        admin: "Y"
+        admin: 1
     })
 }
 
 const normalUser = (userInfo) => {
     const today = new Date();
-    const birthDate = new Date(userInfo.bDay);
+    const birthDate = new Date(userInfo.birthDate);
     let age = today.getFullYear() - birthDate.getFullYear();
     const monthDiff = today.getMonth() - birthDate.getMonth();
     if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
@@ -48,6 +48,6 @@ const normalUser = (userInfo) => {
         password: userInfo.password,
         birthDate: userInfo.birthDate,
         gender: userInfo.gender,
-        admin: "N"
+        admin: 0
     })
 }
