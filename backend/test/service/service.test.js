@@ -48,7 +48,26 @@ describe("Testing Services", function() {
         })
     })
 
-    //testing for get all services(subjects) cards by userid for resume page
+    describe("Testing GET service by Subject API", function() {
+        it("Should return status 200", function(done) {
+            const subject = "MATH"
+            requester.get(`/api/serviceSearchSubject/${subject}`).end((err, res) => {
+                expect(res).to.have.status(200)
+                done()
+            })
+        })
+    })
+
+    describe("Testing GET service by Topic API", function() {
+        it("Should return status 200", function(done) {
+            const topic = "Algebra"
+            requester.get(`/api/serviceSearchTopic/${topic}`).end((err, res) => {
+                expect(res).to.have.status(200)
+                done()
+            })
+        })
+    })
+
     
     describe("Testing UPDATE one service", function() {
         it("Should return status 200", function(done) {

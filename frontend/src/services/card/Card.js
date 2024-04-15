@@ -8,7 +8,7 @@ const Card = ({ subject,topic, rate, tutorname}) => {
       <h2>{subject}</h2>
       <p>Topic: {topic}</p>
       <p>Rate: ${rate}/hr</p>
-      <p>{tutorname}</p>
+      <p>Tutor: {tutorname}</p>
     </div>
   );
 }

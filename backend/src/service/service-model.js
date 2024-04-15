@@ -1,9 +1,31 @@
 import {pool} from "../app.js"; //changed to app.js
  
 export async function getServices() {
-    const sql = `SELECT * FROM services`
+    const sql = `SELECT services.serviceId, services.userId, services.subject, services.topic, services.experience, services.rate, CONCAT(users.firstName, ' ', users.lastName) as tutorname FROM services inner join users on services.userId = users.userId;`
     try {
         const [rows] = await pool.query(sql)
+        return rows
+    } catch (error) {
+        console.error(pool.user)
+        throw new Error(error)
+    }
+}
+
+export async function getSubject(subject) {
+    const sql = `SELECT services.serviceId, services.userId, services.subject, services.topic, services.experience, services.rate, CONCAT(users.firstName, ' ', users.lastName) as tutorname FROM services inner join users on services.userId = users.userId WHERE services.subject = ?;`
+    try {
+        const [rows] = await pool.query(sql, [subject])
+        return rows
+    } catch (error) {
+        console.error(pool.user)
+        throw new Error(error)
+    }
+}
+
+export async function getTopic(topic) {
+    const sql = `SELECT services.serviceId, services.userId, services.subject, services.topic, services.experience, services.rate, CONCAT(users.firstName, ' ', users.lastName) as tutorname FROM services inner join users on services.userId = users.userId WHERE services.topic = ?;`
+    try {
+        const [rows] = await pool.query(sql, [topic])
         return rows
     } catch (error) {
         console.error(pool.user)

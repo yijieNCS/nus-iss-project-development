@@ -4,7 +4,9 @@ import {
     getServiceById,
     createService,
     updateServiceById,
-    deleteServiceById
+    deleteServiceById,
+    getServiceBySubject,
+    getServiceByTopic
 } from "./service-controller.js";
 
 const serviceRouter = express.Router()
@@ -12,6 +14,10 @@ const serviceRouter = express.Router()
 serviceRouter.get('/api/services', getAllServices)
 
 serviceRouter.get('/api/service/:id', getServiceById)
+
+serviceRouter.get('/api/serviceSearchSubject/:Subject', getServiceBySubject)
+
+serviceRouter.get('/api/serviceSearchTopic/:Topic', getServiceByTopic)
 
 serviceRouter.post('/api/service', createService)
 

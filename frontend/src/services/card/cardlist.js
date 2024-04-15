@@ -1,36 +1,41 @@
-// CardList.js
 import React, { useState, useEffect } from 'react';
 import Card from './Card';
-import styles from './cardlist.module.css'; // Import your CSS file for styling
+import styles from './cardlist.module.css'; 
 import axios from "axios";
 
-const CardList = () => {
-  const serverUrl =  process.env.REACT_APP_SERVER_URL
+const CardList = ({ searchData }) => {
   const [services, setServices] = useState([]);
 
-  const getServices = async () => {
-    try {
-      const sessionsData = await axios.get(`${serverUrl}/api/services/`);
-      setServices(sessionsData.data);
-      
-    } catch (error) {
-      console.error('Error fetching the session: ', error);
-    }
-  }
-
   useEffect(() => {
-    getServices();
-  }, []);
+    const fetchServices = async () => {
+      try {
+        if (searchData && searchData.length > 0) {
+          console.log('Using search results');
+          setServices(searchData);
+        } else {
+          console.log('Using original');
+          const sessionsData = await axios.get(`http://localhost:8080/api/services/`);
+          console.log('Fetched data:', sessionsData.data);
+          setServices(sessionsData.data);
+        }
+      } catch (error) {
+        console.error('Error fetching the session: ', error);
+      }
+    };
+
+    fetchServices();
+  }, [searchData]);
 
   return (
     <div className={styles["card-list"]}>
       {services.map((service, index) => (
-          <Card
-            subject={service.subject}
-            topic={service.topic} 
-            rate={service.rate}
-            tutorname={service.userId} //change to user full name
-          />
+        <Card
+          key={index}
+          subject={service.subject}
+          topic={service.topic}
+          rate={service.rate}
+          tutorname={service.tutorname} // change to user full name
+        />
       ))}
     </div>
   );
