@@ -1,8 +1,14 @@
 name: Continous Integration Pipeline
 
+# on:
+#   push:
+#     branches-ignore:
+#       - main
+
 on:
-  push:
-    branches-ignore:
+  pull_request:
+    types: [closed]
+    branches:
       - main
 
 
