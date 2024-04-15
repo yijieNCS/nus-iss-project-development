@@ -87,6 +87,7 @@ const Resume = () => {
         });
         // Open the modal for editing
         setOpenPopup(true);
+        console.log("test");
       }
     };
 
