@@ -52,7 +52,7 @@ const AdminReportCard = (props) => {
                 <h3><label htmlFor="reportbox">Report Description:</label></h3>
                 <textarea id="reportbox" name="reportbox" value={report} readOnly></textarea>
                 <div className={classes["button-container"]}>
-                    <button className={classes["ban-button"]} onClick={handleDelete}>Ban</button>
+                    <button className={classes["ban-button"]} onClick={handleDelete}>Delete</button>
                 </div>
             </div> 
         </div>
