@@ -38,7 +38,7 @@ const Resume = () => {
 
     const getServices = async () => {
       try {
-        const sessionsData = await axios.get(`http://localhost:8080/api/services/`);
+        const sessionsData = await axios.get(`${serverUrl}/api/services/`);
         setServices(sessionsData.data);
         
       } catch (error) {
@@ -48,7 +48,7 @@ const Resume = () => {
 
     const deleteService = async (serviceId) => {
       try {
-        await axios.delete(`http://localhost:8080/api/service/${serviceId}`);
+        await axios.delete(`${serverUrl}/api/service/${serviceId}`);
         // Remove the deleted service from the list of services with this api
         const updatedServices = services.filter(service => service.serviceId !== serviceId);
         // Update the state with the updated list of services by removing specific service id from array
@@ -108,7 +108,7 @@ const Resume = () => {
     };
 
     // Post service data to backend
-    const saveService = await axios.post('http://localhost:8080/api/service', serviceData);
+    const saveService = await axios.post(`${serverUrl}/api/service`, serviceData);
     
     // Close the modal
     setOpenPopup(false);
@@ -138,7 +138,7 @@ const saveEditChanges = async () => {
     console.log(serviceData);
 
     // update service data to backend
-    const saveEditService = await axios.put('http://localhost:8080/api/service/', serviceData);
+    const saveEditService = await axios.put(`${serverUrl}/api/service/`, serviceData);
     
     // Close the modal
     setOpenPopup(false);
