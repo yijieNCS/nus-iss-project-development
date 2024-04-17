@@ -30,11 +30,13 @@ const CardList = ({ searchData }) => {
     <div className={styles["card-list"]}>
       {services.map((service, index) => (
         <Card
-          key={index}
+          key={service.index}
+          serviceId={service.serviceId}
           subject={service.subject}
           topic={service.topic}
           rate={service.rate}
-          tutorname={service.tutorname} // change to user full name
+          tutorname={service.tutorname}
+          tutorId={service.userId}
         />
       ))}
     </div>
