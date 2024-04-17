@@ -6,7 +6,7 @@ import { Header } from "../common/header/Header";
 import axios from "axios";
 
 function Sessions() {
-    const serverUrl =  process.env.REACT_APP_SERVER_URL
+    const serverUrl = process.env.REACT_APP_SERVER_URL
     const [sessions, setSessions] = useState([])
 
     const getSessions = async () => {

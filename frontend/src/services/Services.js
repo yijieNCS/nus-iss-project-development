@@ -9,15 +9,15 @@ import axios from 'axios';
 function Services() {
 
   const [searchResults, setSearchResults] = useState([]);
+  const serverUrl = process.env.REACT_APP_SERVER_URL
 
-  // Function to handle search
   const handleSearch = async (query, searchby) => {
     try{ 
       let sessionsData;
       if (searchby === 'subject') {
-        sessionsData = await axios.get(`http://localhost:8080/api/serviceSearchSubject/${query}`);
+        sessionsData = await axios.get(`${serverUrl}/api/serviceSearchSubject/${query}`);
       } else if (searchby === 'topic') {
-        sessionsData = await axios.get(`http://localhost:8080/api/serviceSearchTopic/${query}`);
+        sessionsData = await axios.get(`${serverUrl}/api/serviceSearchTopic/${query}`);
       }
       setSearchResults(sessionsData.data);
     }
