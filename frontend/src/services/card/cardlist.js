@@ -5,6 +5,7 @@ import axios from "axios";
 
 const CardList = ({ searchData }) => {
   const [services, setServices] = useState([]);
+  const serverUrl = process.env.REACT_APP_SERVER_URL
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -14,7 +15,7 @@ const CardList = ({ searchData }) => {
           setServices(searchData);
         } else {
           console.log('Using original');
-          const sessionsData = await axios.get(`http://localhost:8080/api/services/`);
+          const sessionsData = await axios.get(`${serverUrl}/api/services/`);
           console.log('Fetched data:', sessionsData.data);
           setServices(sessionsData.data);
         }

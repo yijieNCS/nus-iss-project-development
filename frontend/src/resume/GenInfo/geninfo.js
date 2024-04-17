@@ -7,6 +7,8 @@ const Geninfo = ({ firstname: initialFirstname, education: initialEducation, ema
     // State variables to manage the values of input fields
     const [form] = Form.useForm();
 
+    const serverUrl = process.env.REACT_APP_SERVER_URL
+
     const formInitialValues = {
         firstName: initialFirstname,
         lastName: initialLastname,
@@ -31,7 +33,6 @@ const Geninfo = ({ firstname: initialFirstname, education: initialEducation, ema
         
     };
 
-
     const saveChanges = async() => {
         try {
             // PUT request to update user data
@@ -40,7 +41,7 @@ const Geninfo = ({ firstname: initialFirstname, education: initialEducation, ema
             const values = form.getFieldsValue();
             // console.log(userId,firstName,lastname,education,email);
             console.log('values', values);
-            await axios.put('http://localhost:8080/api/user/', {
+            await axios.put(`${serverUrl}/api/user/`, {
                 userId: userId,
                 ...values,
                 // firstName: firstname,
