@@ -67,7 +67,7 @@ const Login = () => {
             </Modal>
             <img className={classes["grid-icon"]} src="/SgLearnerIcon.png" alt="SGLearner Icon"/>
             <div className={classes["grid-title"]}>
-                <h1>SGLearner</h1>
+                <h1>SGLearnerX</h1>
             </div>
             <form className={classes["grid-form"]} onSubmit={handleSubmit}>
                 <img className={classes["grid-username-icon"]} src="/UsernameIcon.png" alt="Username Icon"/>
