@@ -2,7 +2,7 @@ import classes from './Services.module.css'
 import { SideBar } from "../common/sidebar/SideBar";
 import { Header } from "../common/header/Header";
 import CardList from '../services/card/cardlist';
-import SearchBar from '../services/searchbar/searchbar';
+import SearchBar from './searchbar/searchbar';
 import React, {useContext, useEffect, useState} from "react"
 import axios from 'axios';
 
