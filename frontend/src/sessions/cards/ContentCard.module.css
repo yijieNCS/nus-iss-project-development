@@ -20,7 +20,7 @@
 
 .content-card-information {
     display: flex;
-    grid-column: 3 / span 6;
+    grid-column: 3 / span 3;
     grid-auto-flow: row;
     align-items: center;
     justify-content: flex-start;

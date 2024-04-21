@@ -1,12 +1,12 @@
 import app from "../../src/app.js"
 import { expect, use } from "chai";
 import chaiHttp from "chai-http";
+import {studentSessionCreator, tutorSessionCreator} from "../../src/sessions/sessionFactory.factory.js";
 
 const server = use(chaiHttp)
+
 let requester = undefined
 let testingId = undefined
-
-import {studentSessionCreator, tutorSessionCreator} from "../../src/sessions/sessionFactory.factory.js";
 
 describe("Testing Session", function() {
 
@@ -24,6 +24,7 @@ describe("Testing Session", function() {
                 "status": "COMPLETED",
                 "location": "Toa Payoh Ave 10"
             }
+
             requester.post("/api/session").send(testData).end((err, res) => {
                 expect(res).to.have.status(200)
                 testingId = res.text.split(" ")[2]

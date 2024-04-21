@@ -4,7 +4,7 @@ import {SideBar} from "../common/sidebar/SideBar";
 import {Header} from "../common/header/Header";
 import {faUser, faBirthdayCake} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import axios from "axios"
 
 const AddSession = () => {
@@ -14,6 +14,7 @@ const AddSession = () => {
     const [location, setLocation] = useState('')
 
     const serviceInformation = useLocation()
+    const navigate = useNavigate()
     const { serviceId, tutorName, rate, subject, topic, tutorId } = serviceInformation.state;
     const studentId = JSON.parse(sessionStorage.getItem('userData'))['userId']
     const serverUrl = process.env.REACT_APP_SERVER_URL
@@ -55,6 +56,9 @@ const AddSession = () => {
 
         try {
             const response = await axios.post(`${serverUrl}/api/session`, sessionData)
+            if (response.status === 200) {
+                navigate("/sessions")
+            }
         } catch (error) {
             console.error('Error creating the session: ', error)
         }
