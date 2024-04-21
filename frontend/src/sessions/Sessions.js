@@ -24,14 +24,32 @@ function Sessions() {
         getSessions()
     }, []);
 
+    const handleDelete = async (index, sessionId) => {
+        const updatedSession = sessions.filter((_, i) => i !== index)
+        setSessions(updatedSession)
+        try {
+            await axios.delete(`${serverUrl}/api/session/${sessionId}`)
+        } catch (error) {
+            console.error(`Error Deleting the session: `, error)
+        }
+    }
+
     return (
         <div className={classes["grid-container"]}>
             <Header/>
             <SideBar/>
             <main className={classes.content}>
-                {sessions.map(session => (
+                {/*{sessions.map(session => (*/}
+                {/*    <ContentCard*/}
+                {/*        key={session.sessionId}*/}
+                {/*        onDelete={() => handleDelete(session.sessionId)}*/}
+                {/*        {...session}*/}
+                {/*    />*/}
+                {/*))}*/}
+                {sessions.map((session, index) => (
                     <ContentCard
-                        key={session.sessionId}
+                        key={index} // Use the index as the key
+                        onDelete={() => handleDelete(index, session.sessionId)}
                         {...session}
                     />
                 ))}

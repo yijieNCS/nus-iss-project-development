@@ -1,7 +1,8 @@
 import React from 'react'
 import classes from './ContentCard.module.css'
+import {Button} from "../../common/button/Button"
 
-export function ContentCard({...props}) {
+export function ContentCard({onDelete, ...props}) {
 
     return (
         <div className={classes['content-card']}>
@@ -52,6 +53,7 @@ export function ContentCard({...props}) {
                     <p>{props.rate}</p>
                 </div>
             )}
+            <Button execute={onDelete}/>
         </div>
     )
 }
