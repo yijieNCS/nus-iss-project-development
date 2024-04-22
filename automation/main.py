@@ -6,7 +6,6 @@ from selenium.webdriver.common.keys import Keys
 
 class TestTutor(unittest.TestCase):
 
-
     @classmethod
     def setUpClass(cls):
         cls.driver = webdriver.Chrome()
@@ -41,7 +40,7 @@ class TestTutor(unittest.TestCase):
         time.sleep(5)
         add_service_button = self.driver.find_elements(By.CLASS_NAME, 'geninfo_addsvc-button__CqAt0')[0].find_element(By.TAG_NAME, 'button')
         add_service_button.click()
-        
+
         time.sleep(2)
 
         input_form_subject = self.driver.find_element(By.ID, 'subject')
